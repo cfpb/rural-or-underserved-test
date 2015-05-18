@@ -1,0 +1,41 @@
+.fieldset-reset {
+    border: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+input,
+select,
+textarea,
+fieldset {
+    border: 1px solid $gray-50;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-family: 'AvenirNextLTW01-Regular';
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+input[type=text],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type=url],
+input[type=week] {
+    height: 2em;
+    padding: 5px;
+    vertical-align: middle;
+    -webkit-appearance: none;
+}
+
+select {
+    line-height: 1.75;
+    padding: 5px;
+}
