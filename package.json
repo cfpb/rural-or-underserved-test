@@ -23,5 +23,8 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^1.0.0",
     "load-grunt-config": "^0.17.1"
+  },
+  "dependencies": {
+    "normalize.css": "^3.0.3"
   }
 }

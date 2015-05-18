@@ -1,3 +1,4 @@
+@import "node_modules/normalize.css/normalize";
 @import "fonts";
 @import "cfpb-colors";
 @import "typography";
@@ -8,3 +9,8 @@
 @import "utility-borders";
 @import "forms";
 @import "buttons";
+
+@import "header";
+@import "footer";
+
+@import "cricket";

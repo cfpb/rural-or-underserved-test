@@ -1,6 +1,5 @@
 button,
-.button,
-input[type=submit] {
+.button {
     background: $pacific;
     border: 0;
     border-radius: 2px;
@@ -15,3 +14,20 @@ input[type=submit] {
     vertical-align: middle;
     -webkit-appearance: none;
 }
+
+button,
+button::after,
+button::before,
+.button,
+.button::after,
+.button::before {
+  box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.button:hover { text-decoration: none }

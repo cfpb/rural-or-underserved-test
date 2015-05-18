@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="main-header">
         <div class="container">
             <div class="group">
                 <div class="col col-6">
@@ -27,7 +27,7 @@
         <section class="container">
             <div class="group">
                 <div class="col col-12">
-                    <h2 class="inline-block">Look up addresses for loans extended in</h2>
+                    <h2 class="inline-block margin-bottom-2">Look up addresses for loans extended in</h2>
                     <select>
                         <option selected value="2015">2015</option>
                         <option value="2014">2014</option>
@@ -43,11 +43,11 @@
                     <form>
                         <legend>Include street address, city, state/territory and Zip code for up to 12 properties.</legend>
                         <fieldset class="fieldset-reset">
-                            <input class="block margin-bottom-1" id="address1" name="address1" type="text" />
-                            <input class="block margin-bottom-1" id="address2" name="address2" type="text" />
-                            <input class="block margin-bottom-1" id="address3" name="address3" type="text" />
+                            <input class="block margin-top-1 margin-bottom-1 full-width" id="address1" name="address1" type="text" />
+                            <input class="block margin-bottom-1 full-width" id="address2" name="address2" type="text" />
+                            <input class="block margin-bottom-1 full-width" id="address3" name="address3" type="text" />
                             <p><a href="#" title="Add another address">Add another address</a></p>
-                            <input class="btn" type="submit" value="Look up addresses" />
+                            <input class="button" type="submit" value="Look up addresses" />
                         </fieldset>
                     </form>
                 </div>
@@ -56,19 +56,20 @@
                 <div class="col col-6 padding-2">
                     <h4 class="margin-top-0">Batch upload</h4>
                     <form>
-                        <legend>Upload a CSV file with address for up to x properties.</legend>
-                        <a href="#" title="Download CSV template">Download CSV template</a>
+                        <legend><p>Upload a CSV file with address for up to x properties.</p></legend>
+                        <p><a href="#" title="Download CSV template">Download CSV template</a></p>
                         <fieldset class="fieldset-reset">
                             <input id="file" name="file" type="file" />
-                            <input class="btn" type="submit" value="Look up addresses" />
+                            <input class="button" type="submit" value="Look up addresses" />
                         </fieldset>
+                        <p class="margin-top-1">Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
                     </form>
                 </div>
             </div>
         </section>
 
         <section class="container border-top group">
-            <div class="col col-8">
+            <div class="col col-8 padding-top-2">
                 <h3>About this tool</h3>
                 <p>This tool is maintained by the Consumer Financial Protection Bureau (CFPB) to help mortgage lenders determine which properties are located in a &ldquo;rural&rdquo; or &ldquo;underserved&rdquo; area as defined in 12 CFR 1026.35(b)(2)(iv)(A) and (B).</p>
                 <p>If more than 50% of a lender&lsquo;s total covered transactions are secured by first liens on properties that are located in areas that are either &ldquo;rural&rdquo; or &ldquo;underserved&rdquo;, the lender may be exempt from certain regulatory requirements under the Truth in Lending Act, such as creating escrow account for certain high-priced mortgages and prohibiting balloon payment provisions with regard to &ldquo;qualified mortgages&rdquo; and high-cost mortgages.</p>
@@ -88,11 +89,11 @@
             </div>
             <div class="col col-4 border-left bg-gray">
                 <div class="padding-2">
-                    <h4 class="border-top-3">Related information</h4>
+                    <h4 class="border-top-1"><span>Related information</span></h4>
                     <p>Some other important information to be described here, if necessary. Probably on three to four lines.</p>
                     <p><a href="#" title="Visit this information">Visit this information</a></p>
 
-                    <h4 class="border-top-3">Related links</h4>
+                    <h4 class="border-top-1"><span>Related links</span></h4>
                     <p><a href="#" title="Related website or information">Related website or information</a></p>
                     <p><a href="#" title="Other information">Other information</a></p>
                     <p><a href="#" title="Related website or information">Related website or information</a></p>
@@ -101,13 +102,13 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
+    <footer class="main-footer padding-2">
+        <div class="container group">
             <div class="col col-6">
-                <a href="#" title="Privacy act statement">Privacy act statement</a> | <a href="#" title="OMB #3170-00XX">OMB #31700-00XX</a>
+                <p><a href="#" title="Privacy act statement">Privacy act statement</a> | <a href="#" title="OMB #3170-00XX">OMB #31700-00XX</a></p>
             </div>
             <div class="col col-6">
-                An official website of the United States government.
+                <p class="right">An official website of the United States government.</p>
             </div>
         </div>
     </footer>
