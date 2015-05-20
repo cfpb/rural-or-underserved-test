@@ -8,6 +8,23 @@ body {
     line-height: $base-line-height;
 }
 
+strong {
+    font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+}
+
+a:link {
+    color: $pacific;
+}
+a:visited {
+    color: $pacific;
+}
+a:hover {
+    color: $redorange-80;
+}
+a.no-decoration {
+    text-decoration: none;
+}
+
 h1,
 h2,
 h3,

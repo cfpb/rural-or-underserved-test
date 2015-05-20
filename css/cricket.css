@@ -417,6 +417,21 @@ body {
   font-size: 100%;
   line-height: 22px; }
 
+strong {
+  font-family: "AvenirNextLTW01-Demi", Arial, sans-serif; }
+
+a:link {
+  color: #0072CE; }
+
+a:visited {
+  color: #0072CE; }
+
+a:hover {
+  color: #DA6750; }
+
+a.no-decoration {
+  text-decoration: none; }
+
 h1,
 h2,
 h3,
@@ -508,7 +523,7 @@ figure {
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1000px; }
+  max-width: 1100px; }
 
 .col {
   float: left;
@@ -525,6 +540,9 @@ figure {
 
 .col-8 {
   width: 66.6666666667%; }
+
+.col-9 {
+  width: 75%; }
 
 .col-12 {
   width: 100%; }
@@ -699,6 +717,9 @@ button,
   text-decoration: none;
   vertical-align: middle;
   -webkit-appearance: none; }
+
+a.button {
+  color: #FFFFFF; }
 
 button,
 button::after,
