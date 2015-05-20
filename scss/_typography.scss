@@ -20,6 +20,10 @@ h6 {
     margin-top: 0;
 }
 
+.super { // 48px
+    font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+    font-size: (48px/$base-font-size) * 1em;
+}
 // line height calcs are eyeballed to 30px
 h1,
 .h1 { // 34px/44px

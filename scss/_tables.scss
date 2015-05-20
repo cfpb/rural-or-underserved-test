@@ -1,0 +1,27 @@
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+th {
+    background-color: $gray-20;
+    border-bottom: 3px solid $gray-50;
+    font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+    font-weight: normal;
+    text-align: left;
+}
+
+th,
+td {
+    padding: .5em;
+    vertical-align: top;
+}
+
+td {
+    border-bottom: 1px solid $gray-50;
+}
+.no-border td {
+    border-bottom-width: 0;
+}

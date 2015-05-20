@@ -9,7 +9,7 @@ module.exports = {
         },
         files: [
             'css/**/*',
-            'index.html'
+            '*.html'
         ]
     }
 }
