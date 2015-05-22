@@ -430,6 +430,8 @@ a:hover {
   color: #DA6750; }
 
 a.no-decoration {
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
   text-decoration: none; }
 
 h1,
@@ -442,10 +444,6 @@ h6 {
   font-style: normal;
   font-weight: normal;
   margin-top: 0; }
-
-.super {
-  font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
-  font-size: 3em; }
 
 h1,
 .h1 {
@@ -502,11 +500,16 @@ h6,
   line-height: 1.8333333333;
   margin-bottom: 0.4166666667; }
 
-/* demi
-font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
-font-style: normal;
-font-weight: bold;
-*/
+.super {
+  font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+  font-size: 3em; }
+
+.small {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+  font-size: 0.75em;
+  font-weight: normal;
+  text-transform: none; }
+
 p,
 ul,
 ol,
@@ -519,6 +522,12 @@ figure {
 .list-reset {
   list-style: none;
   padding-left: 0; }
+
+.color-gray-50 {
+  color: #919395; }
+
+.color-redorange-80 {
+  color: #DA6750; }
 
 .container {
   margin-left: auto;
@@ -573,8 +582,14 @@ figure {
 .full-width {
   width: 100%; }
 
+.half-width {
+  width: 50%; }
+
 .full-height {
   display: flex; }
+
+.padding-half {
+  padding: .5em; }
 
 .padding-1 {
   padding: 1em; }
@@ -583,7 +598,7 @@ figure {
   padding: 2em; }
 
 .padding-top-half {
-  padding-top: .5em; }
+  padding-top: .35em; }
 
 .padding-top-1 {
   padding-top: 1em; }
@@ -629,10 +644,23 @@ figure {
 
 .centered {
   margin-right: auto;
-  margin-left: auto; }
+  margin-left: auto;
+  text-align: center; }
 
 .bg-gray {
   background-color: #F8F8F8; }
+
+.bg-black {
+  background-color: #101820;
+  color: #FFFFFF; }
+  .bg-black a:link, .bg-black a:visited {
+    color: #FFFFFF; }
+
+.bg-gold {
+  background-color: #43484E;
+  color: #BABBBD; }
+  .bg-gold a:link, .bg-gold a:visited {
+    color: #FFFFFF; }
 
 .border-top {
   border-top-color: #BABBBD;
@@ -736,6 +764,10 @@ button::before,
 
 .button:hover {
   text-decoration: none; }
+
+.button-small {
+  font-size: .75em;
+  padding: 3px; }
 
 .table {
   border-collapse: separate;

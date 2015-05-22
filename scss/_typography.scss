@@ -22,6 +22,8 @@ a:hover {
     color: $redorange-80;
 }
 a.no-decoration {
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
     text-decoration: none;
 }
 
@@ -37,10 +39,6 @@ h6 {
     margin-top: 0;
 }
 
-.super { // 48px
-    font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
-    font-size: (48px/$base-font-size) * 1em;
-}
 // line height calcs are eyeballed to 30px
 h1,
 .h1 { // 34px/44px
@@ -103,11 +101,17 @@ h6,
     margin-bottom: (5/12);
 }
 
-/* demi
-font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
-font-style: normal;
-font-weight: bold;
-*/
+.super { // 48px
+    font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+    font-size: (48px/$base-font-size) * 1em;
+}
+
+.small { // 12px
+    font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+    font-size: (12px/$base-font-size) * 1em;
+    font-weight: normal;
+    text-transform: none;
+}
 
 p,
 ul,
@@ -124,3 +128,10 @@ figure {
     padding-left: 0;
 }
 
+.color-gray-50 {
+    color: $gray-80;
+}
+
+.color-redorange-80 {
+    color: $redorange-80;
+}

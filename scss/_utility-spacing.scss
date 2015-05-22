@@ -1,3 +1,6 @@
+.padding-half {
+    padding: .5em;
+}
 .padding-1 {
     padding: 1em;
 }
@@ -5,7 +8,7 @@
     padding: 2em;
 }
 .padding-top-half {
-    padding-top: .5em;
+    padding-top: .35em;
 }
 .padding-top-1 {
     padding-top: 1em;
@@ -54,4 +57,5 @@
 .centered {
     margin-right: auto;
     margin-left: auto;
+    text-align: center;
 }

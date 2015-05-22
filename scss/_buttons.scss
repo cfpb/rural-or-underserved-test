@@ -35,3 +35,8 @@ button::before,
 }
 
 .button:hover { text-decoration: none }
+
+.button-small {
+    font-size: .75em;
+    padding: 3px;
+}
