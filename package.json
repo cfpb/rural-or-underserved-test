@@ -30,5 +30,18 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "normalize.css": "^3.0.3"
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": {
+      "exports": "jQuery"
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
   }
 }
