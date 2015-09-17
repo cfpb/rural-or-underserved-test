@@ -4,7 +4,7 @@ module.exports = {
             sourceMap: true
         },
         files: {
-            'css/cricket.css': 'scss/cricket.scss'
+            'dist/css/cricket.css': 'src/scss/cricket.scss'
         }
     }
 }

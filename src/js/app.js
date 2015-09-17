@@ -1,4 +1,6 @@
 var $ = require('jquery');
+require('mapbox.js');
+require('papaparse');
 
 $(function() {
     $('.show-hide').click(function() {

@@ -1,20 +1,24 @@
 module.exports = {
     css: {
-        files: 'scss/**/*.scss',
+        files: 'src/scss/**/*.scss',
         tasks: ['sass:dev']
     },
     scripts: {
-        files: 'js/app.js',
+        files: 'src/js/app.js',
         tasks: ['browserify:dev']
+    },
+    html: {
+        files: 'src/*.html',
+        tasks: ['copy:dev']
     },
     livereload: {
         options: {
             livereload: '<%= connect.options.livereload %>'
         },
         files: [
-            'css/**/*',
-            '*.html',
-            'js/cricket.js'
+            'dist/css/**/*',
+            'dist/*.html',
+            'dist/js/cricket.js'
         ]
     }
 }
