@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cricket.css">
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -27,23 +28,65 @@
         <section class="container">
             <div class="group">
                 <div class="col col-12">
-                    <h2 class=" left inline-block">You entered <strong>125<span class="color-redorange-80">*</span></strong> addresses for <strong>2014</strong> safe harbor designation</h2>
+                    <h2 class="inline-block">Look up addresses for loans extended in</h2>
+                    <select class="h2" id="year" name="year">
+                        <option selected value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                    </select>
+                </div>
+            </div>
+            <div class="group bg-gray border-top">
+                <!-- manual input -->
+                <div class="col col-6 padding-2">
+                    <h5>Enter a property address</h5>
+                    <form>
+                        <legend>Include street address, city, state/territory and Zip code for up to 12 properties.</legend>
+                        <fieldset class="fieldset-reset">
+                            <input class="block margin-top-1 margin-bottom-1 full-width" id="address1" name="address1" type="text" />
+                            <input class="block margin-bottom-1 full-width" id="address2" name="address2" type="text" />
+                            <input class="block margin-bottom-1 full-width" id="address3" name="address3" type="text" />
+                            <p><a href="#" title="Add another address">Add another address</a></p>
+                            <input class="button" type="submit" value="Look up addresses" />
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!-- batch input -->
+                <div class="col col-6 padding-2">
+                    <h5>Batch upload</h5>
+                    <form>
+                        <legend><p>Upload a CSV file with address for up to x properties.</p></legend>
+                        <p><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
+                        <fieldset class="fieldset-reset">
+                            <input id="file" name="file" type="file" />
+                            <input class="button" type="submit" value="Look up addresses" />
+                        </fieldset>
+                        <p class="margin-top-1">Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="container margin-top-2">
+            <div class="group">
+                <div class="col col-12">
+                    <h2 class="left inline-block">You entered <strong id="totalCnt">0</strong> addresses for <strong>2014</strong> safe harbor designation</h2>
                     <p><!--<a href="#" title="Update results">Update results</a> --><a class="button button-small right" href="#" title="Download results">Download results</a></p>
                 </div>
-                <div class="col col-12">
+                <!--<div class="col col-12">
                     <h6 class="small color-redorange-80">* We found <a href="#dup"><strong>7</strong> duplicates</a>. These are not counted in your results.</h6>
-                    
-                </div>
+                </div>-->
             </div>
             <div class="group">
                 <div class="col col-4">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="no-decoration" href="#yes">84</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
+                    <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration" href="#yes">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
                 </div>
                 <div class="col col-4">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="no-decoration" href="#no">26</a></h1><h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
+                    <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration" href="#no">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
                 </div>
                 <div class="col col-4">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="no-decoration" href="#no-id">8</a></h1><h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
+                    <h1 class="super left inline-block  margin-right-quarter"><a class="notFoundCnt no-decoration" href="#no-id">0</a></h1><h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
                 </div>
                 <!--<div class="col col-3 padding-right-1">
                     <h1 class="super left inline margin-right-quarter"><a class="no-decoration" href="#dup">7</a></h1><h4 class="padding-top-half">identified as duplicates</h4>
@@ -58,168 +101,62 @@
 
         <section class="container border-top full-height">
             <div class="group">
-                <div class="col col-12 padding-top-2">
-                    <h3 id="yes">84 addresses are designated as rural or underserved for 2014</h3>
+                <div id="rural" class="hide col col-12 padding-top-2">
+                    <h3 id="yes"><span class="ruralCnt">0</span> addresses are designated as rural or underserved for 2014</h3>
                     <p>There properties can count toward your safe harbor percentage of rural or underserved properties.</p>
 
-                    <table class="table">
+                    <table class="table" style="border-width: 1px;" width="100%">
                         <thead>
                             <tr>
-                                <th>Address entered</th>
-                                <th>Address identified</th>
+                                <th>Address Entered</th>
+                                <th>Address Identfied</th>
                                 <th>County</th>
-                                <th>Census block</th>
-                                <!--<th>Rural or underserved</th>-->
-                                <th></th>
+                                <th>Census Block</th>
+                                <th>Rural or Underserved?</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="no-border">
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Sarpy</td>
-                                <td>5.01</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                            <tr>
-                                <td colspan="6">
-                                    <div id="map" style="background-color: #ddd; height: 200px;"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Sarpy</td>
-                                <td>5.01</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Sarpy</td>
-                                <td>5.01</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="data"></tbody>
                     </table>
                 </div>
 
-                <div class="col col-12 padding-top-2">
-                    <h3 id="no">26 addresses are <strong>not</strong> designated as rural or underserved for 2014</h3>
+                <div id="notRural" class="hide col col-12 padding-top-2">
+                    <h3 id="no"><span class="notRuralCnt">0</span> addresses are <strong>not</strong> designated as rural or underserved for 2014</h3>
                     <p>There properties will <strong>not</strong> count toward your safe harbor percentage of rural or underserved properties.</p>
 
-                    <table class="table">
+                    <table class="table" style="border-width: 1px;" width="100%">
                         <thead>
                             <tr>
-                                <th>Address entered</th>
-                                <th>Address identified</th>
+                                <th>Address Entered</th>
+                                <th>Address Identfied</th>
                                 <th>County</th>
-                                <th>Census block</th>
-                                <!--<th>Rural or underserved</th>-->
-                                <th></th>
+                                <th>Census Block</th>
+                                <th>Rural or Underserved?</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Sarpy</td>
-                                <td>5.01</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Sarpy</td>
-                                <td>5.01</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Sarpy</td>
-                                <td>5.01</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="data"></tbody>
                     </table>
                 </div>
 
-                <div class="col col-12 padding-top-2">
-                    <h3 id="no-id">8 addresses could not be identified confidently</h3>
+                <div id="notFound" class="hide col col-12 padding-top-2">
+                    <h3 id="no-id"><span class="notFoundCnt">0</span> addresses could not be identified confidently</h3>
                     <p>The locations of these addresses could not be identified because the information provided was not sufficient or because the information matches with multiple addresses.</p>
                     <p>Select "Show details" for more information about what we have identified for each address.</p>
 
-                    <table class="table">
+                    <table class="table" style="border-width: 1px;" width="100%">
                         <thead>
                             <tr>
-                                <th>Address entered</th>
-                                <th>Address identified</th>
-                                <!--<th>County</th>
-                                <th>Census block</th>
-                                <th>Rural or underserved</th>-->
-                                <th></th>
+                                <th>Address Entered</th>
+                                <th>Address Identfied</th>
+                                <th>County</th>
+                                <th>Census Block</th>
+                                <th>Rural or Underserved?</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td width="33%">502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Multiple addresses identified</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Multiple addresses identified</td>
-                                <td><a class="show-hide" href="#" title="Show details">Show details</a></td>
-                            </tr>
-                            <tr class="hide">
-                                <td colspan="1">
-                                    <div id="map" style="background-color: #ddd; height: 200px;"></div>
-                                </td>
-                                <td colspan="2">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Address identified</th>
-                                                <th>County</th>
-                                                <th>Census block</th>
-                                                <th>Rural or underserved</th>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">A</td>
-                                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                                <td>Sarpy</td>
-                                                <td>5.01</td>
-                                                <td>No</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">B</td>
-                                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                                <td>Sarpy</td>
-                                                <td>5.01</td>
-                                                <td><span class="success">Yes</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="#">C</td>
-                                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                                <td>Sarpy</td>
-                                                <td>5.01</td>
-                                                <td>No</td>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td colspan="2"><p><strong>We were not able to identify an address at this location. Please view our <a href="#">FAQs</a> for more information.</strong></p></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="data"></tbody>
                     </table>
                 </div>
 
-                <div class="col col-12 padding-top-2">
+                <!--<div class="col col-12 padding-top-2">
                     <h3 id="dup">7 addresses were identified as duplicates</h3>
                     <p>Your safe harbor percentage of rural or underserved properties will only apply to new originations, so duplicate addresses may need to be subtracted from the totals above.</p>
 
@@ -254,7 +191,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div>-->
             <!--<div class="col col-4 border-left bg-gray">
                 <div class="padding-2">
                     <h5 class="border-top"><span>Related information</span></h5>

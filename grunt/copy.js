@@ -13,11 +13,29 @@ module.exports = {
                 dest: 'dist/',
                 expand: true,
                 flatten: true
+            },
+            {
+                cwd: 'src/',
+                src: ['data/*'],
+                dest: 'dist/',
+                expand: true,
             }
         ]
     },
     build: {
-        src: 'img/*',
-        dest: 'dist/'
+        files: [
+            {
+                cwd: 'src/',
+                src: ['img/*'],
+                dest: 'dist/',
+                expand: true
+            },
+            {
+                cwd: 'src/',
+                src: ['data/*'],
+                dest: 'dist/',
+                expand: true,
+            }
+        ]
     }
 }

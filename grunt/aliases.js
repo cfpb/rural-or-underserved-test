@@ -8,6 +8,6 @@ module.exports = {
     'build': [
         'sass:dev',
         'browserify:dev',
-        'copy:dev'
+        'copy:build'
     ]
 };
