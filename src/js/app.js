@@ -67,7 +67,7 @@ window.callback = function(data) {
         $('#notRural').removeClass('hide');
         // add to table
         $('#notRural tbody').append('<tr><td>' + data.result.input.address.address + '</td>'
-          + '<td><a href="#" class="jsLoadMap" data-lat="' + data.result.addressMatches[0].coordinates.x + '" data-lon="' + data.result.addressMatches[0].coordinates.y + '" data-oid="loc-' + data.result.addressMatches[0].geographies['Census Blocks'][0].OID + '">' + data.result.addressMatches[0].matchedAddress + '</a></td>'
+          + '<td><a href="#" class="jsLoadMap" data-lat="' + data.result.addressMatches[0].coordinates.x + '" data-lon="' + data.result.addressMatches[0].coordinates.y + '" data-id="loc-' + Date.now() + '">' + data.result.addressMatches[0].matchedAddress + '</a></td>'
           + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY + '</td>'
           + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK + '</td>'
           + '<td>No</td></tr>');
@@ -81,7 +81,7 @@ window.callback = function(data) {
         $('#rural').removeClass('hide');
         // add to table
         $('#rural tbody').append('<tr><td>' + data.result.input.address.address + '</td>'
-          + '<td><a href="#" class="jsLoadMap" data-lat="' + data.result.addressMatches[0].coordinates.x + '" data-lon="' + data.result.addressMatches[0].coordinates.y + '" data-oid="loc-' + data.result.addressMatches[0].geographies['Census Blocks'][0].OID + '">' + data.result.addressMatches[0].matchedAddress + '</a></td>'
+          + '<td><a href="#" class="jsLoadMap" data-lat="' + data.result.addressMatches[0].coordinates.x + '" data-lon="' + data.result.addressMatches[0].coordinates.y + '" data-id="loc-' + Date.now() + '">' + data.result.addressMatches[0].matchedAddress + '</a></td>'
           + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY + '</td>'
           + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK + '</td>'
           + '<td>Yes</td></tr>');
@@ -91,19 +91,6 @@ window.callback = function(data) {
 }
 
 function getRuralUrban(address) {
-  // reset things
-  $('#rural').addClass('hide');
-  $('#notRural').addClass('hide');
-  $('#notFound').addClass('hide');
-  $('.notFoundCnt').html('0');
-  $('.notRuralCnt').html('0');
-  $('.ruralCnt').html('0');
-  $('#totalCnt').html('0');
-  ruralCnt = 0;
-  notRuralCnt = 0;
-  notFoundCnt = 0;
-  totalCnt = 0;
-  
   // api call
   $.ajax({
     url: 'http://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?callback=callback',
@@ -138,23 +125,23 @@ $('#address').keypress(function(e) {
 $('body').on('click', 'a.jsLoadMap', function(e) {
   e.preventDefault();
 
-  var oid = $(this).data('oid');
+  var id = $(this).data('id');
 
-  // check if oid already exists
-  if ($('#loc-' + oid).length) {
+  // check if id already exists
+  if ($('#loc-' + id).length) {
     // remove the map and container
-    $('#loc-' + oid).remove();
+    $('#loc-' + id).remove();
   } else {
     // get the lat/lon
     var lat = $(this).data('lat');
     var lon = $(this).data('lon');
     
     // append the map container
-    $(this).parent().append('<div class="map" id="loc-' + oid + '"></div>');
+    $(this).parent().append('<div class="map" id="loc-' + id + '"></div>');
 
     // create the map and add marker
     var latlng = L.latLng(lon, lat);
-    map = L.mapbox.map('loc-' + oid, 'cfpb.k55b27gd', { center: latlng }).setView(latlng,15);
+    map = L.mapbox.map('loc-' + id, 'cfpb.k55b27gd', { center: latlng }).setView(latlng,15);
     var marker = L.marker(latlng).addTo(map);
   }
 });
@@ -162,6 +149,22 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
 $("#file").change(function(e) {
   // clear content each time
   $('#content').html('');
+
+  // reset things
+  $('#rural').addClass('hide');
+  $('#notRural').addClass('hide');
+  $('#notFound').addClass('hide');
+  $('#rural tbody').html('');
+  $('#notRural tbody').html('');
+  $('#notFound tbody').html('');
+  $('.notFoundCnt').html('0');
+  $('.notRuralCnt').html('0');
+  $('.ruralCnt').html('0');
+  $('#totalCnt').html('0');
+  ruralCnt = 0;
+  notRuralCnt = 0;
+  notFoundCnt = 0;
+  totalCnt = 0;
 
   // parse the csv
   $("#file").parse( {
