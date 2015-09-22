@@ -1,5 +1,7 @@
 var $ = require('jquery');
 require('mapbox.js');
+var reset = require('./reset');
+var re = reset();
 require('papaparse');
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
@@ -147,23 +149,11 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
 });
 
 $("#file").change(function(e) {
-  // clear content each time
-  $('#content').html('');
-
-  // reset things
-  $('#rural').addClass('hide');
-  $('#notRural').addClass('hide');
-  $('#notFound').addClass('hide');
-  $('#rural tbody').html('');
-  $('#notRural tbody').html('');
-  $('#notFound tbody').html('');
-  $('.notFoundCnt').html('0');
-  $('.notRuralCnt').html('0');
-  $('.ruralCnt').html('0');
-  $('#totalCnt').html('0');
-  ruralCnt = 0;
-  notRuralCnt = 0;
+  re.hide();
+  re.resetHTML();
   notFoundCnt = 0;
+  notRuralCnt = 0;
+  ruralCnt = 0;
   totalCnt = 0;
 
   // parse the csv

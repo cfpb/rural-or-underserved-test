@@ -4,7 +4,7 @@ module.exports = {
         tasks: ['sass:dev']
     },
     scripts: {
-        files: 'src/js/app.js',
+        files: 'src/js/*.js',
         tasks: ['browserify:dev']
     },
     html: {
