@@ -1,3 +1,7 @@
+require('mapbox.js');
+
+L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
+
 $('body').on('click', 'a.jsLoadMap', function(e) {
   e.preventDefault();
 
