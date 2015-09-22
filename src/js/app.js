@@ -46,7 +46,7 @@ window.callback = function(data) {
     // loop through fips looking for fips from data
     $.getJSON('data/fips.json', function(fips) {
       var rural = false;
-      rural = ruralChecker(fips, fipsCode, urbanAreas, urbanClusters);
+      rural = ruralChecker.isRural(fips, fipsCode, urbanAreas, urbanClusters);
 
       // if rural is still false
       if (rural === false) {
@@ -57,7 +57,6 @@ window.callback = function(data) {
 
         render.addToCount('notRural', notRuralCnt, totalCnt);
       } else {
-        console.log(data);
         ruralCnt ++;
         totalCnt ++;
 

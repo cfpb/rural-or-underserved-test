@@ -1,4 +1,4 @@
-function _fipsCheck(fips, fipsCode) {
+function fipsCheck(fips, fipsCode) {
   var isCounty = false;
 
   $.each(fips.fips, function(key, val) {
@@ -12,7 +12,7 @@ function _fipsCheck(fips, fipsCode) {
   return isCounty;
 }
 
-function _urbanCheck(urbanClusters, urbanAreas) {
+function urbanCheck(urbanClusters, urbanAreas) {
   if ((urbanClusters === null || urbanClusters.length === 0) && (urbanAreas === null || urbanAreas.length === 0)) {
     return true;
   } else {
@@ -20,14 +20,16 @@ function _urbanCheck(urbanClusters, urbanAreas) {
   }
 }
 
-module.exports = function (fips, fipsCode, urbanAreas, urbanClusters) {
-  var checkRural = false;
+module.exports = {
+  isRural: function (fips, fipsCode, urbanAreas, urbanClusters) {
+    var checkRural = false;
 
-  checkRural = _fipsCheck(fips, fipsCode);
+    checkRural = fipsCheck(fips, fipsCode);
 
-  if (checkRural === false) {
-    checkRural = _urbanCheck(urbanAreas, urbanClusters);
+    if (checkRural === false) {
+      checkRural = urbanCheck(urbanAreas, urbanClusters);
+    }
+
+    return checkRural;
   }
-
-  return checkRural;
-};
+}
