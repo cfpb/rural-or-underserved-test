@@ -1,15 +1,15 @@
 function _fipsCheck(fips, fipsCode) {
-  var isFip = false;
+  var isCounty = false;
 
   $.each(fips.fips, function(key, val) {
     // if result is in fips its rural
     // stop, no need to continue
     if (val[0] === fipsCode) {
-      isFip = true
+      isCounty = true
     }
   });
 
-  return isFip;
+  return isCounty;
 }
 
 function _urbanCheck(urbanClusters, urbanAreas) {

@@ -59,6 +59,7 @@ window.callback = function(data) {
 
         render.addToCount('notRural', notRuralCnt, totalCnt);
       } else {
+        console.log(data);
         ruralCnt ++;
         totalCnt ++;
 
