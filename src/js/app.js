@@ -1,8 +1,5 @@
 var $ = require('jquery');
 
-var reset = require('./reset');
-var re = reset();
-
 var renderer = require('./render');
 var render = renderer();
 
@@ -27,7 +24,6 @@ window.callback = function(data) {
   
   // nothing found
   if (data.result.addressMatches.length === 0) {
-    // do counting
     totalCnt ++;
     notFoundCnt ++;
 
@@ -35,9 +31,6 @@ window.callback = function(data) {
 
     render.addToCount('notFound', notFoundCnt, totalCnt);
   } else {
-    // get fips from result (state and county)
-    var fipsCode = data.result.addressMatches[0].geographies['Census Blocks'][0].STATE + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
-
     // used to check rural
     var urbanClusters = data.result.addressMatches[0].geographies['Urban Clusters'];
     var urbanAreas = data.result.addressMatches[0].geographies['Urbanized Areas'];
@@ -48,6 +41,10 @@ window.callback = function(data) {
     var y = data.result.addressMatches[0].coordinates.y;
     var county = data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
     var block = data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK;
+    var state = data.result.addressMatches[0].geographies['Census Blocks'][0].STATE;
+    
+    // get fips from result (state and county)
+    var fipsCode = state + county;
 
     // load fips (counties that are rural)
     // loop through fips looking for fips from data
@@ -135,8 +132,8 @@ $('#address').keypress(function(e) {
 
 // on upload
 $("#file").change(function(e) {
-  re.hide();
-  re.resetHTML();
+  render.hide();
+  render.resetHTML();
 
   notFoundCnt = 0;
   notRuralCnt = 0;
