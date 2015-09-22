@@ -1,16 +1,17 @@
-module.exports = function () {
-  var c = $('#content'),
-      r = $('#rural'),
-      nR = $('#notRural'),
-      nF = $('#notFound');
+var c = $('#content'),
+    r = $('#rural'),
+    nR = $('#notRural'),
+    nF = $('#notFound');
 
-  function hide() {
+module.exports = {
+
+  hide: function() {
     r.addClass('hide');
     nR.addClass('hide');
     nF.addClass('hide');
-  }
+  },
 
-  function resetHTML() {
+  resetHTML: function() {
     // clear content each time
     c.html('');
     $('#rural tbody').html('');
@@ -18,9 +19,9 @@ module.exports = function () {
     $('#notFound tbody').html('');
     // reset all counters
     $('.counter').html('0');
-  }
+  },
 
-  function addToTable(table, input, matchedAddress, x, y, county, block) {
+  addToTable: function(table, input, matchedAddress, x, y, county, block) {
     var htmlString = '';
     var ruralOrNot = '';
 
@@ -51,17 +52,17 @@ module.exports = function () {
 
     // add to table
     $('#' + table + ' tbody').append(htmlString);
-  }
+  },
 
-  function addToCount (table, count, total) {
+  addToCount: function (table, count, total) {
     $('.' + table + 'Cnt').html(count);
     $('#totalCnt').html(total);
   }
 
-  return {
+  /*return {
     hide: hide,
     resetHTML: resetHTML,
     addToTable: addToTable,
     addToCount: addToCount
-  };
+  };*/
 };

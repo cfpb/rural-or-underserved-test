@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
-var renderer = require('./render');
-var render = renderer();
+var render = require('./render');
+
 var ruralChecker = require('./rural');
 
 require('./showMap');
@@ -13,8 +13,6 @@ var notRuralCnt = 0;
 var ruralCnt = 0;
 var totalCnt = 0;
 var sendAddress;
-
-var fipsCodes;
 
 window.callback = function(data) {
   // save the query address
