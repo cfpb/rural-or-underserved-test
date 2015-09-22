@@ -3,8 +3,10 @@ var $ = require('jquery');
 var reset = require('./reset');
 var re = reset();
 
-var rural = require('./rural');
-var check = rural();
+var renderer = require('./render');
+var render = renderer();
+
+var ruralChecker = require('./rural');
 
 require('mapbox.js');
 require('papaparse');
@@ -20,69 +22,56 @@ var sendAddress;
 var fipsCodes;
 
 window.callback = function(data) {
-  var rural = false;
-
+  // save the query address
+  var input = data.result.input.address.address;
+  
   // nothing found
   if (data.result.addressMatches.length === 0) {
     // do counting
     totalCnt ++;
     notFoundCnt ++;
-    $('.notFoundCnt').html(notFoundCnt);
-    $('#totalCnt').html(totalCnt);
-    // show not found
-    $('#notFound').removeClass('hide');
-    // add to table
-    $('#notFound tbody').append('<tr><td>' + data.result.input.address.address + '</td>'
-        + '<td>Address not identfied</td>'
-        + '<td>-</td>'
-        + '<td>-</td>'
-        + '<td>-</td></tr>');
+
+    render.addToTable('notFound', input);
+
+    render.addToCount('notFound', notFoundCnt, totalCnt);
   } else {
     // get fips from result (state and county)
     var fipsCode = data.result.addressMatches[0].geographies['Census Blocks'][0].STATE + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
+
+    // used to check rural
+    var urbanClusters = data.result.addressMatches[0].geographies['Urban Clusters'];
+    var urbanAreas = data.result.addressMatches[0].geographies['Urbanized Areas'];
+
+    // used to render results
+    var matchedAddress = data.result.addressMatches[0].matchedAddress;
+    var x = data.result.addressMatches[0].coordinates.x;
+    var y = data.result.addressMatches[0].coordinates.y;
+    var county = data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
+    var block = data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK;
+
     // load fips (counties that are rural)
     // loop through fips looking for fips from data
     $.getJSON('data/fips.json', function(fips) {
-      rural = check.fipsCheck(fips, fipsCode);
-
-      // if it wasn't in the fips list
-      // we have check against urban clusters and areas
-      // if both are null or array length 0 its rural
-      if (rural === false) {
-        if ((data.result.addressMatches[0].geographies['Urban Clusters'] === null || data.result.addressMatches[0].geographies['Urban Clusters'].length === 0) && (data.result.addressMatches[0].geographies['Urbanized Areas'] === null || data.result.addressMatches[0].geographies['Urbanized Areas'].length === 0)) {
-          rural = true;
-        }
-      }
+      var rural = false;
+      rural = ruralChecker(fips, fipsCode, urbanAreas, urbanClusters);
 
       // if rural is still false
       if (rural === false) {
         // do counting
         notRuralCnt ++;
         totalCnt ++;
-        $('.notRuralCnt').html(notRuralCnt);
-        $('#totalCnt').html(totalCnt);
-        // show not rural
-        $('#notRural').removeClass('hide');
-        // add to table
-        $('#notRural tbody').append('<tr><td>' + data.result.input.address.address + '</td>'
-          + '<td><a href="#" class="jsLoadMap" data-lat="' + data.result.addressMatches[0].coordinates.x + '" data-lon="' + data.result.addressMatches[0].coordinates.y + '" data-id="loc-' + Date.now() + '">' + data.result.addressMatches[0].matchedAddress + '</a></td>'
-          + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY + '</td>'
-          + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK + '</td>'
-          + '<td>No</td></tr>');
+
+        render.addToTable('notRural', input, matchedAddress, x, y, county, block);
+
+        render.addToCount('notRural', notRuralCnt, totalCnt);
       } else {
         // do counting
         ruralCnt ++;
         totalCnt ++;
-        $('.ruralCnt').html(ruralCnt);
-        $('#totalCnt').html(totalCnt);
-        // show rural
-        $('#rural').removeClass('hide');
-        // add to table
-        $('#rural tbody').append('<tr><td>' + data.result.input.address.address + '</td>'
-          + '<td><a href="#" class="jsLoadMap" data-lat="' + data.result.addressMatches[0].coordinates.x + '" data-lon="' + data.result.addressMatches[0].coordinates.y + '" data-id="loc-' + Date.now() + '">' + data.result.addressMatches[0].matchedAddress + '</a></td>'
-          + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY + '</td>'
-          + '<td>' + data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK + '</td>'
-          + '<td>Yes</td></tr>');
+
+        render.addToTable('rural', input, matchedAddress, x, y, county, block);
+
+        render.addToCount('rural', ruralCnt, totalCnt);
       }
     });
   }
@@ -105,20 +94,6 @@ function getRuralUrban(address) {
     console.log(textStatus);
   });
 }
-
-// on submit
-$('#geocode').submit(function(e) {
-  getRuralUrban($('#address').val());
-  return false;
-});
-
-// on keypress of enter
-$('#address').keypress(function(e) {
-  if (e.which == 13) {
-    getRuralUrban($('#address').val());
-    return false;
-  }
-});
 
 $('body').on('click', 'a.jsLoadMap', function(e) {
   e.preventDefault();
@@ -144,9 +119,25 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
   }
 });
 
+// on submit
+$('#geocode').submit(function(e) {
+  getRuralUrban($('#address').val());
+  return false;
+});
+
+// on keypress of enter
+$('#address').keypress(function(e) {
+  if (e.which == 13) {
+    getRuralUrban($('#address').val());
+    return false;
+  }
+});
+
+// on upload
 $("#file").change(function(e) {
   re.hide();
   re.resetHTML();
+
   notFoundCnt = 0;
   notRuralCnt = 0;
   ruralCnt = 0;
