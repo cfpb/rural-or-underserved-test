@@ -1,17 +1,23 @@
 var $ = require('jquery');
-require('mapbox.js');
+
 var reset = require('./reset');
 var re = reset();
+
+var rural = require('./rural');
+var check = rural();
+
+require('mapbox.js');
 require('papaparse');
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
 
-var fips;
 var notFoundCnt = 0;
 var notRuralCnt = 0;
 var ruralCnt = 0;
 var totalCnt = 0;
 var sendAddress;
+
+var fipsCodes;
 
 window.callback = function(data) {
   var rural = false;
@@ -32,22 +38,12 @@ window.callback = function(data) {
         + '<td>-</td>'
         + '<td>-</td></tr>');
   } else {
-    if (data.result.addressMatches[0].matchedAddress == '12800 Arbor Lakes Pkwy N, MAPLE GROVE, MN, 55369') {
-      console.log(data);
-    }
     // get fips from result (state and county)
     var fipsCode = data.result.addressMatches[0].geographies['Census Blocks'][0].STATE + data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
     // load fips (counties that are rural)
     // loop through fips looking for fips from data
     $.getJSON('data/fips.json', function(fips) {
-      $.each(fips.fips, function(key, val) {
-        // if result is in fips its rural
-        // stop, no need to continue
-        if (val[0] === fipsCode) {
-          rural = true;
-          return false;
-        }
-      });
+      rural = check.fipsCheck(fips, fipsCode);
 
       // if it wasn't in the fips list
       // we have check against urban clusters and areas
