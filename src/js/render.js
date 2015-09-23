@@ -53,6 +53,12 @@ module.exports = {
         + '<td>-</td>'
         + '<td>-</td>'
         + '<td>-</td></tr>'
+    } else if (table === 'dup') {
+      htmlString = '<tr><td>' + input + '</td>'
+        + '<td>Duplicate</td>'
+        + '<td>-</td>'
+        + '<td>-</td>'
+        + '<td>-</td></tr>'
     } else {
       htmlString = '<tr><td>' + input + '</td>'
           + '<td><a href="#" class="jsLoadMap" data-lat="' + x + '" data-lon="' + y + '" data-id="loc-' + Date.now() + '">' + matchedAddress + '</a></td>'

@@ -10,6 +10,7 @@ notFoundCnt = 0,
 notRuralCnt = 0,
 ruralCnt = 0,
 totalCnt = 0;
+dupCnt = 0;
 
 var ruralChecker = require('./rural');
 var render = require('./render');
@@ -81,14 +82,16 @@ $('#address').keypress(function(e) {
   }
 });
 
+var dups = [];
 // on upload
 $('#file').change(function(e) {
-  render.showResults();
   render.resetHTML();
+  render.showResults();
 
   notFoundCnt = 0;
   notRuralCnt = 0;
   ruralCnt = 0;
+  dupCnt = 0;
   totalCnt = 0;
 
   // parse the csv
@@ -97,7 +100,17 @@ $('#file').change(function(e) {
       header: true,
       step: function(results, parser) {
         address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-        census.getRuralUrban(address);
+        if (dups.indexOf(address) !== -1) {
+          console.log('dup');
+          console.log(address);
+          dupCnt ++;
+          totalCnt ++;
+          render.renderCount('dup', dupCnt, totalCnt);
+          render.renderTableRow('dup', address);
+        } else {
+          census.getRuralUrban(address);
+        }
+        dups.push(address);
       },
       complete: function(results, file) {
         console.log('Complete!');

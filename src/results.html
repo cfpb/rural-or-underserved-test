@@ -91,22 +91,22 @@
                 </div>
             </div>
             <div class="group">
-                <div class="col col-4">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#yes">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
+                <div class="col col-3">
+                    <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#rural">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
                 </div>
-                <div class="col col-4">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration counter" href="#no">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
+                <div class="col col-3">
+                    <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration counter" href="#notRural">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
                 </div>
-                <div class="col col-4">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="notFoundCnt no-decoration counter" href="#no-id">0</a></h1><h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
+                <div class="col col-3">
+                    <h1 class="super left inline-block margin-right-quarter"><a class="notFoundCnt no-decoration counter" href="#notFound">0</a></h1><h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
                 </div>
-                <!--<div class="col col-3 padding-right-1">
-                    <h1 class="super left inline margin-right-quarter"><a class="no-decoration" href="#dup">7</a></h1><h4 class="padding-top-half">identified as duplicates</h4>
-                </div>-->
+                <div class="col col-3">
+                    <h1 class="super left inline-block margin-right-quarter"><a class="dupCnt no-decoration counter" href="#dup">0</a></h1><h4 class="inline-block half-width left padding-top-half">identified as duplicates</h4>
+                </div>
             </div>
             <div class="group">
                 <div id="rural" class="hide col col-12 padding-top-2">
-                    <h3 id="yes"><span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for 2014</h3>
+                    <h3><span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for 2014</h3>
                     <p>There properties can count toward your safe harbor percentage of rural or underserved properties.</p>
 
                     <table class="table" style="border-width: 1px;" width="100%">
@@ -124,7 +124,7 @@
                 </div>
 
                 <div id="notRural" class="hide col col-12 padding-top-2">
-                    <h3 id="no"><span class="notRuralCnt counter">0</span> addresses are <strong>not</strong> designated as rural or underserved for 2014</h3>
+                    <h3><span class="notRuralCnt counter">0</span> addresses are <strong>not</strong> designated as rural or underserved for 2014</h3>
                     <p>There properties will <strong>not</strong> count toward your safe harbor percentage of rural or underserved properties.</p>
 
                     <table class="table" style="border-width: 1px;" width="100%">
@@ -142,7 +142,7 @@
                 </div>
 
                 <div id="notFound" class="hide col col-12 padding-top-2">
-                    <h3 id="no-id"><span class="notFoundCnt counter">0</span> addresses could not be identified confidently</h3>
+                    <h3><span class="notFoundCnt counter">0</span> addresses could not be identified confidently</h3>
                     <p>The locations of these addresses could not be identified because the information provided was not sufficient or because the information matches with multiple addresses.</p>
                     <p>Select "Show details" for more information about what we have identified for each address.</p>
 
@@ -160,54 +160,24 @@
                     </table>
                 </div>
 
-                <!--<div class="col col-12 padding-top-2">
-                    <h3 id="dup">7 addresses were identified as duplicates</h3>
-                    <p>Your safe harbor percentage of rural or underserved properties will only apply to new originations, so duplicate addresses may need to be subtracted from the totals above.</p>
+                <div id="dup" class="hide col col-12 padding-top-2">
+                    <h3><span class="dupCnt counter">0</span> addresses were identified as duplicates</h3>
+                    <p>These addresses are included in your totals but have been identified as duplicates. Unless you have funded multiple, unrelated loans for the same address during the covered period, you should not include any address more than once. <a href="#learn-more">Learn more</a></p>
+                    <p>To update or remove the information for these addresses, start a new search.</p>
 
-                    <table class="table">
+                    <table class="table" style="border-width: 1px;" width="100%">
                         <thead>
                             <tr>
-                                <th>Address entered</th>
-                                <th>Address identified</th>
-                                <th>Rural or underserved</th>
-                                <th>Number of entries with this address</th>
+                                <th>Address Entered</th>
+                                <th>Address Identfied</th>
+                                <th>County</th>
+                                <th>Census Block</th>
+                                <th>Rural or Underserved?</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Yes</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>No</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>502 W 32 St Lot 3<br />Ogallala, NE 69153</td>
-                                <td>Yes</td>
-                                <td>2</td>
-                            </tr>
-                        </tbody>
+                        <tbody class="data"></tbody>
                     </table>
                 </div>
-            </div>-->
-            <!--<div class="col col-4 border-left bg-gray">
-                <div class="padding-2">
-                    <h5 class="border-top"><span>Related information</span></h5>
-                    <p>Some other important information to be described here, if necessary. Probably on three to four lines.</p>
-                    <p><a href="#" title="Visit this information">Visit this information</a></p>
-
-                    <h5 class="border-top"><span>Related links</span></h5>
-                    <p><a href="#" title="Related website or information">Related website or information</a></p>
-                    <p><a href="#" title="Other information">Other information</a></p>
-                    <p><a href="#" title="Related website or information">Related website or information</a></p>
-                </div>
-            </div>-->
         </section>
     </main>
 
