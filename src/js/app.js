@@ -83,7 +83,7 @@ $('#address').keypress(function(e) {
 
 // on upload
 $("#file").change(function(e) {
-  render.hide();
+  render.showResults();
   render.resetHTML();
 
   notFoundCnt = 0;

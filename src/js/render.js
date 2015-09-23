@@ -1,19 +1,30 @@
-var c = $('#content'),
+var results = $('#results'),
     r = $('#rural'),
     nR = $('#notRural'),
-    nF = $('#notFound');
+    nF = $('#notFound')
+    about = $('#about');
 
 module.exports = {
 
-  hide: function() {
+  showResults: function() {
+    about.addClass('hide');
+    results.removeClass('hide');
     r.addClass('hide');
     nR.addClass('hide');
     nF.addClass('hide');
   },
 
+  showAbout: function() {
+    about.removeClass('hide');
+    results.addClass('hide');
+    r.addClass('hide');
+    nR.addClass('hide');
+    nF.addClass('hide');
+  },
+  
   resetHTML: function() {
     // clear content each time
-    c.html('');
+    //results.html('');
     $('#rural tbody').html('');
     $('#notRural tbody').html('');
     $('#notFound tbody').html('');
@@ -55,7 +66,7 @@ module.exports = {
   },
 
   renderCount: function (table, count, total) {
-    
+
     $('.' + table + 'Cnt').html(count);
     $('#totalCnt').html(total);
   }
