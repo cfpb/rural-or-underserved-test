@@ -94,9 +94,10 @@ $("#file").change(function(e) {
   // parse the csv
   $("#file").parse( {
     config: {
-      header: false,
+      header: true,
       step: function(results, parser) {
-        census.getRuralUrban(results.data[0][0]);
+        address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
+        census.getRuralUrban(address);
       },
       complete: function(results, file) {
         console.log("Complete!");
