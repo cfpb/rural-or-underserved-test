@@ -82,7 +82,7 @@ $('#address').keypress(function(e) {
 });
 
 // on upload
-$("#file").change(function(e) {
+$('#file').change(function(e) {
   render.showResults();
   render.resetHTML();
 
@@ -92,7 +92,7 @@ $("#file").change(function(e) {
   totalCnt = 0;
 
   // parse the csv
-  $("#file").parse( {
+  $('#file').parse( {
     config: {
       header: true,
       step: function(results, parser) {
@@ -100,12 +100,17 @@ $("#file").change(function(e) {
         census.getRuralUrban(address);
       },
       complete: function(results, file) {
-        console.log("Complete!");
+        console.log('Complete!');
       }
     }, 
     complete: function() {
-      console.log("All files done!");
+      console.log('All files done!');
     }
   });
   return false;
+});
+
+$('#link-about').click(function(e) {
+  e.preventDefault();
+  render.showAbout();
 });
