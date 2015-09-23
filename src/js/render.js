@@ -21,7 +21,7 @@ module.exports = {
     $('.counter').html('0');
   },
 
-  addToTable: function(table, input, matchedAddress, x, y, county, block) {
+  renderTableRow: function(table, input, matchedAddress, x, y, county, block) {
     var htmlString = '';
     var ruralOrNot = '';
 
@@ -54,15 +54,9 @@ module.exports = {
     $('#' + table + ' tbody').append(htmlString);
   },
 
-  addToCount: function (table, count, total) {
+  renderCount: function (table, count, total) {
+    
     $('.' + table + 'Cnt').html(count);
     $('#totalCnt').html(total);
   }
-
-  /*return {
-    hide: hide,
-    resetHTML: resetHTML,
-    addToTable: addToTable,
-    addToCount: addToCount
-  };*/
 };
