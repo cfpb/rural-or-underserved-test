@@ -79,6 +79,7 @@ $('#add-another').click(function(e) {
   $( "#address1" ).clone().appendTo( ".input-container" ).attr('id', 'address' + inputCnt).val('');
 });
 
+var dups = [];
 // on submit
 $('#geocode').submit(function(e) {
   $('#file').val('');
@@ -90,22 +91,23 @@ $('#geocode').submit(function(e) {
   ruralCnt = 0;
   dupCnt = 0;
   totalCnt = 0;
+  dups = [];
 
   $('.input-address').each(function(index) {
-    census.getRuralUrban($(this).val());
+    if (dups.indexOf($(this).val()) !== -1) {
+      dupCnt ++;
+      totalCnt ++;
+      render.renderCount('dup', dupCnt, totalCnt);
+      render.renderTableRow('dup', $(this).val());
+    } else {
+      census.getRuralUrban($(this).val());
+    }
+    dups.push($(this).val());
+    //census.getRuralUrban($(this).val());
   })
   return false;
 });
 
-/*// on keypress of enter
-$('#address').keypress(function(e) {
-  if (e.which == 13) {
-    census.getRuralUrban($('.input-address').val());
-    return false;
-  }
-});*/
-
-var dups = [];
 // on upload
 $('#geocode-csv').submit(function(e) {
   render.resetHTML();
