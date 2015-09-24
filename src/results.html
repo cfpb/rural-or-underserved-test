@@ -31,9 +31,6 @@
                     <h2 class="inline-block">Look up addresses for loans extended in</h2>
                     <select class="h2" id="year" name="year">
                         <option selected value="2015">2015</option>
-                        <option value="2014">2014</option>
-                        <option value="2013">2013</option>
-                        <option value="2012">2012</option>
                     </select>
                 </div>
                 <div class="col col-4">
@@ -44,13 +41,13 @@
                 <!-- manual input -->
                 <div class="col col-6 padding-2">
                     <h5>Enter a property address</h5>
-                    <form>
-                        <legend>Include street address, city, state/territory and Zip code for up to 12 properties.</legend>
+                    <form id="geocode">
+                        <legend>Include street address, city, state/territory and Zip code for up to 10 properties.</legend>
                         <fieldset class="fieldset-reset">
-                            <input class="block margin-top-1 margin-bottom-1 full-width" id="address1" name="address1" type="text" />
-                            <input class="block margin-bottom-1 full-width" id="address2" name="address2" type="text" />
-                            <input class="block margin-bottom-1 full-width" id="address3" name="address3" type="text" />
-                            <p><a href="#" title="Add another address">Add another address</a></p>
+                            <div class="input-container">
+                                <input class="block margin-top-1 margin-bottom-1 full-width input-address" id="address1" name="address1" type="text" />
+                            </div>
+                            <p><a href="#" id="add-another" title="Add another address">Add another address</a></p>
                             <input class="button" type="submit" value="Look up addresses" />
                         </fieldset>
                     </form>
@@ -59,7 +56,7 @@
                 <!-- batch input -->
                 <div class="col col-6 padding-2">
                     <h5>Batch upload</h5>
-                    <form>
+                    <form id="geocode-csv">
                         <legend><p>Upload a CSV file with address for up to x properties.</p></legend>
                         <p><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
                         <fieldset class="fieldset-reset">

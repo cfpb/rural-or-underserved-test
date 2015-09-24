@@ -1,7 +1,8 @@
 var results = $('#results'),
     r = $('#rural'),
     nR = $('#notRural'),
-    nF = $('#notFound')
+    nF = $('#notFound'),
+    dup = $('#dup'),
     about = $('#about');
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
     r.addClass('hide');
     nR.addClass('hide');
     nF.addClass('hide');
+    dup.addClass('hide');
   },
 
   showAbout: function() {
@@ -20,6 +22,7 @@ module.exports = {
     r.addClass('hide');
     nR.addClass('hide');
     nF.addClass('hide');
+    dup.addClass('hide');
   },
   
   resetHTML: function() {
@@ -28,6 +31,7 @@ module.exports = {
     $('#rural tbody').html('');
     $('#notRural tbody').html('');
     $('#notFound tbody').html('');
+    $('#dup tbody').html('');
     // reset all counters
     $('.counter').html('0');
   },

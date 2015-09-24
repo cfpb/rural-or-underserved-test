@@ -68,23 +68,20 @@ window.callback = function(data) {
   }
 }
 
+var inputCnt = 1;
+$('#add-another').click(function(e) {
+  e.preventDefault();
+  inputCnt ++;
+  if (inputCnt === 10) {
+    $('#add-another').remove();
+  }
+  // clone and add input
+  $( "#address1" ).clone().appendTo( ".input-container" ).attr('id', 'address' + inputCnt).val('');
+});
+
 // on submit
 $('#geocode').submit(function(e) {
-  census.getRuralUrban($('#address').val());
-  return false;
-});
-
-// on keypress of enter
-$('#address').keypress(function(e) {
-  if (e.which == 13) {
-    census.getRuralUrban($('#address').val());
-    return false;
-  }
-});
-
-var dups = [];
-// on upload
-$('#file').change(function(e) {
+  $('#file').val('');
   render.resetHTML();
   render.showResults();
 
@@ -94,6 +91,42 @@ $('#file').change(function(e) {
   dupCnt = 0;
   totalCnt = 0;
 
+  $('.input-address').each(function(index) {
+    census.getRuralUrban($(this).val());
+  })
+  return false;
+});
+
+/*// on keypress of enter
+$('#address').keypress(function(e) {
+  if (e.which == 13) {
+    census.getRuralUrban($('.input-address').val());
+    return false;
+  }
+});*/
+
+var dups = [];
+// on upload
+$('#geocode-csv').submit(function(e) {
+  render.resetHTML();
+  render.showResults();
+
+  // clear remove inputs, except the first one
+  $('.input-address').each(function(index) {
+    if ($(this).attr('id') !== 'address1') {
+      $(this).remove();
+    } else {
+      $(this).val('');
+    }
+  });
+
+  notFoundCnt = 0;
+  notRuralCnt = 0;
+  ruralCnt = 0;
+  dupCnt = 0;
+  totalCnt = 0;
+  dups = [];
+
   // parse the csv
   $('#file').parse( {
     config: {
@@ -101,8 +134,6 @@ $('#file').change(function(e) {
       step: function(results, parser) {
         address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
         if (dups.indexOf(address) !== -1) {
-          console.log('dup');
-          console.log(address);
           dupCnt ++;
           totalCnt ++;
           render.renderCount('dup', dupCnt, totalCnt);
@@ -125,5 +156,15 @@ $('#file').change(function(e) {
 
 $('#link-about').click(function(e) {
   e.preventDefault();
+  // clear remove inputs, except the first one
+  $('.input-address').each(function(index) {
+    if ($(this).attr('id') !== 'address1') {
+      $(this).remove();
+    } else {
+      $(this).val('');
+    }
+  });
+  $('#file').val('');
+
   render.showAbout();
 });
