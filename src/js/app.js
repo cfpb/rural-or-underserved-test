@@ -88,6 +88,9 @@ $('#geocode').submit(function(e) {
   resets();
 
   $('.input-address').each(function(index) {
+    if ($(this).val() === '') {
+      return;
+    }
     if (dups.indexOf($(this).val()) !== -1) {
       dupCnt ++;
       totalCnt ++;
@@ -121,7 +124,7 @@ $('#geocode-csv').submit(function(e) {
       header: true,
       step: function(results, parser) {
         // check for blank row
-        if (results.data[0]['Street Address'] === '') {
+        if (results.data[0]['Street Address'] === '' && results.errors) {
           return;
         }
         address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
