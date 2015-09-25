@@ -76,7 +76,11 @@ $('#add-another').click(function(e) {
     $('#add-another').remove();
   }
   // clone and add input
-  $( "#address1" ).clone().appendTo( ".input-container" ).attr('id', 'address' + inputCnt).val('');
+  $( "#address1" ).clone(true)
+    .appendTo( ".input-container" )
+    .attr('id', 'address' + inputCnt)
+    .val('')
+    .focus();
 });
 
 var dups = [];
@@ -175,3 +179,11 @@ function resets() {
   totalCnt = 0;
   dups = [];
 }
+
+$('.input-address').blur(function(e) {
+  if ($(this).val() === '') {
+    $(this).addClass('error');
+  } else {
+    $(this).removeClass('error');
+  }
+});
