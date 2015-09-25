@@ -82,16 +82,10 @@ $('#add-another').click(function(e) {
 var dups = [];
 // on submit
 $('#geocode').submit(function(e) {
+  // reset file field
   $('#file').val('');
-  render.resetHTML();
-  render.showResults();
-
-  notFoundCnt = 0;
-  notRuralCnt = 0;
-  ruralCnt = 0;
-  dupCnt = 0;
-  totalCnt = 0;
-  dups = [];
+  
+  resets();
 
   $('.input-address').each(function(index) {
     if (dups.indexOf($(this).val()) !== -1) {
@@ -110,9 +104,8 @@ $('#geocode').submit(function(e) {
 
 // on upload
 $('#geocode-csv').submit(function(e) {
-  render.resetHTML();
-  render.showResults();
 
+  resets();
   // clear remove inputs, except the first one
   $('.input-address').each(function(index) {
     if ($(this).attr('id') !== 'address1') {
@@ -121,13 +114,6 @@ $('#geocode-csv').submit(function(e) {
       $(this).val('');
     }
   });
-
-  notFoundCnt = 0;
-  notRuralCnt = 0;
-  ruralCnt = 0;
-  dupCnt = 0;
-  totalCnt = 0;
-  dups = [];
 
   // parse the csv
   $('#file').parse( {
@@ -170,3 +156,15 @@ $('#link-about').click(function(e) {
 
   render.showAbout();
 });
+
+function resets() {
+  render.resetHTML();
+  render.showResults();
+
+  notFoundCnt = 0;
+  notRuralCnt = 0;
+  ruralCnt = 0;
+  dupCnt = 0;
+  totalCnt = 0;
+  dups = [];
+}
