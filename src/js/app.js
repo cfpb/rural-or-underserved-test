@@ -120,6 +120,10 @@ $('#geocode-csv').submit(function(e) {
     config: {
       header: true,
       step: function(results, parser) {
+        // check for blank row
+        if (results.data[0]['Street Address'] === '') {
+          return;
+        }
         address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
         if (dups.indexOf(address) !== -1) {
           dupCnt ++;
