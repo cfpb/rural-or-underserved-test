@@ -71,7 +71,15 @@ window.callback = function(data) {
 var inputCnt = 1;
 $('#add-another').click(function(e) {
   e.preventDefault();
+
+  if ($('#address' + inputCnt).val() === '') {
+    $('#address' + inputCnt).addClass('error');
+  } else {
+    $('#address' + inputCnt).removeClass('error');
+  }
+
   inputCnt ++;
+
   if (inputCnt === 10) {
     $('#add-another').remove();
   }
@@ -86,10 +94,10 @@ $('#add-another').click(function(e) {
 var dups = [];
 // on submit
 $('#geocode').submit(function(e) {
+  resets();
+
   // reset file field
   $('#file').val('');
-  
-  resets();
 
   $('.input-address').each(function(index) {
     if ($(this).val() === '') {
@@ -100,25 +108,42 @@ $('#geocode').submit(function(e) {
       totalCnt ++;
       render.renderCount('dup', dupCnt, totalCnt);
       render.renderTableRow('dup', $(this).val());
+      $(this).addClass('warning');
     } else {
+      $(this).removeClass('warning error');
       census.getRuralUrban($(this).val());
     }
     dups.push($(this).val());
-    //census.getRuralUrban($(this).val());
-  })
+  });
+
   return false;
+});
+
+$('#file').change(function(e) {
+  inputCnt = 1;
+  $('.input-address').each(function(index) {
+    if ($(this).attr('id') !== 'address1') {
+      $(this).remove();
+    } else {
+      $(this).val('')
+              .removeClass('error');
+    }
+  });
 });
 
 // on upload
 $('#geocode-csv').submit(function(e) {
-
   resets();
+
+  inputCnt = 1;
+
   // clear remove inputs, except the first one
   $('.input-address').each(function(index) {
     if ($(this).attr('id') !== 'address1') {
       $(this).remove();
     } else {
-      $(this).val('');
+      $(this).val('')
+              .removeClass('error');
     }
   });
 
@@ -150,6 +175,7 @@ $('#geocode-csv').submit(function(e) {
       console.log('All files done!');
     }
   });
+
   return false;
 });
 

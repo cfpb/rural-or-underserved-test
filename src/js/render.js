@@ -50,6 +50,8 @@ module.exports = {
     // show
     $('#' + table).removeClass('hide');
 
+    console.log('table = ' + table);
+
     // create html
     if (table === 'notFound') {
       htmlString = '<tr><td>' + input + '</td>'
