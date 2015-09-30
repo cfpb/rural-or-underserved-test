@@ -11,6 +11,7 @@ notRuralCnt = 0,
 ruralCnt = 0,
 totalCnt = 0;
 dupCnt = 0;
+rowCnt = 0;
 
 var ruralChecker = require('./rural');
 var render = require('./render');
@@ -100,6 +101,12 @@ $('#geocode').submit(function(e) {
   $('#file').val('');
 
   $('.input-address').each(function(index) {
+    rowCnt ++;
+  });
+
+  $('#rowCnt').text(rowCnt);
+
+  $('.input-address').each(function(index) {
     if ($(this).val() === '') {
       return;
     }
@@ -121,6 +128,7 @@ $('#geocode').submit(function(e) {
 
 $('#file').change(function(e) {
   inputCnt = 1;
+
   $('.input-address').each(function(index) {
     if ($(this).attr('id') !== 'address1') {
       $(this).remove();
@@ -147,7 +155,23 @@ $('#geocode-csv').submit(function(e) {
     }
   });
 
-  // parse the csv
+  // parse the csv to get the count
+  $('#file').parse( {
+    config: {
+      header: true,
+      step: function(results, parser) {
+        rowCnt ++;
+      },
+      complete: function(results, file) {
+        $('#rowCnt').text(rowCnt);
+      }
+    }, 
+    complete: function() {
+      console.log('All files done!');
+    }
+  });
+
+  // parse the csv to query API
   $('#file').parse( {
     config: {
       header: true,
@@ -203,6 +227,7 @@ function resets() {
   ruralCnt = 0;
   dupCnt = 0;
   totalCnt = 0;
+  rowCnt = 0;
   dups = [];
 }
 
