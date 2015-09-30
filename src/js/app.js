@@ -12,6 +12,7 @@ ruralCnt = 0,
 totalCnt = 0;
 dupCnt = 0;
 rowCnt = 0;
+processedCnt = 0;
 
 var ruralChecker = require('./rural');
 var render = require('./render');
@@ -185,26 +186,33 @@ $('#geocode-csv').submit(function(e) {
         $('#errorMessage').html('The csv was empty.');
         $('#errorMessage').removeClass('hide');
       } else {
+        if (rowCnt > 250) {
+          $('#errorMessage').html('You entered ' + rowCnt + ' rows. We have a max of 250, we\'ve processed those.');
+          $('#errorMessage').removeClass('hide');
+        }
         console.log('row count = ' + rowCnt);
         // parse the csv to query API
         $('#file').parse( {
           config: {
             header: true,
             step: function(results, parser) {
-              // check for blank row
-              if (results.data[0]['Street Address'] === '' && results.errors) {
-                return;
+              if (processedCnt < 250) {
+                // check for blank row
+                if (results.data[0]['Street Address'] === '' && results.errors) {
+                  return;
+                }
+                address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
+                if (dups.indexOf(address) !== -1) {
+                  dupCnt ++;
+                  totalCnt ++;
+                  render.renderCount('dup', dupCnt, totalCnt);
+                  render.renderTableRow('dup', address);
+                } else {
+                  census.getRuralUrban(address);
+                }
+                dups.push(address);
+                processedCnt ++;
               }
-              address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-              if (dups.indexOf(address) !== -1) {
-                dupCnt ++;
-                totalCnt ++;
-                render.renderCount('dup', dupCnt, totalCnt);
-                render.renderTableRow('dup', address);
-              } else {
-                census.getRuralUrban(address);
-              }
-              dups.push(address);
             },
             complete: function(results, file) {
               console.log('query complete');
