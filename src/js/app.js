@@ -169,6 +169,9 @@ $('#geocode-csv').submit(function(e) {
     config: {
       header: true,
       step: function(results, parser) {
+        if (results.data[0]['Street Address'] === '' && results.errors) {
+          return;
+        }
         rowCnt ++;
       },
       complete: function(results, file) {
@@ -181,42 +184,42 @@ $('#geocode-csv').submit(function(e) {
         console.log('empty');
         $('#errorMessage').html('The csv was empty.');
         $('#errorMessage').removeClass('hide');
+      } else {
+        console.log('row count = ' + rowCnt);
+        // parse the csv to query API
+        $('#file').parse( {
+          config: {
+            header: true,
+            step: function(results, parser) {
+              // check for blank row
+              if (results.data[0]['Street Address'] === '' && results.errors) {
+                return;
+              }
+              address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
+              if (dups.indexOf(address) !== -1) {
+                dupCnt ++;
+                totalCnt ++;
+                render.renderCount('dup', dupCnt, totalCnt);
+                render.renderTableRow('dup', address);
+              } else {
+                census.getRuralUrban(address);
+              }
+              dups.push(address);
+            },
+            complete: function(results, file) {
+              console.log('query complete');
+            }
+          }, 
+          complete: function() {
+            console.log('All files done!');
+          }
+        });
       }
       console.log('All files done!');
     }
   });
 
-  // only query if there are rows
-  if (rowCnt !== 0) {
-    // parse the csv to query API
-    $('#file').parse( {
-      config: {
-        header: true,
-        step: function(results, parser) {
-          // check for blank row
-          if (results.data[0]['Street Address'] === '' && results.errors) {
-            return;
-          }
-          address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-          if (dups.indexOf(address) !== -1) {
-            dupCnt ++;
-            totalCnt ++;
-            render.renderCount('dup', dupCnt, totalCnt);
-            render.renderTableRow('dup', address);
-          } else {
-            census.getRuralUrban(address);
-          }
-          dups.push(address);
-        },
-        complete: function(results, file) {
-          console.log('query complete');
-        }
-      }, 
-      complete: function() {
-        console.log('All files done!');
-      }
-    });
-  }
+  
 
   return false;
 });
