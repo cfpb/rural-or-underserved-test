@@ -101,27 +101,36 @@ $('#geocode').submit(function(e) {
   $('#file').val('');
 
   $('.input-address').each(function(index) {
-    rowCnt ++;
+    if ($(this).val() !== '') {
+      rowCnt ++;
+    }
   });
 
-  $('#rowCnt').text(rowCnt);
+  if (rowCnt === 0) {
+    console.log('empty');
+    $('#errorMessage').html('No rows entered.');
+    $('#errorMessage').removeClass('hide');
+  } else {
 
-  $('.input-address').each(function(index) {
-    if ($(this).val() === '') {
-      return;
-    }
-    if (dups.indexOf($(this).val()) !== -1) {
-      dupCnt ++;
-      totalCnt ++;
-      render.renderCount('dup', dupCnt, totalCnt);
-      render.renderTableRow('dup', $(this).val());
-      $(this).addClass('warning');
-    } else {
-      $(this).removeClass('warning error');
-      census.getRuralUrban($(this).val());
-    }
-    dups.push($(this).val());
-  });
+    $('#rowCnt').text(rowCnt);
+
+    $('.input-address').each(function(index) {
+      if ($(this).val() === '') {
+        return;
+      }
+      if (dups.indexOf($(this).val()) !== -1) {
+        dupCnt ++;
+        totalCnt ++;
+        render.renderCount('dup', dupCnt, totalCnt);
+        render.renderTableRow('dup', $(this).val());
+        $(this).addClass('warning');
+      } else {
+        $(this).removeClass('warning error');
+        census.getRuralUrban($(this).val());
+      }
+      dups.push($(this).val());
+    });
+  }
 
   return false;
 });
@@ -167,38 +176,47 @@ $('#geocode-csv').submit(function(e) {
       }
     }, 
     complete: function() {
+      // must have been an empty csv
+      if (rowCnt === 0) {
+        console.log('empty');
+        $('#errorMessage').html('The csv was empty.');
+        $('#errorMessage').removeClass('hide');
+      }
       console.log('All files done!');
     }
   });
 
-  // parse the csv to query API
-  $('#file').parse( {
-    config: {
-      header: true,
-      step: function(results, parser) {
-        // check for blank row
-        if (results.data[0]['Street Address'] === '' && results.errors) {
-          return;
+  // only query if there are rows
+  if (rowCnt !== 0) {
+    // parse the csv to query API
+    $('#file').parse( {
+      config: {
+        header: true,
+        step: function(results, parser) {
+          // check for blank row
+          if (results.data[0]['Street Address'] === '' && results.errors) {
+            return;
+          }
+          address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
+          if (dups.indexOf(address) !== -1) {
+            dupCnt ++;
+            totalCnt ++;
+            render.renderCount('dup', dupCnt, totalCnt);
+            render.renderTableRow('dup', address);
+          } else {
+            census.getRuralUrban(address);
+          }
+          dups.push(address);
+        },
+        complete: function(results, file) {
+          console.log('query complete');
         }
-        address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-        if (dups.indexOf(address) !== -1) {
-          dupCnt ++;
-          totalCnt ++;
-          render.renderCount('dup', dupCnt, totalCnt);
-          render.renderTableRow('dup', address);
-        } else {
-          census.getRuralUrban(address);
-        }
-        dups.push(address);
-      },
-      complete: function(results, file) {
-        console.log('Complete!');
+      }, 
+      complete: function() {
+        console.log('All files done!');
       }
-    }, 
-    complete: function() {
-      console.log('All files done!');
-    }
-  });
+    });
+  }
 
   return false;
 });
@@ -221,6 +239,8 @@ $('#link-about').click(function(e) {
 function resets() {
   render.resetHTML();
   render.showResults();
+  $('#errorMessage').html('');
+  $('#errorMessage').addClass('hide');
 
   notFoundCnt = 0;
   notRuralCnt = 0;
