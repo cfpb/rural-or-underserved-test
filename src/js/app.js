@@ -6,13 +6,13 @@ require('./showMap');
 
 require('papaparse');
 
-notFoundCnt = 0,
-notRuralCnt = 0,
-ruralCnt = 0,
-totalCnt = 0;
-dupCnt = 0;
-rowCnt = 0;
-processedCnt = 0;
+var notFoundCnt = 0,
+    notRuralCnt = 0,
+    ruralCnt = 0,
+    totalCnt = 0;
+    dupCnt = 0;
+    rowCnt = 0;
+    processedCnt = 0;
 
 var ruralChecker = require('./rural');
 var render = require('./render');
@@ -47,7 +47,7 @@ window.callback = function(data) {
     var fipsCode = state + county;
 
     // load fips (counties that are rural)
-    $.getJSON('data/fips.json', function(fips) {
+    $.getJSON('data/' + $('#year').val() + '.json', function(fips) {
       var rural = false;
       rural = ruralChecker.isRural(fips, fipsCode, urbanAreas, urbanClusters);
 
