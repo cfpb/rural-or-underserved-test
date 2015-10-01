@@ -19,10 +19,16 @@
     border-left-width: 1px;
 }
 
-.border-top-1 {
+.border-top-2 {
     border-top-color: $gray-50;
     border-top-style: solid;
-    border-top-width: 1px;
+    border-top-width: 2px;
+}
+
+.border-bottom-2 {
+    border-bottom-color: $gray-50;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
 }
 
 .no-border {
