@@ -50,8 +50,6 @@ module.exports = {
     // show
     $('#' + table).removeClass('hide');
 
-    console.log('table = ' + table);
-
     // create html
     if (table === 'notFound') {
       htmlString = '<tr><td>' + input + '</td>'
@@ -66,11 +64,13 @@ module.exports = {
         + '<td>-</td>'
         + '<td>-</td></tr>'
     } else {
+      var mapID = Date.now();
       htmlString = '<tr><td>' + input + '</td>'
-          + '<td><a href="#" class="jsLoadMap" data-lat="' + x + '" data-lon="' + y + '" data-id="loc-' + Date.now() + '">' + matchedAddress + '</a></td>'
+          + '<td>' + matchedAddress + '</td>'
           + '<td>' + county + '</td>'
           + '<td>' + block + '</td>'
-          + '<td>' + ruralOrNot + '</td></tr>';
+          + '<td>' + ruralOrNot + ' <a href="#" class="jsLoadMap right" data-map="false" data-lat="' + x + '" data-lon="' + y + '" data-id="loc-' + mapID + '">Show map</a></td></tr>'
+          + '<tr class="hide"><td colspan="5"><div class="map" id="loc-' + mapID + '"></div></td></tr>';
     }
 
     // add to table

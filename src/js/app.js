@@ -19,6 +19,7 @@ var render = require('./render');
 
 window.callback = function(data) {
   // save the query address
+  //console.log (data);
   var input = data.result.input.address.address;
   
   // nothing found, render a not found
