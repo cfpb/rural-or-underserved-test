@@ -1,0 +1,44 @@
+.group:before,
+.group:after {
+  content: " ";
+  display: table
+}
+.group:after {
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.block {
+    display: block;
+}
+.inline {
+    display: inline;
+}
+.inline-block {
+    display: inline-block;
+}
+
+.full-width {
+    width: 100%;
+}
+.half-width {
+    width: 50%;
+}
+
+.full-height {
+    display: flex;
+}
+
+.hide {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}

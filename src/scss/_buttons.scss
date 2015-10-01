@@ -1,0 +1,42 @@
+button,
+.button {
+    background: $pacific;
+    border: 0;
+    border-radius: 2px;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'AvenirNextLTW01-Regular';
+    font-size: 1em;
+    margin: 0;
+    height: auto;
+    padding: 5px;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-appearance: none;
+}
+a.button {
+  color: $white;
+}
+
+button,
+button::after,
+button::before,
+.button,
+.button::after,
+.button::before {
+  box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.button:hover { text-decoration: none }
+
+.button-small {
+    font-size: .75em;
+    padding: 3px;
+}

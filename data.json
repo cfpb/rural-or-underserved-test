@@ -1,0 +1,1353 @@
+[
+    {
+        "type": "FeatureCollection",
+        "query": "615 Gatling Place, Elliott, New Hampshire, 2232",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -37.854827,
+                        131.474698,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "649 Adelphi Street, Cartwright, Kentucky, 7766",
+                    "alt_addresses": [
+                        {
+                            "address": "442 Hazel Court, Muir, Maryland, 2324"
+                        },
+                        {
+                            "address": "326 Hale Avenue, Glendale, Pennsylvania, 6183"
+                        }
+                    ],
+                    "load_date": 5387026434227,
+                    "county": "Kansas",
+                    "census_block": 6.5,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -69.178422,
+                        -31.863809,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "161 Jaffray Street, Jamestown, Florida, 8935",
+                    "alt_addresses": [
+                        {
+                            "address": "403 Troy Avenue, Goodville, New York, 9199"
+                        },
+                        {
+                            "address": "756 Lewis Place, Harleigh, Montana, 3651"
+                        }
+                    ],
+                    "load_date": 9162450593084,
+                    "county": "Marshall Islands",
+                    "census_block": 1.53,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -17.478082,
+                        -149.475209,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "512 Stuyvesant Avenue, Waukeenah, Hawaii, 3175",
+                    "alt_addresses": [
+                        {
+                            "address": "576 Polhemus Place, Deseret, American Samoa, 3624"
+                        },
+                        {
+                            "address": "123 Hubbard Street, Sandston, Georgia, 7118"
+                        }
+                    ],
+                    "load_date": 4247199617073,
+                    "county": "Ohio",
+                    "census_block": 4.16,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "541 Moore Place, Benson, North Dakota, 9798",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -45.605668,
+                        -88.747993,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "735 Vandervoort Avenue, Turpin, North Carolina, 3775",
+                    "alt_addresses": [
+                        {
+                            "address": "896 Kimball Street, Dodge, Northern Mariana Islands, 7060"
+                        },
+                        {
+                            "address": "305 Bouck Court, Succasunna, Rhode Island, 4193"
+                        }
+                    ],
+                    "load_date": 2399258654375,
+                    "county": "Maine",
+                    "census_block": 5.01,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -41.956023,
+                        -43.910679,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "999 Channel Avenue, Connerton, Palau, 418",
+                    "alt_addresses": [
+                        {
+                            "address": "303 Hull Street, Olney, Virgin Islands, 1503"
+                        }
+                    ],
+                    "load_date": 5590913139593,
+                    "county": "Arkansas",
+                    "census_block": 4.02,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "128 Prescott Place, Thomasville, Nebraska, 785",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -66.005762,
+                        -158.535546,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "781 Erskine Loop, Morriston, Oklahoma, 9906",
+                    "alt_addresses": [
+                        {
+                            "address": "551 Caton Place, Singer, South Dakota, 1811"
+                        }
+                    ],
+                    "load_date": 3726045027587,
+                    "county": "Alabama",
+                    "census_block": 7.85,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        25.561063,
+                        32.164954,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "922 Wyckoff Avenue, Harborton, Utah, 411",
+                    "alt_addresses": [
+                        {
+                            "address": "342 Hubbard Place, Eastvale, Wyoming, 150"
+                        },
+                        {
+                            "address": "267 Corbin Place, Chloride, Indiana, 3091"
+                        },
+                        {
+                            "address": "896 Seton Place, Colton, Idaho, 4894"
+                        }
+                    ],
+                    "load_date": 5505370955472,
+                    "county": "Alaska",
+                    "census_block": 9.11,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        69.247278,
+                        -120.781934,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "649 Chester Avenue, Nash, Louisiana, 7423",
+                    "alt_addresses": [
+                        {
+                            "address": "855 Jerome Street, Westerville, Michigan, 3365"
+                        }
+                    ],
+                    "load_date": 5710400286782,
+                    "county": "Washington",
+                    "census_block": 4.79,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "599 Mill Avenue, Salunga, District Of Columbia, 7188",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "242 Willow Street, Rockhill, Nevada, 673",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        67.045523,
+                        -21.693384,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "509 Beard Street, Dante, Missouri, 2693",
+                    "alt_addresses": [
+                        {
+                            "address": "128 Croton Loop, Kenwood, Puerto Rico, 7775"
+                        }
+                    ],
+                    "load_date": 2627598680375,
+                    "county": "Iowa",
+                    "census_block": 2.8,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        34.417152,
+                        -23.829908,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "197 Navy Walk, Grimsley, Federated States Of Micronesia, 4165",
+                    "alt_addresses": [],
+                    "load_date": 5505319971160,
+                    "county": "Guam",
+                    "census_block": 8.84,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        68.592341,
+                        -46.048604,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "651 Abbey Court, Leroy, Wisconsin, 5644",
+                    "alt_addresses": [
+                        {
+                            "address": "609 Wilson Street, Waterloo, New Jersey, 3658"
+                        }
+                    ],
+                    "load_date": 8018831976329,
+                    "county": "Virginia",
+                    "census_block": 6.9,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -41.52373,
+                        119.74959,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "854 Remsen Avenue, Escondida, West Virginia, 287",
+                    "alt_addresses": [
+                        {
+                            "address": "599 Wyckoff Street, Ribera, Arizona, 4862"
+                        },
+                        {
+                            "address": "591 Will Place, Dunlo, Vermont, 4546"
+                        },
+                        {
+                            "address": "363 Roebling Street, Why, Texas, 3670"
+                        }
+                    ],
+                    "load_date": 9510443566309,
+                    "county": "California",
+                    "census_block": 8.67,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "281 Fulton Street, Gambrills, Illinois, 1754",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -7.804568,
+                        -56.507729,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "599 Banker Street, Volta, Connecticut, 2648",
+                    "alt_addresses": [
+                        {
+                            "address": "291 Girard Street, Oretta, Colorado, 3490"
+                        },
+                        {
+                            "address": "916 Highland Boulevard, Indio, South Carolina, 6785"
+                        },
+                        {
+                            "address": "559 Duryea Court, Gila, New Mexico, 7367"
+                        }
+                    ],
+                    "load_date": 5762737958074,
+                    "county": "Oregon",
+                    "census_block": 6.83,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -83.081513,
+                        -38.380002,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "928 Canda Avenue, Darbydale, Massachusetts, 3128",
+                    "alt_addresses": [
+                        {
+                            "address": "345 Vandalia Avenue, Fairlee, Minnesota, 1062"
+                        },
+                        {
+                            "address": "691 Beaumont Street, Finzel, Tennessee, 292"
+                        }
+                    ],
+                    "load_date": 7512035018693,
+                    "county": "Mississippi",
+                    "census_block": 1.02,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -42.73834,
+                        95.24911,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "534 Chapel Street, Wheatfields, New Hampshire, 4909",
+                    "alt_addresses": [
+                        {
+                            "address": "235 Horace Court, Titanic, Kentucky, 4894"
+                        }
+                    ],
+                    "load_date": 6062053688606,
+                    "county": "Maryland",
+                    "census_block": 7.94,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "398 Manor Court, Waverly, Pennsylvania, 5514",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        23.798297,
+                        110.270438,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "738 Voorhies Avenue, Rodman, Kansas, 4039",
+                    "alt_addresses": [
+                        {
+                            "address": "604 Brooklyn Avenue, Dixie, Florida, 4128"
+                        }
+                    ],
+                    "load_date": 7218193020533,
+                    "county": "New York",
+                    "census_block": 6.27,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        4.643842,
+                        -167.070008,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "294 Centre Street, Kapowsin, Montana, 2736",
+                    "alt_addresses": [],
+                    "load_date": 9094192382506,
+                    "county": "Marshall Islands",
+                    "census_block": 7.12,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "143 Keen Court, Wauhillau, Hawaii, 6131",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "771 Clarendon Road, Gardiner, American Samoa, 4989",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -70.905804,
+                        -108.86193,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "440 Glenmore Avenue, Twilight, Georgia, 2455",
+                    "alt_addresses": [
+                        {
+                            "address": "684 Miller Avenue, Elwood, Ohio, 3728"
+                        }
+                    ],
+                    "load_date": 9393724849792,
+                    "county": "North Dakota",
+                    "census_block": 1.56,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "160 Vanderveer Place, Carbonville, North Carolina, 9577",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -17.540756,
+                        115.012563,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "834 Times Placez, Draper, Northern Mariana Islands, 4692",
+                    "alt_addresses": [],
+                    "load_date": 3761914484588,
+                    "county": "Rhode Island",
+                    "census_block": 1.69,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -36.129531,
+                        -178.279621,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "422 Hutchinson Court, Taft, Maine, 992",
+                    "alt_addresses": [],
+                    "load_date": 8987823889027,
+                    "county": "Palau",
+                    "census_block": 5.59,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        73.330146,
+                        147.784364,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "184 Ebony Court, Elbert, Virgin Islands, 6866",
+                    "alt_addresses": [],
+                    "load_date": 4805368416500,
+                    "county": "Arkansas",
+                    "census_block": 6.92,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "710 Central Avenue, Babb, Nebraska, 4466",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        38.741604,
+                        65.659789,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "152 Forbell Street, Rose, Oklahoma, 6843",
+                    "alt_addresses": [
+                        {
+                            "address": "920 Gaylord Drive, Wedgewood, South Dakota, 9240"
+                        },
+                        {
+                            "address": "225 Canal Avenue, Remington, Alabama, 8247"
+                        },
+                        {
+                            "address": "761 Downing Street, Russellville, Utah, 8774"
+                        }
+                    ],
+                    "load_date": 3188252588272,
+                    "county": "Wyoming",
+                    "census_block": 3.62,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "517 Noel Avenue, Evergreen, Indiana, 1111",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "349 Hendrickson Street, Hannasville, Idaho, 6544",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "525 Story Street, Choctaw, Alaska, 8383",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        5.709065,
+                        -156.318602,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "780 Calder Place, Sylvanite, Louisiana, 5622",
+                    "alt_addresses": [
+                        {
+                            "address": "131 Rock Street, Woodruff, Michigan, 5886"
+                        },
+                        {
+                            "address": "842 Orange Street, Ronco, Washington, 6209"
+                        }
+                    ],
+                    "load_date": 1549375530123,
+                    "county": "District Of Columbia",
+                    "census_block": 3.81,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        55.204357,
+                        -32.604285,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "194 Whitney Avenue, Graball, Nevada, 1851",
+                    "alt_addresses": [],
+                    "load_date": 6847408624913,
+                    "county": "Missouri",
+                    "census_block": 7.79,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        52.002072,
+                        103.823949,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "357 Varet Street, Nipinnawasee, Puerto Rico, 6490",
+                    "alt_addresses": [],
+                    "load_date": 8330828452576,
+                    "county": "Iowa",
+                    "census_block": 3.4,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -25.440007,
+                        177.45661,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "652 Lafayette Avenue, Neahkahnie, Federated States Of Micronesia, 7356",
+                    "alt_addresses": [
+                        {
+                            "address": "190 Allen Avenue, Yettem, Guam, 1499"
+                        }
+                    ],
+                    "load_date": 6114895883187,
+                    "county": "Wisconsin",
+                    "census_block": 2.24,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "674 Frank Court, Rosburg, New Jersey, 1128",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -14.725351,
+                        -173.321688,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "132 Ditmas Avenue, Bath, Virginia, 8894",
+                    "alt_addresses": [
+                        {
+                            "address": "955 Bushwick Avenue, Lydia, West Virginia, 8303"
+                        }
+                    ],
+                    "load_date": 6913880297927,
+                    "county": "Arizona",
+                    "census_block": 4.29,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        48.219399,
+                        157.019956,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "322 Nichols Avenue, Linganore, Vermont, 715",
+                    "alt_addresses": [
+                        {
+                            "address": "127 Bedell Lane, Blanco, Texas, 3869"
+                        },
+                        {
+                            "address": "768 Georgia Avenue, Madrid, California, 1482"
+                        },
+                        {
+                            "address": "159 Court Square, Norfolk, Illinois, 4047"
+                        }
+                    ],
+                    "load_date": 8509272748665,
+                    "county": "Connecticut",
+                    "census_block": 6.28,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -56.391438,
+                        -14.500068,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "910 Myrtle Avenue, Vernon, Colorado, 4452",
+                    "alt_addresses": [
+                        {
+                            "address": "399 Chauncey Street, Cleary, South Carolina, 8943"
+                        },
+                        {
+                            "address": "964 Dean Street, Chapin, New Mexico, 2759"
+                        },
+                        {
+                            "address": "943 Sunnyside Court, Rosedale, Oregon, 1378"
+                        }
+                    ],
+                    "load_date": 4628342843569,
+                    "county": "Massachusetts",
+                    "census_block": 8.48,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        40.348784,
+                        76.532127,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "442 Delevan Street, Cobbtown, Minnesota, 7548",
+                    "alt_addresses": [
+                        {
+                            "address": "273 Joval Court, Rosine, Tennessee, 3572"
+                        },
+                        {
+                            "address": "617 Pleasant Place, Fedora, Mississippi, 7616"
+                        },
+                        {
+                            "address": "869 Grand Street, Oasis, New Hampshire, 3190"
+                        }
+                    ],
+                    "load_date": 1546851635019,
+                    "county": "Kentucky",
+                    "census_block": 9.45,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "735 Atlantic Avenue, Kenvil, Maryland, 1545",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        28.465262,
+                        -31.829591,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "141 Durland Place, Broadlands, Pennsylvania, 8415",
+                    "alt_addresses": [
+                        {
+                            "address": "502 Hanson Place, Cashtown, Kansas, 7453"
+                        },
+                        {
+                            "address": "624 Gates Avenue, Glenbrook, Florida, 9908"
+                        },
+                        {
+                            "address": "631 Stryker Street, Bonanza, New York, 2279"
+                        }
+                    ],
+                    "load_date": 6695565700493,
+                    "county": "Montana",
+                    "census_block": 6.07,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "159 Coyle Street, Fulford, Marshall Islands, 3742",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        56.657845,
+                        163.297115,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "303 Losee Terrace, Yogaville, Hawaii, 683",
+                    "alt_addresses": [
+                        {
+                            "address": "184 Dunne Court, Golconda, American Samoa, 4775"
+                        },
+                        {
+                            "address": "213 Clay Street, Savannah, Georgia, 3103"
+                        },
+                        {
+                            "address": "682 Farragut Place, Wakulla, Ohio, 6255"
+                        }
+                    ],
+                    "load_date": 2061676370703,
+                    "county": "North Dakota",
+                    "census_block": 9.86,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        33.559058,
+                        -133.375865,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "945 Stockholm Street, Glasgow, North Carolina, 5880",
+                    "alt_addresses": [
+                        {
+                            "address": "834 King Street, Needmore, Northern Mariana Islands, 7914"
+                        },
+                        {
+                            "address": "228 Melrose Street, Cressey, Rhode Island, 3441"
+                        },
+                        {
+                            "address": "220 Goodwin Place, Innsbrook, Maine, 6232"
+                        }
+                    ],
+                    "load_date": 1571557610376,
+                    "county": "Palau",
+                    "census_block": 8.54,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        41.406967,
+                        50.618624,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "308 Tech Place, Charco, Virgin Islands, 3521",
+                    "alt_addresses": [
+                        {
+                            "address": "553 Bragg Street, Homestead, Arkansas, 799"
+                        },
+                        {
+                            "address": "939 Tehama Street, Villarreal, Nebraska, 4050"
+                        }
+                    ],
+                    "load_date": 6560948537531,
+                    "county": "Oklahoma",
+                    "census_block": 5.16,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        20.484273,
+                        95.220457,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "294 Madison Street, Hardyville, South Dakota, 7255",
+                    "alt_addresses": [
+                        {
+                            "address": "153 Beayer Place, Beason, Alabama, 7679"
+                        },
+                        {
+                            "address": "802 Ridge Court, Riceville, Utah, 6530"
+                        },
+                        {
+                            "address": "610 Tompkins Place, Durham, Wyoming, 9137"
+                        }
+                    ],
+                    "load_date": 9776875279374,
+                    "county": "Indiana",
+                    "census_block": 8.19,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "405 Church Avenue, Downsville, Idaho, 7383",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        76.27538,
+                        -130.210742,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "530 Moore Street, Elizaville, Alaska, 2433",
+                    "alt_addresses": [
+                        {
+                            "address": "381 Kay Court, Cherokee, Louisiana, 4021"
+                        },
+                        {
+                            "address": "459 Lorraine Street, Rowe, Michigan, 1198"
+                        }
+                    ],
+                    "load_date": 4017636090742,
+                    "county": "Washington",
+                    "census_block": 3.39,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -28.512641,
+                        -78.90307,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "600 Kane Place, Bynum, District Of Columbia, 6445",
+                    "alt_addresses": [
+                        {
+                            "address": "319 Empire Boulevard, Starks, Nevada, 9486"
+                        }
+                    ],
+                    "load_date": 2335482431917,
+                    "county": "Missouri",
+                    "census_block": 7.78,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        57.64715,
+                        -172.043945,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "104 Applegate Court, Yardville, Puerto Rico, 9135",
+                    "alt_addresses": [
+                        {
+                            "address": "339 Gelston Avenue, Efland, Iowa, 4425"
+                        }
+                    ],
+                    "load_date": 3692816089041,
+                    "county": "Federated States Of Micronesia",
+                    "census_block": 1.66,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "237 Balfour Place, Northchase, Guam, 1492",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -65.343035,
+                        9.865204,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "953 Grattan Street, Snelling, Wisconsin, 7756",
+                    "alt_addresses": [
+                        {
+                            "address": "167 Mill Lane, Tetherow, New Jersey, 4635"
+                        },
+                        {
+                            "address": "981 Desmond Court, Ypsilanti, Virginia, 2515"
+                        },
+                        {
+                            "address": "495 Brevoort Place, Newry, West Virginia, 7171"
+                        }
+                    ],
+                    "load_date": 7839797911258,
+                    "county": "Arizona",
+                    "census_block": 7.71,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        0.997303,
+                        61.881201,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "102 Marconi Place, Swartzville, Vermont, 5862",
+                    "alt_addresses": [
+                        {
+                            "address": "587 Harrison Avenue, Hillsboro, Texas, 2851"
+                        }
+                    ],
+                    "load_date": 4493029281297,
+                    "county": "California",
+                    "census_block": 2.62,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -81.066947,
+                        143.94093,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "238 Ocean Avenue, Cornfields, Illinois, 3088",
+                    "alt_addresses": [
+                        {
+                            "address": "688 Richards Street, Lynn, Connecticut, 971"
+                        },
+                        {
+                            "address": "811 Delmonico Place, Zarephath, Colorado, 6887"
+                        }
+                    ],
+                    "load_date": 4609753027753,
+                    "county": "South Carolina",
+                    "census_block": 8.82,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "440 Crescent Street, Boonville, New Mexico, 8661",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "210 Jewel Street, Shrewsbury, Oregon, 787",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "239 Granite Street, Leming, Massachusetts, 3788",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        1.716045,
+                        -143.587206,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "176 Miller Place, Ladera, Minnesota, 404",
+                    "alt_addresses": [
+                        {
+                            "address": "239 Sedgwick Place, Sims, Tennessee, 7044"
+                        },
+                        {
+                            "address": "788 Atkins Avenue, Northridge, Mississippi, 8604"
+                        }
+                    ],
+                    "load_date": 2051382216704,
+                    "county": "New Hampshire",
+                    "census_block": 6.01,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "521 Fairview Place, Spelter, Kentucky, 1656",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -48.570092,
+                        163.993525,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "559 Kings Place, Ernstville, Maryland, 4307",
+                    "alt_addresses": [
+                        {
+                            "address": "801 Tillary Street, Allensworth, Pennsylvania, 5160"
+                        },
+                        {
+                            "address": "532 Neptune Avenue, Darrtown, Kansas, 1056"
+                        }
+                    ],
+                    "load_date": 9611041534969,
+                    "county": "Florida",
+                    "census_block": 1.53,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -24.694704,
+                        -58.873748,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "301 Vanderbilt Street, Brooktrails, New York, 6236",
+                    "alt_addresses": [],
+                    "load_date": 8571205624309,
+                    "county": "Montana",
+                    "census_block": 7.43,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        50.615077,
+                        -83.27075,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "920 Kathleen Court, Waiohinu, Marshall Islands, 1614",
+                    "alt_addresses": [
+                        {
+                            "address": "771 Saratoga Avenue, Masthope, Hawaii, 6807"
+                        },
+                        {
+                            "address": "997 Bijou Avenue, Hondah, American Samoa, 8164"
+                        }
+                    ],
+                    "load_date": 4435367603464,
+                    "county": "Georgia",
+                    "census_block": 1.3,
+                    "rural_underserved": true
+                }
+            }
+        ],
+        "status": "OK"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "419 Conklin Avenue, Roderfield, Ohio, 4825",
+        "features": [],
+        "status": "No Results"
+    },
+    {
+        "type": "FeatureCollection",
+        "query": "277 Columbus Place, Trinway, North Dakota, 6593",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        14.096257,
+                        84.521071,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "504 Hall Street, Kilbourne, North Carolina, 9134",
+                    "alt_addresses": [
+                        {
+                            "address": "333 Lee Avenue, Sunbury, Northern Mariana Islands, 1367"
+                        }
+                    ],
+                    "load_date": 4437087798107,
+                    "county": "Rhode Island",
+                    "census_block": 6.79,
+                    "rural_underserved": true
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        72.705881,
+                        -45.883836,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "224 Garden Place, Wollochet, Maine, 8459",
+                    "alt_addresses": [
+                        {
+                            "address": "367 Heath Place, Abrams, Palau, 5655"
+                        },
+                        {
+                            "address": "750 Bassett Avenue, Helen, Virgin Islands, 5427"
+                        }
+                    ],
+                    "load_date": 2850882110995,
+                    "county": "Arkansas",
+                    "census_block": 3.88,
+                    "rural_underserved": false
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        84.817069,
+                        172.554008,
+                        0
+                    ]
+                },
+                "properties": {
+                    "address": "569 Forrest Street, Wolcott, Nebraska, 7695",
+                    "alt_addresses": [
+                        {
+                            "address": "140 Kane Street, Highland, Oklahoma, 9973"
+                        }
+                    ],
+                    "load_date": 5149889309404,
+                    "county": "South Dakota",
+                    "census_block": 1.68,
+                    "rural_underserved": false
+                }
+            }
+        ],
+        "status": "OK"
+    }
+]

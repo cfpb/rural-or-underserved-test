@@ -1,0 +1,21 @@
+.bg-gray {
+    background-color: $gray-5;
+}
+
+.bg-black {
+    background-color: $black;
+    color: $white;
+
+    a:link, a:visited {
+        color: $white;
+    }
+}
+
+.bg-gold {
+    background-color: $darkgray;
+    color: $gray-50;
+
+    a:link, a:visited {
+        color: $white;
+    }
+}
