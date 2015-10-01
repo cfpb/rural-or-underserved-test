@@ -99,6 +99,9 @@ var dups = [];
 $('#geocode').submit(function(e) {
   resets();
 
+  // set year
+  $('#chosenYear').text($('#year').val());
+
   // reset file field
   $('#file').val('');
 
@@ -156,6 +159,9 @@ $('#geocode-csv').submit(function(e) {
 
   inputCnt = 1;
 
+  // set year
+  $('#chosenYear').text($('#year').val());
+
   // clear remove inputs, except the first one
   $('.input-address').each(function(index) {
     if ($(this).attr('id') !== 'address1') {
@@ -188,7 +194,8 @@ $('#geocode-csv').submit(function(e) {
         $('#errorMessage').removeClass('hide');
       } else {
         if (rowCnt > 250) {
-          $('#errorMessage').html('You entered ' + rowCnt + ' rows. We have a max of 250, we\'ve processed those.');
+          var leftOver = rowCnt - 250;
+          $('#errorMessage').html('You entered ' + rowCnt + ' address for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
           $('#errorMessage').removeClass('hide');
         }
         console.log('row count = ' + rowCnt);
