@@ -69,6 +69,35 @@ censusAPI.callback = function(data) {
   }
 }
 
+// reset all the things
+function resets() {
+  // set year
+  $('.chosenYear').text($('#year').val());
+  $('#noRows').addClass('hide');
+
+  render.resetHTML();
+  render.showResults();
+
+  notFoundCnt = 0;
+  notRuralCnt = 0;
+  ruralCnt = 0;
+  dupCnt = 0;
+  totalCnt = 0;
+  rowCnt = 0;
+  dups = [];
+  inputCnt = 1;
+}
+
+// add duplicates
+function addDups(address) {
+  // add to counts
+  dupCnt ++;
+  totalCnt ++;
+  // render to counts and dups table
+  render.renderCount('dup', dupCnt, totalCnt);
+  render.renderTableRow('dup', address);
+}
+
 // on submit
 $('#geocode').submit(function(e) {
   resets();
@@ -216,31 +245,3 @@ $('#geocode-csv').submit(function(e) {
 
   return false;
 });
-
-// reset all the things
-function resets() {
-  // set year
-  $('.chosenYear').text($('#year').val());
-  $('#noRows').addClass('hide');
-
-  render.resetHTML();
-  render.showResults();
-
-  notFoundCnt = 0;
-  notRuralCnt = 0;
-  ruralCnt = 0;
-  dupCnt = 0;
-  totalCnt = 0;
-  rowCnt = 0;
-  dups = [];
-  inputCnt = 1;
-}
-
-function addDups(address) {
-  // add to counts
-  dupCnt ++;
-  totalCnt ++;
-  // render to counts and dups table
-  render.renderCount('dup', dupCnt, totalCnt);
-  render.renderTableRow('dup', address);
-}
