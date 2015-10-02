@@ -179,8 +179,9 @@ $('#geocode-csv').submit(function(e) {
       step: function(results, parser) {
         if (results.data[0]['Street Address'] === '' && results.errors) {
           return;
+        } else {
+          rowCnt ++;
         }
-        rowCnt ++;
       },
       complete: function(results, file) {
         $('#rowCnt').text(rowCnt);
@@ -189,7 +190,6 @@ $('#geocode-csv').submit(function(e) {
     complete: function() {
       // must have been an empty csv
       if (rowCnt === 0) {
-        console.log('empty');
         $('#errorMessage').html('The csv was empty.');
         $('#errorMessage').removeClass('hide');
       } else {
@@ -198,7 +198,6 @@ $('#geocode-csv').submit(function(e) {
           $('#errorMessage').html('You entered ' + rowCnt + ' address for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
           $('#errorMessage').removeClass('hide');
         }
-        console.log('row count = ' + rowCnt);
         // parse the csv to query API
         $('#file').parse( {
           config: {
@@ -208,18 +207,19 @@ $('#geocode-csv').submit(function(e) {
                 // check for blank row
                 if (results.data[0]['Street Address'] === '' && results.errors) {
                   return;
-                }
-                address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-                if (dups.indexOf(address) !== -1) {
-                  dupCnt ++;
-                  totalCnt ++;
-                  render.renderCount('dup', dupCnt, totalCnt);
-                  render.renderTableRow('dup', address);
                 } else {
-                  census.getRuralUrban(address);
+                  address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
+                  if (dups.indexOf(address) !== -1) {
+                    dupCnt ++;
+                    totalCnt ++;
+                    render.renderCount('dup', dupCnt, totalCnt);
+                    render.renderTableRow('dup', address);
+                  } else {
+                    census.getRuralUrban(address);
+                  }
+                  dups.push(address);
+                  processedCnt ++;
                 }
-                dups.push(address);
-                processedCnt ++;
               }
             },
             complete: function(results, file) {
@@ -234,8 +234,6 @@ $('#geocode-csv').submit(function(e) {
       console.log('All files done!');
     }
   });
-
-  
 
   return false;
 });
