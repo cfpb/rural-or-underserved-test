@@ -18,8 +18,9 @@ var notFoundCnt = 0,
 
 var dups = [];
 
+window.censusAPI = {};
 
-window.callback = function(data) {
+censusAPI.callback = function(data) {
   // save the query address
   //console.log (data);
   var input = data.result.input.address.address;
