@@ -1,9 +1,10 @@
 var $ = require('jquery');
 var render = require('./render');
 var census = require('./censusCall');
+var ruralChecker = require('./rural');
+var render = require('./render');
 
 require('./showMap');
-
 require('papaparse');
 
 var notFoundCnt = 0,
@@ -12,10 +13,11 @@ var notFoundCnt = 0,
     totalCnt = 0;
     dupCnt = 0;
     rowCnt = 0;
-    processedCnt = 0;
+    processedCnt = 0,
+    inputCnt = 1;
 
-var ruralChecker = require('./rural');
-var render = require('./render');
+var dups = [];
+
 
 window.callback = function(data) {
   // save the query address
@@ -51,29 +53,29 @@ window.callback = function(data) {
       var rural = false;
       rural = ruralChecker.isRural(fips, fipsCode, urbanAreas, urbanClusters);
 
+      totalCnt ++;
+
       // if rural is still false
       if (rural === false) {
         notRuralCnt ++;
-        totalCnt ++;
-
         render.renderTableRow('notRural', input, matchedAddress, x, y, county, block);
-
         render.renderCount('notRural', notRuralCnt, totalCnt);
       } else {
         ruralCnt ++;
-        totalCnt ++;
-
         render.renderTableRow('rural', input, matchedAddress, x, y, county, block);
-
         render.renderCount('rural', ruralCnt, totalCnt);
       }
     });
   }
 }
 
-var inputCnt = 1;
 $('#add-another').click(function(e) {
   e.preventDefault();
+
+  // remove the link if we have 10 inputs
+  if (inputCnt === 10) {
+    $('#add-another').remove();
+  }
 
   if ($('#address' + inputCnt).val() === '') {
     $('#address' + inputCnt).addClass('error');
@@ -81,58 +83,62 @@ $('#add-another').click(function(e) {
     $('#address' + inputCnt).removeClass('error');
   }
 
-  inputCnt ++;
-
-  if (inputCnt === 10) {
-    $('#add-another').remove();
-  }
   // clone and add input
   $( "#address1" ).clone(true)
     .appendTo( ".input-container" )
     .attr('id', 'address' + inputCnt)
     .val('')
     .focus();
+
+  inputCnt ++;
 });
 
-var dups = [];
 // on submit
 $('#geocode').submit(function(e) {
   resets();
 
-  // set year
-  $('.chosenYear').text($('#year').val());
+  render.clearFileInput();
 
-  // reset file field
-  $('#file').val('');
-
+  // count the inputs used
   $('.input-address').each(function(index) {
     if ($(this).val() !== '') {
       rowCnt ++;
     }
   });
 
+  // if no inputs used
   if (rowCnt === 0) {
-    console.log('empty');
-    $('#errorMessage').html('No rows entered.');
-    $('#errorMessage').removeClass('hide');
+    // error
+    render.renderError('No rows entered.');
   } else {
 
+    // update count
     $('#rowCnt').text(rowCnt);
 
+    // for each input
     $('.input-address').each(function(index) {
+      // if its blank do nothing
+      // someone could leave a blank input in the middle of others
       if ($(this).val() === '') {
         return;
       }
+      // check for duplicates
       if (dups.indexOf($(this).val()) !== -1) {
+        // add to counts
         dupCnt ++;
         totalCnt ++;
+        // render to counts and dups table
         render.renderCount('dup', dupCnt, totalCnt);
         render.renderTableRow('dup', $(this).val());
+        // add warning to the field
         $(this).addClass('warning');
       } else {
+        // not a dup, remove the warning and error
         $(this).removeClass('warning error');
+        // call API
         census.getRuralUrban($(this).val());
       }
+      // push the value to dups for checking others
       dups.push($(this).val());
     });
   }
@@ -140,37 +146,21 @@ $('#geocode').submit(function(e) {
   return false;
 });
 
+// when file upload is used
 $('#file').change(function(e) {
+  // clear text inputs
+  render.clearTextInputs();
+  // reset input count
   inputCnt = 1;
-
-  $('.input-address').each(function(index) {
-    if ($(this).attr('id') !== 'address1') {
-      $(this).remove();
-    } else {
-      $(this).val('')
-              .removeClass('error');
-    }
-  });
 });
 
-// on upload
+// on file submission
 $('#geocode-csv').submit(function(e) {
+  // reset values
   resets();
 
-  inputCnt = 1;
-
-  // set year
-  $('.chosenYear').text($('#year').val());
-
   // clear remove inputs, except the first one
-  $('.input-address').each(function(index) {
-    if ($(this).attr('id') !== 'address1') {
-      $(this).remove();
-    } else {
-      $(this).val('')
-              .removeClass('error');
-    }
-  });
+  render.clearTextInputs();
 
   // parse the csv to get the count
   $('#file').parse( {
@@ -190,13 +180,11 @@ $('#geocode-csv').submit(function(e) {
     complete: function() {
       // must have been an empty csv
       if (rowCnt === 0) {
-        $('#errorMessage').html('The csv was empty.');
-        $('#errorMessage').removeClass('hide');
+        render.renderError('The csv was empty.');
       } else {
         if (rowCnt > 250) {
           var leftOver = rowCnt - 250;
-          $('#errorMessage').html('You entered ' + rowCnt + ' address for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
-          $('#errorMessage').removeClass('hide');
+          render.renderError('You entered ' + rowCnt + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
         }
         // parse the csv to query API
         $('#file').parse( {
@@ -241,23 +229,17 @@ $('#geocode-csv').submit(function(e) {
 $('#link-about').click(function(e) {
   e.preventDefault();
   // clear remove inputs, except the first one
-  $('.input-address').each(function(index) {
-    if ($(this).attr('id') !== 'address1') {
-      $(this).remove();
-    } else {
-      $(this).val('');
-    }
-  });
-  $('#file').val('');
+  render.clearTextInputs();
+  render.clearFileInput();
 
   render.showAbout();
 });
 
 function resets() {
+  // set year
+  $('.chosenYear').text($('#year').val());
   render.resetHTML();
   render.showResults();
-  $('#errorMessage').html('');
-  $('#errorMessage').addClass('hide');
 
   notFoundCnt = 0;
   notRuralCnt = 0;
@@ -266,12 +248,13 @@ function resets() {
   totalCnt = 0;
   rowCnt = 0;
   dups = [];
+  inputCnt = 1;
 }
 
 $('.input-address').blur(function(e) {
   if ($(this).val() === '') {
     $(this).addClass('error');
   } else {
-    $(this).removeClass('error');
+    $(this).removeClass('error warning');
   }
 });

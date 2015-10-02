@@ -3,7 +3,8 @@ var results = $('#results'),
     nR = $('#notRural'),
     nF = $('#notFound'),
     dup = $('#dup'),
-    about = $('#about');
+    about = $('#about'),
+    error = $('#errorMessage');
 
 module.exports = {
 
@@ -27,13 +28,14 @@ module.exports = {
   
   resetHTML: function() {
     // clear content each time
-    //results.html('');
     $('#rural tbody').html('');
     $('#notRural tbody').html('');
     $('#notFound tbody').html('');
     $('#dup tbody').html('');
     // reset all counters
     $('.counter').html('0');
+    error.html('');
+    error.addClass('hide');
   },
 
   renderTableRow: function(table, input, matchedAddress, x, y, county, block) {
@@ -81,5 +83,29 @@ module.exports = {
 
     $('.' + table + 'Cnt').html(count);
     $('#totalCnt').html(total);
+  },
+
+  renderError: function (message) {
+    error.html(message);
+    error.removeClass('hide');
+  },
+
+  removeInput: function (input) {
+    input.remove();
+  },
+
+  clearFileInput: function () {
+    $('#file').val('');
+  },
+
+  clearTextInputs: function () {
+    $('.input-address').each(function(index) {
+      if ($(this).attr('id') !== 'address1') {
+        $(this).remove();
+      } else {
+        $(this).val('')
+          .removeClass('error');
+      }
+    });
   }
 };
