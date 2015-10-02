@@ -100,7 +100,7 @@ $('#geocode').submit(function(e) {
   resets();
 
   // set year
-  $('#chosenYear').text($('#year').val());
+  $('.chosenYear').text($('#year').val());
 
   // reset file field
   $('#file').val('');
@@ -160,7 +160,7 @@ $('#geocode-csv').submit(function(e) {
   inputCnt = 1;
 
   // set year
-  $('#chosenYear').text($('#year').val());
+  $('.chosenYear').text($('#year').val());
 
   // clear remove inputs, except the first one
   $('.input-address').each(function(index) {
