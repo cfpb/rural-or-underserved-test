@@ -100,12 +100,7 @@ $('#geocode').submit(function(e) {
       }
       // check for duplicates
       if (dups.indexOf($(this).val()) !== -1) {
-        // add to counts
-        dupCnt ++;
-        totalCnt ++;
-        // render to counts and dups table
-        render.renderCount('dup', dupCnt, totalCnt);
-        render.renderTableRow('dup', $(this).val());
+        addDups($(this).val());
         // add warning to the field
         $(this).addClass('warning');
       } else {
@@ -197,10 +192,7 @@ $('#geocode-csv').submit(function(e) {
                 } else {
                   address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
                   if (dups.indexOf(address) !== -1) {
-                    dupCnt ++;
-                    totalCnt ++;
-                    render.renderCount('dup', dupCnt, totalCnt);
-                    render.renderTableRow('dup', address);
+                    addDups(address);
                   } else {
                     census.getRuralUrban(address);
                   }
@@ -242,4 +234,13 @@ function resets() {
   rowCnt = 0;
   dups = [];
   inputCnt = 1;
+}
+
+function addDups(address) {
+  // add to counts
+  dupCnt ++;
+  totalCnt ++;
+  // render to counts and dups table
+  render.renderCount('dup', dupCnt, totalCnt);
+  render.renderTableRow('dup', address);
 }
