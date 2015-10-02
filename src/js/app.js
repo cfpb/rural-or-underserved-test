@@ -124,10 +124,33 @@ $('#geocode').submit(function(e) {
 
 // when file upload is used
 $('#file').change(function(e) {
+  rowCnt = 0;
   // clear text inputs
   render.clearTextInputs();
+
+  $('#noRows').addClass('hide');
+
   // reset input count
   inputCnt = 1;
+
+  // check for rows
+  $('#file').parse( {
+    config: {
+      header: true,
+      step: function(results, parser) {
+        if (results.data[0]['Street Address'] !== '' && !results.errors) {
+          return;
+        } else {
+          rowCnt ++;
+        }
+      },
+      complete: function(results, file) {
+        if (rowCnt === 0) {
+          $('#noRows').removeClass('hide');
+        }
+      }
+    }
+  });
 });
 
 // on file submission
@@ -143,7 +166,7 @@ $('#geocode-csv').submit(function(e) {
     config: {
       header: true,
       step: function(results, parser) {
-        if (results.data[0]['Street Address'] !== '' && !results.errors) {
+        if (results.data[0]['Street Address'] === '' && results.errors) {
           return;
         } else {
           rowCnt ++;
@@ -206,7 +229,8 @@ $('#geocode-csv').submit(function(e) {
 function resets() {
   // set year
   $('.chosenYear').text($('#year').val());
-  
+  $('#noRows').addClass('hide');
+
   render.resetHTML();
   render.showResults();
 
