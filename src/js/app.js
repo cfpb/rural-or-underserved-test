@@ -2,7 +2,6 @@ var $ = require('jquery');
 var render = require('./render');
 var census = require('./censusCall');
 var ruralChecker = require('./rural');
-var render = require('./render');
 
 require('./showMap');
 require('papaparse');
@@ -69,30 +68,6 @@ censusAPI.callback = function(data) {
     });
   }
 }
-
-$('#add-another').click(function(e) {
-  e.preventDefault();
-
-  // remove the link if we have 10 inputs
-  if (inputCnt === 10) {
-    $('#add-another').remove();
-  }
-
-  if ($('#address' + inputCnt).val() === '') {
-    $('#address' + inputCnt).addClass('error');
-  } else {
-    $('#address' + inputCnt).removeClass('error');
-  }
-
-  // clone and add input
-  $( "#address1" ).clone(true)
-    .appendTo( ".input-container" )
-    .attr('id', 'address' + inputCnt)
-    .val('')
-    .focus();
-
-  inputCnt ++;
-});
 
 // on submit
 $('#geocode').submit(function(e) {
@@ -168,7 +143,7 @@ $('#geocode-csv').submit(function(e) {
     config: {
       header: true,
       step: function(results, parser) {
-        if (results.data[0]['Street Address'] === '' && results.errors) {
+        if (results.data[0]['Street Address'] !== '' && !results.errors) {
           return;
         } else {
           rowCnt ++;
@@ -227,18 +202,11 @@ $('#geocode-csv').submit(function(e) {
   return false;
 });
 
-$('#link-about').click(function(e) {
-  e.preventDefault();
-  // clear remove inputs, except the first one
-  render.clearTextInputs();
-  render.clearFileInput();
-
-  render.showAbout();
-});
-
+// reset all the things
 function resets() {
   // set year
   $('.chosenYear').text($('#year').val());
+  
   render.resetHTML();
   render.showResults();
 
@@ -251,11 +219,3 @@ function resets() {
   dups = [];
   inputCnt = 1;
 }
-
-$('.input-address').blur(function(e) {
-  if ($(this).val() === '') {
-    $(this).addClass('error');
-  } else {
-    $(this).removeClass('error warning');
-  }
-});
