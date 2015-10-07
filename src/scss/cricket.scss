@@ -3,10 +3,6 @@
 @import "cfpb-colors";
 @import "typography";
 @import "grid";
-@import "utility-layout";
-@import "utility-spacing";
-@import "utility-bg";
-@import "utility-borders";
 @import "forms";
 @import "buttons";
 @import "tables";
@@ -14,5 +10,10 @@
 
 @import "header";
 @import "footer";
+
+@import "utility-layout";
+@import "utility-spacing";
+@import "utility-bg";
+@import "utility-borders";
 
 @import "cricket";

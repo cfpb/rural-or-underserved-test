@@ -25,6 +25,7 @@
     </header>
 
     <main>
+        <!-- about -->
         <section id="about" class="container padding-top-2 margin-top-2 margin-bottom-2">
             <div class="group">
                 <div class="col col-12">
@@ -101,6 +102,7 @@
                             <p>Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
                         </div>
                 </div>
+                <!-- side bar -->
                 <div class="col col-4">
                     <div class="padding-2">
                     <h5 class="border-top"><span>Related information</span></h5>
@@ -116,15 +118,20 @@
             </div>
         </section>
 
+        <!-- results -->
         <section id="results" class="group container margin-top-2 hide">
             <div class="group">
                 <div class="col col-12">
                     <p class="inline-block right"><a href="#" id="link-about">Back to About</a></p>
                 </div>
-                <div class="col col-12">
+            </div>
+            <div class="group">
+                <div class="col col-9">
                     <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="rowCnt">0</strong> addresses processed for <strong class="chosenYear"></strong> safe harbor designation.</h2>
                     <h2 class="hide color-redorange" id="errorMessage"></h2>
-                    <p><!--<a href="#" title="Update results">Update results</a> --><a class="button button-small right" href="#" title="Download results">Download results</a></p>
+                </div>
+                <div class="col col-3">
+                    <a class="button button-small right" href="#" id="print" title="Print results">Print results</a><a class="margin-right-1 button button-small right" href="#" id="download" title="Download results">Download results</a>
                 </div>
             </div>
             <div class="group">

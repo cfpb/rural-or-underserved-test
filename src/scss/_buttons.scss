@@ -10,7 +10,7 @@ button,
     font-size: 1em;
     margin: 0;
     height: auto;
-    padding: 5px;
+    padding: 5px 7px;
     text-decoration: none;
     vertical-align: middle;
     -webkit-appearance: none;
@@ -38,5 +38,5 @@ button::before,
 
 .button-small {
     font-size: .75em;
-    padding: 3px;
+    padding: 3px 5px;
 }
