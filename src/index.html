@@ -18,7 +18,12 @@
                     <h1>Rural and underserved areas automated tool</h1>
                 </div>
                 <div class="col col-4">
-                    <img class="right" alt="Consumer Financial Protection Bureau" src="img/logo_210.png" >
+                    <img id="logo" class="right" alt="Consumer Financial Protection Bureau" src="img/logo_210.png" >
+                </div>
+            </div>
+            <div class="group print-only">
+                <div class="col col-12">
+                    <p class="report-date color-gray-50 small"></p>
                 </div>
             </div>
         </div>
@@ -122,19 +127,19 @@
         <section id="results" class="group container margin-top-2 hide">
             <div class="group">
                 <div class="col col-12">
-                    <p class="inline-block right"><a href="#" id="link-about">Back to About</a></p>
+                    <p class="inline-block right hide-print"><a href="#" id="link-about">Back to About</a></p>
                 </div>
             </div>
             <div class="group">
-                <div class="col col-9">
+                <div class="col col-9 full-print">
                     <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="rowCnt">0</strong> addresses processed for <strong class="chosenYear"></strong> safe harbor designation.</h2>
                     <h2 class="hide color-redorange" id="errorMessage"></h2>
                 </div>
-                <div class="col col-3">
+                <div class="col col-3 hide-print">
                     <a class="button button-small right" href="#" id="print" title="Print results">Print results</a><a class="margin-right-1 button button-small right" href="#" id="download" title="Download results">Download results</a>
                 </div>
             </div>
-            <div class="group">
+            <div class="group" id="results-total">
                 <div class="col col-3">
                     <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#rural">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
                 </div>
@@ -225,7 +230,7 @@
         </section>
     </main>
 
-    <footer class="main-footer padding-2">
+    <footer class="main-footer padding-2 hide-print">
         <div class="container group">
             <div class="col col-6">
                 <p><a href="#" title="Privacy act statement">Privacy act statement</a> | <a href="#" title="OMB #3170-00XX">OMB #31700-00XX</a></p>

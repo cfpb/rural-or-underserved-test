@@ -42,3 +42,8 @@ $('.input-address').blur(function(e) {
     $(this).removeClass('error warning');
   }
 });
+
+// print
+$('#print').click(function() {
+    window.print();
+});

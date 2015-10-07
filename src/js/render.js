@@ -71,7 +71,7 @@ module.exports = {
           + '<td>' + matchedAddress + '</td>'
           + '<td>' + county + '</td>'
           + '<td>' + block + '</td>'
-          + '<td>' + ruralOrNot + ' <a href="#" class="jsLoadMap right" data-map="false" data-lat="' + x + '" data-lon="' + y + '" data-id="loc-' + mapID + '">Show map</a></td></tr>'
+          + '<td>' + ruralOrNot + ' <a href="#" class="hide-print jsLoadMap right" data-map="false" data-lat="' + x + '" data-lon="' + y + '" data-id="loc-' + mapID + '">Show map</a></td></tr>'
           + '<tr class="hide"><td colspan="5"><div class="map" id="loc-' + mapID + '"></div></td></tr>';
     }
 

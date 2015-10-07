@@ -17,12 +17,23 @@ var notFoundCnt = 0,
 
 var dups = [];
 
+var monthNames = [
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
+
 window.censusAPI = {};
 
 censusAPI.callback = function(data) {
   // save the query address
   //console.log (data);
   var input = data.result.input.address.address;
+
+  var date = new Date();
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
   
   // nothing found, render a not found
   if (data.result.addressMatches.length === 0) {
