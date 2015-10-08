@@ -2,7 +2,7 @@ module.exports = {
   getRuralUrban: function(address) {
     // api call
     $.ajax({
-      url: 'http://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?callback=callback',
+      url: 'http://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?callback=censusAPI.callback',
       dataType: 'jsonp',
       data: {
         address: address,

@@ -1,10 +1,11 @@
 var $ = require('jquery');
 var render = require('./render');
 var census = require('./censusCall');
+var ruralChecker = require('./rural');
 
 require('./showMap');
-
 require('papaparse');
+require('./misc');
 
 var notFoundCnt = 0,
     notRuralCnt = 0,
@@ -12,15 +13,28 @@ var notFoundCnt = 0,
     totalCnt = 0;
     dupCnt = 0;
     rowCnt = 0;
-    processedCnt = 0;
+    processedCnt = 0,
+    inputCnt = 1;
 
-var ruralChecker = require('./rural');
-var render = require('./render');
+var dups = [];
 
-window.callback = function(data) {
+var monthNames = [
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
+
+window.censusAPI = {};
+
+censusAPI.callback = function(data) {
   // save the query address
   //console.log (data);
   var input = data.result.input.address.address;
+
+  var date = new Date();
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
   
   // nothing found, render a not found
   if (data.result.addressMatches.length === 0) {
@@ -51,88 +65,92 @@ window.callback = function(data) {
       var rural = false;
       rural = ruralChecker.isRural(fips, fipsCode, urbanAreas, urbanClusters);
 
+      totalCnt ++;
+
       // if rural is still false
       if (rural === false) {
         notRuralCnt ++;
-        totalCnt ++;
-
         render.renderTableRow('notRural', input, matchedAddress, x, y, county, block);
-
         render.renderCount('notRural', notRuralCnt, totalCnt);
       } else {
         ruralCnt ++;
-        totalCnt ++;
-
         render.renderTableRow('rural', input, matchedAddress, x, y, county, block);
-
         render.renderCount('rural', ruralCnt, totalCnt);
       }
     });
   }
 }
 
-var inputCnt = 1;
-$('#add-another').click(function(e) {
-  e.preventDefault();
+// reset all the things
+function resets() {
+  // set year
+  $('.chosenYear').text($('#year').val());
+  $('#noRows').addClass('hide');
 
-  if ($('#address' + inputCnt).val() === '') {
-    $('#address' + inputCnt).addClass('error');
-  } else {
-    $('#address' + inputCnt).removeClass('error');
-  }
+  render.resetHTML();
+  render.showResults();
 
-  inputCnt ++;
+  notFoundCnt = 0;
+  notRuralCnt = 0;
+  ruralCnt = 0;
+  dupCnt = 0;
+  totalCnt = 0;
+  rowCnt = 0;
+  dups = [];
+  inputCnt = 1;
+}
 
-  if (inputCnt === 10) {
-    $('#add-another').remove();
-  }
-  // clone and add input
-  $( "#address1" ).clone(true)
-    .appendTo( ".input-container" )
-    .attr('id', 'address' + inputCnt)
-    .val('')
-    .focus();
-});
+// add duplicates
+function addDups(address) {
+  // add to counts
+  dupCnt ++;
+  totalCnt ++;
+  // render to counts and dups table
+  render.renderCount('dup', dupCnt, totalCnt);
+  render.renderTableRow('dup', address);
+}
 
-var dups = [];
 // on submit
 $('#geocode').submit(function(e) {
   resets();
 
-  // set year
-  $('#chosenYear').text($('#year').val());
+  render.clearFileInput();
 
-  // reset file field
-  $('#file').val('');
-
+  // count the inputs used
   $('.input-address').each(function(index) {
     if ($(this).val() !== '') {
       rowCnt ++;
     }
   });
 
+  // if no inputs used
   if (rowCnt === 0) {
-    console.log('empty');
-    $('#errorMessage').html('No rows entered.');
-    $('#errorMessage').removeClass('hide');
+    // error
+    render.renderError('No rows entered.');
   } else {
 
+    // update count
     $('#rowCnt').text(rowCnt);
 
+    // for each input
     $('.input-address').each(function(index) {
+      // if its blank do nothing
+      // someone could leave a blank input in the middle of others
       if ($(this).val() === '') {
         return;
       }
+      // check for duplicates
       if (dups.indexOf($(this).val()) !== -1) {
-        dupCnt ++;
-        totalCnt ++;
-        render.renderCount('dup', dupCnt, totalCnt);
-        render.renderTableRow('dup', $(this).val());
+        addDups($(this).val());
+        // add warning to the field
         $(this).addClass('warning');
       } else {
+        // not a dup, remove the warning and error
         $(this).removeClass('warning error');
+        // call API
         census.getRuralUrban($(this).val());
       }
+      // push the value to dups for checking others
       dups.push($(this).val());
     });
   }
@@ -140,37 +158,44 @@ $('#geocode').submit(function(e) {
   return false;
 });
 
+// when file upload is used
 $('#file').change(function(e) {
+  rowCnt = 0;
+  // clear text inputs
+  render.clearTextInputs();
+
+  $('#noRows').addClass('hide');
+
+  // reset input count
   inputCnt = 1;
 
-  $('.input-address').each(function(index) {
-    if ($(this).attr('id') !== 'address1') {
-      $(this).remove();
-    } else {
-      $(this).val('')
-              .removeClass('error');
+  // check for rows
+  $('#file').parse( {
+    config: {
+      header: true,
+      step: function(results, parser) {
+        if (results.data[0]['Street Address'] !== '' && !results.errors) {
+          return;
+        } else {
+          rowCnt ++;
+        }
+      },
+      complete: function(results, file) {
+        if (rowCnt === 0) {
+          $('#noRows').removeClass('hide');
+        }
+      }
     }
   });
 });
 
-// on upload
+// on file submission
 $('#geocode-csv').submit(function(e) {
+  // reset values
   resets();
 
-  inputCnt = 1;
-
-  // set year
-  $('#chosenYear').text($('#year').val());
-
   // clear remove inputs, except the first one
-  $('.input-address').each(function(index) {
-    if ($(this).attr('id') !== 'address1') {
-      $(this).remove();
-    } else {
-      $(this).val('')
-              .removeClass('error');
-    }
-  });
+  render.clearTextInputs();
 
   // parse the csv to get the count
   $('#file').parse( {
@@ -179,8 +204,9 @@ $('#geocode-csv').submit(function(e) {
       step: function(results, parser) {
         if (results.data[0]['Street Address'] === '' && results.errors) {
           return;
+        } else {
+          rowCnt ++;
         }
-        rowCnt ++;
       },
       complete: function(results, file) {
         $('#rowCnt').text(rowCnt);
@@ -189,16 +215,12 @@ $('#geocode-csv').submit(function(e) {
     complete: function() {
       // must have been an empty csv
       if (rowCnt === 0) {
-        console.log('empty');
-        $('#errorMessage').html('The csv was empty.');
-        $('#errorMessage').removeClass('hide');
+        render.renderError('The csv was empty.');
       } else {
         if (rowCnt > 250) {
           var leftOver = rowCnt - 250;
-          $('#errorMessage').html('You entered ' + rowCnt + ' address for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
-          $('#errorMessage').removeClass('hide');
+          render.renderError('You entered ' + rowCnt + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
         }
-        console.log('row count = ' + rowCnt);
         // parse the csv to query API
         $('#file').parse( {
           config: {
@@ -208,18 +230,16 @@ $('#geocode-csv').submit(function(e) {
                 // check for blank row
                 if (results.data[0]['Street Address'] === '' && results.errors) {
                   return;
-                }
-                address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-                if (dups.indexOf(address) !== -1) {
-                  dupCnt ++;
-                  totalCnt ++;
-                  render.renderCount('dup', dupCnt, totalCnt);
-                  render.renderTableRow('dup', address);
                 } else {
-                  census.getRuralUrban(address);
+                  address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
+                  if (dups.indexOf(address) !== -1) {
+                    addDups(address);
+                  } else {
+                    census.getRuralUrban(address);
+                  }
+                  dups.push(address);
+                  processedCnt ++;
                 }
-                dups.push(address);
-                processedCnt ++;
               }
             },
             complete: function(results, file) {
@@ -235,45 +255,5 @@ $('#geocode-csv').submit(function(e) {
     }
   });
 
-  
-
   return false;
-});
-
-$('#link-about').click(function(e) {
-  e.preventDefault();
-  // clear remove inputs, except the first one
-  $('.input-address').each(function(index) {
-    if ($(this).attr('id') !== 'address1') {
-      $(this).remove();
-    } else {
-      $(this).val('');
-    }
-  });
-  $('#file').val('');
-
-  render.showAbout();
-});
-
-function resets() {
-  render.resetHTML();
-  render.showResults();
-  $('#errorMessage').html('');
-  $('#errorMessage').addClass('hide');
-
-  notFoundCnt = 0;
-  notRuralCnt = 0;
-  ruralCnt = 0;
-  dupCnt = 0;
-  totalCnt = 0;
-  rowCnt = 0;
-  dups = [];
-}
-
-$('.input-address').blur(function(e) {
-  if ($(this).val() === '') {
-    $(this).addClass('error');
-  } else {
-    $(this).removeClass('error');
-  }
 });

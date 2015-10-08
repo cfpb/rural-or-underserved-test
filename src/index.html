@@ -18,13 +18,19 @@
                     <h1>Rural and underserved areas automated tool</h1>
                 </div>
                 <div class="col col-4">
-                    <img class="right" alt="Consumer Financial Protection Bureau" src="img/logo_210.png" >
+                    <img id="logo" class="right" alt="Consumer Financial Protection Bureau" src="img/logo_210.png" >
+                </div>
+            </div>
+            <div class="group print-only">
+                <div class="col col-12">
+                    <p class="report-date color-gray-50 small"></p>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
+        <!-- about -->
         <section id="about" class="container padding-top-2 margin-top-2 margin-bottom-2">
             <div class="group">
                 <div class="col col-12">
@@ -63,6 +69,7 @@
                             <input id="file" name="file" type="file" />
                             <input class="button" type="submit" value="Look up addresses" />
                         </fieldset>
+                        <p id="noRows" class="color-redorange hide">There are no rows in this csv. Please update and try again.</p>
                         <p class="margin-top-1">Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
                     </form>
                 </div>
@@ -100,6 +107,7 @@
                             <p>Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
                         </div>
                 </div>
+                <!-- side bar -->
                 <div class="col col-4">
                     <div class="padding-2">
                     <h5 class="border-top"><span>Related information</span></h5>
@@ -115,18 +123,23 @@
             </div>
         </section>
 
+        <!-- results -->
         <section id="results" class="group container margin-top-2 hide">
             <div class="group">
                 <div class="col col-12">
-                    <p class="inline-block right"><a href="#" id="link-about">Back to About</a></p>
-                </div>
-                <div class="col col-12">
-                    <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="rowCnt">0</strong> addresses processed for <strong id="chosenYear"></strong> safe harbor designation.</h2>
-                    <h2 class="hide color-redorange" id="errorMessage"></h2>
-                    <p><!--<a href="#" title="Update results">Update results</a> --><a class="button button-small right" href="#" title="Download results">Download results</a></p>
+                    <p class="inline-block right hide-print"><a href="#" id="link-about">Back to About</a></p>
                 </div>
             </div>
             <div class="group">
+                <div class="col col-9 full-print">
+                    <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="rowCnt">0</strong> addresses processed for <strong class="chosenYear"></strong> safe harbor designation.</h2>
+                    <h2 class="hide color-redorange" id="errorMessage"></h2>
+                </div>
+                <div class="col col-3 hide-print">
+                    <a class="button button-small right" href="#" id="print" title="Print results">Print results</a><a class="margin-right-1 button button-small right" href="#" id="download" title="Download results">Download results</a>
+                </div>
+            </div>
+            <div class="group" id="results-total">
                 <div class="col col-3">
                     <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#rural">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
                 </div>
@@ -141,8 +154,8 @@
                 </div>
             </div>
             <div class="group">
-                <div id="rural" class="hide col col-12 padding-top-2">
-                    <h3><span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for 2014</h3>
+                <div id="rural" class="js-table hide col col-12 padding-top-2">
+                    <h3><span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for <strong class="chosenYear"></strong></h3>
                     <p>There properties can count toward your safe harbor percentage of rural or underserved properties.</p>
 
                     <table class="table" style="border-width: 1px;" width="100%">
@@ -159,8 +172,8 @@
                     </table>
                 </div>
 
-                <div id="notRural" class="hide col col-12 padding-top-2">
-                    <h3><span class="notRuralCnt counter">0</span> addresses are <strong>not</strong> designated as rural or underserved for 2014</h3>
+                <div id="notRural" class="js-table hide col col-12 padding-top-2">
+                    <h3><span class="notRuralCnt counter">0</span> addresses are <strong>not</strong> designated as rural or underserved for <strong class="chosenYear"></strong></h3>
                     <p>There properties will <strong>not</strong> count toward your safe harbor percentage of rural or underserved properties.</p>
 
                     <table class="table" style="border-width: 1px;" width="100%">
@@ -177,7 +190,7 @@
                     </table>
                 </div>
 
-                <div id="notFound" class="hide col col-12 padding-top-2">
+                <div id="notFound" class="js-table hide col col-12 padding-top-2">
                     <h3><span class="notFoundCnt counter">0</span> addresses could not be identified confidently</h3>
                     <p>The locations of these addresses could not be identified because the information provided was not sufficient or because the information matches with multiple addresses.</p>
                     <p>Select "Show details" for more information about what we have identified for each address.</p>
@@ -196,7 +209,7 @@
                     </table>
                 </div>
 
-                <div id="dup" class="hide col col-12 padding-top-2">
+                <div id="dup" class="js-table hide col col-12 padding-top-2">
                     <h3><span class="dupCnt counter">0</span> addresses were identified as duplicates</h3>
                     <p>These addresses are included in your totals but have been identified as duplicates. Unless you have funded multiple, unrelated loans for the same address during the covered period, you should not include any address more than once. <a href="#learn-more">Learn more</a></p>
                     <p>To update or remove the information for these addresses, start a new search.</p>
@@ -217,7 +230,7 @@
         </section>
     </main>
 
-    <footer class="main-footer padding-2">
+    <footer class="main-footer padding-2 hide-print">
         <div class="container group">
             <div class="col col-6">
                 <p><a href="#" title="Privacy act statement">Privacy act statement</a> | <a href="#" title="OMB #3170-00XX">OMB #31700-00XX</a></p>
