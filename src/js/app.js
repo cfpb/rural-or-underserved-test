@@ -112,6 +112,8 @@ function addDups(address) {
 
 // on submit
 $('#geocode').submit(function(e) {
+  document.location.hash = 'results';
+
   resets();
 
   render.clearFileInput();
@@ -191,6 +193,8 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
+  document.location.hash = 'results';
+
   // reset values
   resets();
 
