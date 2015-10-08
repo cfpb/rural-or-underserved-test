@@ -25,6 +25,14 @@ $('#add-another').click(function(e) {
     .focus();
 });
 
+// detect hash change
+window.onhashchange = function() {
+  if (document.location.hash !== '#results') {
+    // trigger a #link-about click event
+    $('#link-about').trigger("click");
+  }
+}
+
 // about click
 $('#link-about').click(function(e) {
   document.location.hash = '';
