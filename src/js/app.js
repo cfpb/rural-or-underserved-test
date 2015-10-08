@@ -5,6 +5,7 @@ var ruralChecker = require('./rural');
 
 require('./showMap');
 require('papaparse');
+require('./misc');
 
 var notFoundCnt = 0,
     notRuralCnt = 0,
