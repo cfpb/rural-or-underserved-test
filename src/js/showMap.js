@@ -28,7 +28,7 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
 
       // setup and app map
       var latlng = L.latLng(lon, lat);
-      map = L.mapbox.map(id, 'cfpb.k55b27gd', { center: latlng, zoomControl: false }).setView(latlng,10);
+      map = L.mapbox.map(id, 'cfpb.k55b27gd', { center: latlng }).setView(latlng,12);
       map.dragging.disable();
       map.touchZoom.disable();
       map.doubleClickZoom.disable();
