@@ -1,3 +1,5 @@
+var countyList = require('../data/counties.json');
+
 var results = $('#results'),
     r = $('#rural'),
     nR = $('#notRural'),
@@ -5,6 +7,19 @@ var results = $('#results'),
     dup = $('#dup'),
     about = $('#about'),
     error = $('#errorMessage');
+
+function getCountyName(fipsCode) {
+  var theCounty = '';
+
+  $.grep(countyList.counties, function(n, i) {
+    if (n[0] === fipsCode) {
+      theCounty = n[1].substring(n[1].indexOf(',')+1).replace('County', '');
+      //console.log(n[0] + ' and ' + theCounty);
+    }
+  });
+
+  return theCounty;
+}
 
 module.exports = {
 
@@ -38,9 +53,10 @@ module.exports = {
     error.addClass('hide');
   },
 
-  renderTableRow: function(table, input, matchedAddress, x, y, county, block) {
+  renderTableRow: function(table, input, matchedAddress, x, y, fipsCode, block) {
     var htmlString = '';
     var ruralOrNot = '';
+    var county = getCountyName(fipsCode);
 
     if (table === 'notRural') {
       ruralOrNot = 'No';
