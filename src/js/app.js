@@ -4,7 +4,6 @@ var address = require('./addresses');
 var count = require('./count');
 var textInput = require('./textInputs');
 var fileInput = require('./fileInput');
-
 require('./showMap');
 require('papaparse');
 require('./misc');
