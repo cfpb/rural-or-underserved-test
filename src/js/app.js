@@ -4,6 +4,8 @@ var render = require('./render');
 /* new stuff */
 var address = require('./addresses');
 var count = require('./count');
+var textInput = require('./text-inputs');
+var fileInput = require('./file-input');
 
 require('./showMap');
 require('papaparse');
@@ -39,6 +41,7 @@ censusAPI.callback = function(data) {
     } else { // api returned a match
         // check for rural or underserved
         result = address.isRural(data.result, '2016');
+        // render
         address.render(result);
         count.updateCount(result.type);
     }
@@ -75,36 +78,38 @@ $('#geocode').submit(function(e) {
     return false;
 });
 
-/*// when file upload is used
+// when file upload is used
 $('#file').change(function(e) {
-  rowCnt = 0;
-  // clear text inputs
-  render.clearTextInputs();
 
-  $('#noRows').addClass('hide');
+    var addresses = [];
 
-  // reset input count
-  inputCnt = 1;
+    // clear text inputs
+    textInput.clear();
 
-  // check for rows
-  $('#file').parse( {
-    config: {
-      header: true,
-      step: function(results, parser) {
-        if (results.data[0]['Street Address'] !== '' && !results.errors) {
-          return;
-        } else {
-          rowCnt ++;
+    $('#fileError').addClass('hide');
+
+    // parse the csv to get the count
+    $('#file').parse( {
+        config: {
+            header: true,
+            step: function(results, parser) {
+                if (results.data[0]['Street Address'] === '' && results.errors) {
+                    return;
+                } else {
+                    addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
+                }
+            },
+            complete: function(results, file) {
+                if (addresses.length === 0) {
+                    fileInput.error('There are no rows in this csv. Please update and try again.');
+                }
+            }
+        }, 
+        complete: function() {
+            console.log('All files done!');
         }
-      },
-      complete: function(results, file) {
-        if (rowCnt === 0) {
-          $('#noRows').removeClass('hide');
-        }
-      }
-    }
-  });
-});*/
+    });
+});
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
@@ -113,7 +118,7 @@ $('#geocode-csv').submit(function(e) {
     document.location.hash = 'results';
 
     // clear remove inputs, except the first one
-    // render.clearTextInputs();
+     textInput.clear();
 
     var addresses = [];
 
