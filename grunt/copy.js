@@ -16,6 +16,12 @@ module.exports = {
             },
             {
                 cwd: 'src/',
+                src: ['fonts/*'],
+                dest: 'dist/',
+                expand: true,
+            },
+            {
+                cwd: 'src/',
                 src: ['data/*'],
                 dest: 'dist/',
                 expand: true,
@@ -29,6 +35,12 @@ module.exports = {
                 src: ['img/*'],
                 dest: 'dist/',
                 expand: true
+            },
+            {
+                cwd: 'src/',
+                src: ['fonts/*'],
+                dest: 'dist/',
+                expand: true,
             },
             {
                 cwd: 'src/',

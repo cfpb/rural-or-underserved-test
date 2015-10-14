@@ -35,10 +35,12 @@ censusAPI.callback = function(data) {
     if (result) {
         // render
         address.render(result);
+        count.updateCount(result.type);
     } else { // api returned a match
         // check for rural or underserved
         result = address.isRural(data.result, '2016');
         address.render(result);
+        count.updateCount(result.type);
     }
 }
 
@@ -47,7 +49,7 @@ function resets() {
     // set year
     $('.chosenYear').text($('#year').val());
     $('#noRows').addClass('hide');
-
+    count.reset();
     render.resetHTML();
     render.showResults();
 }

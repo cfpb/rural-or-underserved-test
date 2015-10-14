@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var count = require('./count');
 
 var fullCountyList = require('../data/counties.json');
 
@@ -85,6 +86,7 @@ module.exports = function() {
                 // uses callback to finish processing
                 geocode(query);
             } else {
+                count.updateCount(isDup.type);
                 address.render(isDup);
             }
         });

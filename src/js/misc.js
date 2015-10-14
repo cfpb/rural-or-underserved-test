@@ -1,5 +1,6 @@
 var $ = require('jquery');
 var render = require('./render');
+var count = require('./count');
 
 var inputCnt = 1;
 
@@ -43,6 +44,8 @@ $('#link-about').click(function(e) {
   render.clearTextInputs();
   render.clearFileInput();
   render.showAbout();
+  count.reset();
+  render.resetHTML();
 });
 
 // input blur

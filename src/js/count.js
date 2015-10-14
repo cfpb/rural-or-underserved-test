@@ -11,23 +11,16 @@ module.exports = function() {
         $('#addressCount').text(number);
     }
 
-    counters.updateCount = function() {
-        var thisTable = table.getTable();
-        if (thisTable === 'notFound') {
-            count = this.notFound;
-        }
-        if (thisTable === 'rural') {
-            count = this.rural;
-        }
-        if (thisTable === 'notRural') {
-            count = this.notRural;
-        }
-        if (thisTable === 'duplicate') {
-            count = this.duplicate;
-        }
-
-        $('.' + thisTable + 'Cnt').html(count);
-        $('#totalCnt').html(this.total);
+    counters.updateCount = function(type) {
+        // add one to correct type
+        var typeCount = parseInt($('a.' + type + 'Cnt').text());
+        typeCount++;
+        $('.' + type + 'Cnt').text(typeCount);
+        
+        // add one to the total
+        var totalCount = parseInt($('#totalCnt').text());
+        totalCount++;
+        $('#totalCnt').text(totalCount);
     }
 
     return counters;
