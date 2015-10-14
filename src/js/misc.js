@@ -1,6 +1,8 @@
 var $ = require('jquery');
 var render = require('./render');
 
+var inputCnt = 1;
+
 // add inputs
 $('#add-another').click(function(e) {
   e.preventDefault();

@@ -1,25 +1,13 @@
 var $ = require('jquery');
 var render = require('./render');
-var census = require('./censusCall');
-var ruralChecker = require('./rural');
 
 /* new stuff */
 var address = require('./addresses');
+var count = require('./count');
 
 require('./showMap');
 require('papaparse');
 require('./misc');
-
-var notFoundCnt = 0,
-    notRuralCnt = 0,
-    ruralCnt = 0,
-    totalCnt = 0;
-    dupCnt = 0;
-    rowCnt = 0;
-    processedCnt = 0,
-    inputCnt = 1;
-
-var dups = [];
 
 var monthNames = [
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
@@ -79,6 +67,7 @@ $('#geocode').submit(function(e) {
         }
     });
 
+    count.updateAddressCount(addresses.length);
     address.process(addresses);
 
     return false;
@@ -138,6 +127,7 @@ $('#geocode-csv').submit(function(e) {
                 }
             },
             complete: function(results, file) {
+                count.updateAddressCount(addresses.length);
                 address.process(addresses);
             }
         }, 
