@@ -40,16 +40,14 @@ censusAPI.callback = function(data) {
 
     $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
 
-    //var result = {};
-
-    //result.input = data.result.input.address.address;
-  
+    // check if found in api
     var result = address.isFound(data.result);
+
     // if nothing found, render a not found
     if (result) {
         // render
         address.render(result);
-    } else {
+    } else { // api returned a match
         // check for rural or underserved
         result = address.isRural(data.result, '2016');
         address.render(result);
@@ -64,16 +62,6 @@ function resets() {
 
     render.resetHTML();
     render.showResults();
-}
-
-// add duplicates
-function addDups(address) {
-  // add to counts
-  dupCnt ++;
-  totalCnt ++;
-  // render to counts and dups table
-  render.renderCount('dup', dupCnt, totalCnt);
-  render.renderTableRow('dup', address);
 }
 
 // on submit
