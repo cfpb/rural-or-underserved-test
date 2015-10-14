@@ -12,9 +12,9 @@ module.exports = function() {
 
     textInputs.isEmpty = function(input) {
         if (input.val() === '') {
-          input.addClass('error');
+            input.addClass('error');
         } else {
-          input.removeClass('error warning');
+            input.removeClass('error warning');
         }
     }
 
@@ -27,6 +27,8 @@ module.exports = function() {
                 .removeClass('error');
             }
         });
+
+        $('#add-another').removeClass('hide');
 
         textInputs.count = 1;
     }

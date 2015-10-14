@@ -1,31 +1,18 @@
 var $ = require('jquery');
-var render = require('./render');
-
-/* new stuff */
+var content = require('./contentControl');
 var address = require('./addresses');
 var count = require('./count');
-var textInput = require('./text-inputs');
-var fileInput = require('./file-input');
+var textInput = require('./textInputs');
+var fileInput = require('./fileInput');
 
 require('./showMap');
 require('papaparse');
 require('./misc');
 
-var monthNames = [
-  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-];
-
 window.censusAPI = {};
 
 censusAPI.callback = function(data) {
     var input = data.result.input.address.address;
-
-    var date = new Date();
-    var day = date.getDate();
-    var monthIndex = date.getMonth();
-    var year = date.getFullYear();
-
-    $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
 
     // check if found in api
     var result = address.isFound(data.result);
@@ -44,20 +31,10 @@ censusAPI.callback = function(data) {
     }
 }
 
-// reset all the things
-function resets() {
-    // set year
-    $('.chosenYear').text($('#year').val());
-    $('#noRows').addClass('hide');
-    count.reset();
-    render.resetHTML();
-    render.showResults();
-}
-
 // on submit
 $('#geocode').submit(function(e) {
 
-    resets();
+    content.setup();
 
     document.location.hash = 'results';
 
@@ -110,7 +87,7 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
-    resets();
+    content.setup();
 
     document.location.hash = 'results';
 

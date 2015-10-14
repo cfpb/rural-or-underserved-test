@@ -1,8 +1,8 @@
 var $ = require('jquery');
-var render = require('./render');
+var contentControl = require('./contentControl');
 var count = require('./count');
-var textInput = require('./text-inputs');
-var fileInput = require('./file-input');
+var textInput = require('./textInputs');
+var fileInput = require('./fileInput');
 
 // add inputs
 $('#add-another').click(function(e) {
@@ -23,14 +23,14 @@ $('#link-about').click(function(e) {
   document.location.hash = '';
   e.preventDefault();
   // show about content
-  render.showAbout();
+  contentControl.showAbout();
   // clear remove inputs
   textInput.clear();
   fileInput.clear();
   // reset counts
   count.reset();
   // clear tables
-  render.resetHTML();
+  contentControl.resetHTML();
 });
 
 // input blur
