@@ -18,9 +18,6 @@ var monthNames = [
 window.censusAPI = {};
 
 censusAPI.callback = function(data) {
-
-    // save the query address
-    //console.log (data);
     var input = data.result.input.address.address;
 
     var date = new Date();
