@@ -110,6 +110,7 @@ module.exports = function() {
     address.isRural = function(response, year) {
         var result = {};
 
+        // we have something so start setting up the result
         result.input = response.input.address.address;
         result.address = response.addressMatches[0].matchedAddress;
         result.countyName = address.getCountyName(fipsCode);
@@ -120,7 +121,12 @@ module.exports = function() {
         // get fips from result (state and county)
         var fipsCode = response.addressMatches[0].geographies['Census Blocks'][0].STATE + response.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
 
-        if(!address.isInCounty(fipsCode, year)) {
+        // check against the county list
+        if(address.isInCounty(fipsCode, year)) {
+            // setup result for in county
+            result.rural = 'Yes';
+            result.type = 'rural';
+        } else {
             // check urban
             var urbanClusters = response.addressMatches[0].geographies['Urban Clusters'];
             var urbanAreas = response.addressMatches[0].geographies['Urbanized Areas'];
@@ -132,11 +138,6 @@ module.exports = function() {
                 result.rural = 'Yes';
                 result.type = 'rural';
             }
-
-        } else {
-            // setup result for in county
-            result.rural = 'Yes';
-            result.type = 'rural';
         }
 
         return result;

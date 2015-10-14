@@ -84,7 +84,7 @@ $('#geocode').submit(function(e) {
     document.location.hash = 'results';
 
     var addresses = [];
-    
+
     $('.input-address').each(function(index) {
         if ($(this).val() !== '') {
             addresses.push($(this).val());
@@ -129,13 +129,12 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
-
     resets();
 
     document.location.hash = 'results';
 
     // clear remove inputs, except the first one
-    //render.clearTextInputs();
+    // render.clearTextInputs();
 
     var addresses = [];
 
