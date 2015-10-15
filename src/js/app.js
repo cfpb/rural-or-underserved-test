@@ -23,7 +23,7 @@ censusAPI.callback = function(data) {
         count.updateCount(result.type);
     } else { // api returned a match
         // check for rural or underserved
-        result = address.isRural(data.result, '2016');
+        result = address.isRural(data.result, $('#year').val());
         // render
         address.render(result);
         count.updateCount(result.type);

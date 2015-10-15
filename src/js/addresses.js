@@ -7,7 +7,7 @@ module.exports = function() {
     var duplicates = [];
 
     // geocode the address using the census api
-    // use _callback
+    // use callback
     var geocode = function(address) {
         // api call
         $.ajax({

@@ -35,11 +35,12 @@ module.exports = function() {
         var year = date.getFullYear();
         $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
 
-        $('#noRows').addClass('hide');
+        $('#fileError').addClass('hide');
         count.reset();
         this.resetHTML();
         this.showResults();
     }
+    
     content.showResults = function() {
         // hide about
         about.addClass('hide');
