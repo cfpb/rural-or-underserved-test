@@ -1,14 +1,14 @@
 module.exports = {
     'default': [
         'sass:dev',
-        'browserify',
+        'browserify:dev',
         'copy:dev',
         'connect:livereload',
         'watch'
     ],
     'build': [
         'sass:build',
-        'browserify',
+        'browserify:dev',
         'copy:build',
         'uglify'
     ]

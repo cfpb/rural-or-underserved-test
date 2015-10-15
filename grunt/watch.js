@@ -5,7 +5,7 @@ module.exports = {
     },
     scripts: {
         files: 'src/js/*.js',
-        tasks: ['browserify']
+        tasks: ['browserify:dev']
     },
     html: {
         files: 'src/*.html',

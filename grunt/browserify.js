@@ -1,5 +1,7 @@
 module.exports = {
-    files: {
-        'dist/js/cricket.js': ['src/js/app.js']
+    dev: {
+        files: {
+            'dist/js/cricket.js': ['src/js/app.js']
+        }
     }
 }
