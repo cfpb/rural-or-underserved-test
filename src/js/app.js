@@ -88,7 +88,7 @@ $('#geocode-csv').submit(function(e) {
     document.location.hash = 'results';
 
     // clear remove inputs, except the first one
-     textInput.clear();
+    textInput.clear();
 
     var addresses = [];
 

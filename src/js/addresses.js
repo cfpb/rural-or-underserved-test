@@ -139,7 +139,6 @@ module.exports = function() {
                 var inCounty = false;
                 $.each(fips.fips, function(key, val) {
                     if (val[0] === fipsCode) {
-                        console.log(val[0] + ' === ' + fipsCode);
                         inCounty = true;
                         result.rural = 'Yes';
                         result.type = 'rural';
@@ -149,7 +148,6 @@ module.exports = function() {
                 });
 
                 if (!inCounty) {
-                    console.log('checking urban');
                     // check urban
                     var urbanClusters = response.addressMatches[0].geographies['Urban Clusters'];
                     var urbanAreas = response.addressMatches[0].geographies['Urbanized Areas'];
