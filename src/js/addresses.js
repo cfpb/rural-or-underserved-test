@@ -42,20 +42,6 @@ module.exports = function() {
         }
     }
 
-    var isInCounty = function(fipsCode, year) {
-        var inCounty = false;
-
-        $.getJSON('data/' + year + '.json', function(fips) {
-            $.each(fips.fips, function(key, val) {
-                if (val[0] === fipsCode) {
-                    inCounty = true;
-                }
-            });
-
-            return inCounty;
-        });
-    }
-
     var isUrban = function(urbanClusters, urbanAreas) {
         var urban = false;
         if ((urbanClusters === null || urbanClusters.length === 0) && (urbanAreas === null || urbanAreas.length === 0)) {
@@ -78,6 +64,7 @@ module.exports = function() {
     var address = {};
 
     address.process = function(queries) {
+        duplicates = [];
         $.each(queries, function(index, query) {
             var isDup = isDuplicate(query);
 
@@ -145,26 +132,40 @@ module.exports = function() {
         result.y = response.addressMatches[0].coordinates.y;
         result.countyName = getCountyName(fipsCode);
 
-        // check against the county list
-        if(isInCounty(fipsCode, year)) {
-            // setup result for in county
-            result.rural = 'Yes';
-            result.type = 'rural';
-        } else {
-            // check urban
-            var urbanClusters = response.addressMatches[0].geographies['Urban Clusters'];
-            var urbanAreas = response.addressMatches[0].geographies['Urbanized Areas'];
+        $.ajax({
+            url: 'data/' + year + '.json',
+            dataType: 'json',
+            success: function load(fips) {
+                var inCounty = false;
+                $.each(fips.fips, function(key, val) {
+                    if (val[0] === fipsCode) {
+                        console.log(val[0] + ' === ' + fipsCode);
+                        inCounty = true;
+                        result.rural = 'Yes';
+                        result.type = 'rural';
+                        address.render(result);
+                        count.updateCount(result.type);
+                    }
+                });
 
-            if(!isUrban(urbanClusters, urbanAreas)) {
-                result.rural = 'No';
-                result.type = 'notRural';
-            } else {
-                result.rural = 'Yes';
-                result.type = 'rural';
+                if (!inCounty) {
+                    console.log('checking urban');
+                    // check urban
+                    var urbanClusters = response.addressMatches[0].geographies['Urban Clusters'];
+                    var urbanAreas = response.addressMatches[0].geographies['Urbanized Areas'];
+
+                    if(!isUrban(urbanClusters, urbanAreas)) {
+                        result.rural = 'No';
+                        result.type = 'notRural';
+                    } else {
+                        result.rural = 'Yes';
+                        result.type = 'rural';
+                    }
+                    address.render(result);
+                    count.updateCount(result.type);
+                }
             }
-        }
-
-        return result;
+        });
     }
 
     return address;
