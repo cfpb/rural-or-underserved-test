@@ -5,7 +5,7 @@ var results = $('#results'),
     r = $('#rural'),
     nR = $('#notRural'),
     nF = $('#notFound'),
-    dup = $('#dup'),
+    dup = $('#duplicate'),
     about = $('#about'),
     error = $('#errorMessage');
 
