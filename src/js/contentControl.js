@@ -6,7 +6,8 @@ var results = $('#results'),
     nR = $('#notRural'),
     nF = $('#notFound'),
     dup = $('#dup'),
-    about = $('#about');
+    about = $('#about'),
+    error = $('#errorMessage');
 
 var monthNames = [
     "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
@@ -36,6 +37,7 @@ module.exports = function() {
         $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
 
         $('#fileError').addClass('hide');
+        error.addClass('hide');
         count.reset();
         this.resetHTML();
         this.showResults();
@@ -64,6 +66,11 @@ module.exports = function() {
     content.resetHTML = function() {
         // clear the body of all the tables (data)
         $('tbody').html('');
+    }
+
+    content.error = function(message) {
+        error.html(message);
+        error.removeClass('hide');
     }
 
     return content;

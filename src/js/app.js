@@ -84,6 +84,8 @@ $('#file').change(function(e) {
 // on file submission
 $('#geocode-csv').submit(function(e) {
     content.setup();
+    var rowCount = 0;
+    var processedCount = 0;
 
     document.location.hash = 'results';
 
@@ -93,22 +95,51 @@ $('#geocode-csv').submit(function(e) {
     var addresses = [];
 
     // parse the csv to get the count
-    $('#file').parse( {
+    $('#file').parse({
         config: {
             header: true,
             step: function(results, parser) {
                 if (results.data[0]['Street Address'] === '' && results.errors) {
                     return;
                 } else {
-                    addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
+                    rowCount ++;
                 }
             },
             complete: function(results, file) {
-                count.updateAddressCount(addresses.length);
-                address.process(addresses);
+                $('#rowCount').text(rowCount);
             }
-        }, 
+        },
         complete: function() {
+            if (rowCount === 0) {
+                content.error('The csv was empty.');
+            } else {
+                if (rowCount > 250) {
+                  var leftOver = rowCount - 250;
+                  content.error('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
+                }
+                $('#file').parse( {
+                    config: {
+                        header: true,
+                        step: function(results, parser) {
+                            if (results.data[0]['Street Address'] === '' && results.errors) {
+                                return;
+                            } else {
+                                if (processedCount < 250) {
+                                    addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
+                                    processedCount ++;
+                                }
+                            }
+                        },
+                        complete: function(results, file) {
+                            count.updateAddressCount(addresses.length);
+                            address.process(addresses);
+                        }
+                    }, 
+                    complete: function() {
+                        console.log('All files done!');
+                    }
+                });
+            }
             console.log('All files done!');
         }
     });
