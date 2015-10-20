@@ -102,45 +102,22 @@ $('#geocode-csv').submit(function(e) {
                 if (results.data[0]['Street Address'] === '' && results.errors) {
                     return;
                 } else {
+                    if(rowCount < 250) {
+                        addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
+                        processedCount ++;
+                    }
                     rowCount ++;
                 }
             },
             complete: function(results, file) {
                 $('#rowCount').text(rowCount);
-            }
-        },
-        complete: function() {
-            if (rowCount === 0) {
-                content.error('The csv was empty.');
-            } else {
                 if (rowCount > 250) {
                   var leftOver = rowCount - 250;
                   content.error('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
                 }
-                $('#file').parse( {
-                    config: {
-                        header: true,
-                        step: function(results, parser) {
-                            if (results.data[0]['Street Address'] === '' && results.errors) {
-                                return;
-                            } else {
-                                if (processedCount < 250) {
-                                    addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
-                                    processedCount ++;
-                                }
-                            }
-                        },
-                        complete: function(results, file) {
-                            count.updateAddressCount(addresses.length);
-                            address.process(addresses);
-                        }
-                    }, 
-                    complete: function() {
-                        console.log('All files done!');
-                    }
-                });
+                count.updateAddressCount(addresses.length);
+                address.process(addresses);
             }
-            console.log('All files done!');
         }
     });
 
