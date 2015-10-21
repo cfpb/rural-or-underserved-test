@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'CFPB Minicons';
+  src: url('../fonts/cf-icons.eot');
+  src: url('../fonts/cf-icons.eot?#iefix') format('embedded-opentype'), url('../fonts/cf-icons.woff') format('woff'), url('../fonts/cf-icons.ttf') format('truetype'), url('../fonts/cf-icons.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.cf-icon,
+.cf-icon {
+  font-family: 'CFPB Minicons';
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cf-icon-plus-round:before {
+  content: "\e109";
+}
+.lt-ie8 .cf-icon-plus-round {
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e109');
+}
+.cf-icon-minus:before {
+  content: "\e110";
+}
+.lt-ie8 .cf-icon-minus {
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e110');
+}
+.cf-icon-minus-round:before {
+  content: "\e111";
+}
+.lt-ie8 .cf-icon-minus-round {
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e111');
+}

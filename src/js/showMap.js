@@ -19,7 +19,7 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
     // remove border to better associate map with row
     $(this).parents('tr').children('td').addClass('no-border');
     // change text
-    $(this).text('Hide map');
+    $(this).html('Hide map <span class="cf-icon cf-icon-minus-round"></span>');
     
     // only show initiate the map the first time
     if (mapShown === false) {
@@ -28,7 +28,7 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
 
       // setup and app map
       var latlng = L.latLng(lon, lat);
-      map = L.mapbox.map(id, 'cfpb.k55b27gd', { center: latlng, zoomControl: false }).setView(latlng,10);
+      map = L.mapbox.map(id, 'cfpb.k55b27gd', { center: latlng }).setView(latlng,12);
       map.dragging.disable();
       map.touchZoom.disable();
       map.doubleClickZoom.disable();
@@ -44,6 +44,6 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
     // add border back
     $(this).parents('tr').children('td').removeClass('no-border');
     // change text
-    $(this).text('Show map');
+    $(this).html('Show map <span class="cf-icon cf-icon-plus-round"></span>');
   }
 });

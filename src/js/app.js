@@ -70,11 +70,11 @@ censusAPI.callback = function(data) {
       // if rural is still false
       if (rural === false) {
         notRuralCnt ++;
-        render.renderTableRow('notRural', input, matchedAddress, x, y, county, block);
+        render.renderTableRow('notRural', input, matchedAddress, x, y, fipsCode, block);
         render.renderCount('notRural', notRuralCnt, totalCnt);
       } else {
         ruralCnt ++;
-        render.renderTableRow('rural', input, matchedAddress, x, y, county, block);
+        render.renderTableRow('rural', input, matchedAddress, x, y, fipsCode, block);
         render.renderCount('rural', ruralCnt, totalCnt);
       }
     });
@@ -112,6 +112,8 @@ function addDups(address) {
 
 // on submit
 $('#geocode').submit(function(e) {
+  document.location.hash = 'results';
+
   resets();
 
   render.clearFileInput();
@@ -191,6 +193,8 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
+  document.location.hash = 'results';
+
   // reset values
   resets();
 

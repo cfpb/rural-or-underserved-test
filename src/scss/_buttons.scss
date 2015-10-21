@@ -14,9 +14,13 @@ button,
     text-decoration: none;
     vertical-align: middle;
     -webkit-appearance: none;
-}
-a.button {
-  color: $white;
+
+    &:hover {
+      background: darken($pacific, 10%);
+    }
+    &:active {
+      background: darken($pacific, 15%);
+    }
 }
 
 button,
