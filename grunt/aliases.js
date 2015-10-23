@@ -7,8 +7,9 @@ module.exports = {
         'watch'
     ],
     'build': [
-        'sass:dev',
+        'sass:build',
         'browserify:dev',
-        'copy:build'
+        'copy:build',
+        'uglify'
     ]
 };

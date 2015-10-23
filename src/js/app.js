@@ -1,263 +1,125 @@
 var $ = require('jquery');
-var render = require('./render');
-var census = require('./censusCall');
-var ruralChecker = require('./rural');
-
+var content = require('./contentControl');
+var address = require('./addresses');
+var count = require('./count');
+var textInput = require('./textInputs');
+var fileInput = require('./fileInput');
 require('./showMap');
 require('papaparse');
 require('./misc');
 
-var notFoundCnt = 0,
-    notRuralCnt = 0,
-    ruralCnt = 0,
-    totalCnt = 0;
-    dupCnt = 0;
-    rowCnt = 0;
-    processedCnt = 0,
-    inputCnt = 1;
-
-var dups = [];
-
-var monthNames = [
-  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-];
-
 window.censusAPI = {};
 
 censusAPI.callback = function(data) {
-  // save the query address
-  //console.log (data);
-  var input = data.result.input.address.address;
+    var input = data.result.input.address.address;
 
-  var date = new Date();
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+    // check if found in api
+    var result = address.isFound(data.result);
 
-  $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
-  
-  // nothing found, render a not found
-  if (data.result.addressMatches.length === 0) {
-    totalCnt ++;
-    notFoundCnt ++;
-
-    render.renderTableRow('notFound', input);
-
-    render.renderCount('notFound', notFoundCnt, totalCnt);
-  } else {
-    // used to check rural
-    var urbanClusters = data.result.addressMatches[0].geographies['Urban Clusters'];
-    var urbanAreas = data.result.addressMatches[0].geographies['Urbanized Areas'];
-
-    // used to render results
-    var matchedAddress = data.result.addressMatches[0].matchedAddress;
-    var x = data.result.addressMatches[0].coordinates.x;
-    var y = data.result.addressMatches[0].coordinates.y;
-    var county = data.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
-    var block = data.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK;
-    var state = data.result.addressMatches[0].geographies['Census Blocks'][0].STATE;
-
-    // get fips from result (state and county)
-    var fipsCode = state + county;
-
-    // load fips (counties that are rural)
-    $.getJSON('data/' + $('#year').val() + '.json', function(fips) {
-      var rural = false;
-      rural = ruralChecker.isRural(fips, fipsCode, urbanAreas, urbanClusters);
-
-      totalCnt ++;
-
-      // if rural is still false
-      if (rural === false) {
-        notRuralCnt ++;
-        render.renderTableRow('notRural', input, matchedAddress, x, y, fipsCode, block);
-        render.renderCount('notRural', notRuralCnt, totalCnt);
-      } else {
-        ruralCnt ++;
-        render.renderTableRow('rural', input, matchedAddress, x, y, fipsCode, block);
-        render.renderCount('rural', ruralCnt, totalCnt);
-      }
-    });
-  }
-}
-
-// reset all the things
-function resets() {
-  // set year
-  $('.chosenYear').text($('#year').val());
-  $('#noRows').addClass('hide');
-
-  render.resetHTML();
-  render.showResults();
-
-  notFoundCnt = 0;
-  notRuralCnt = 0;
-  ruralCnt = 0;
-  dupCnt = 0;
-  totalCnt = 0;
-  rowCnt = 0;
-  dups = [];
-  inputCnt = 1;
-}
-
-// add duplicates
-function addDups(address) {
-  // add to counts
-  dupCnt ++;
-  totalCnt ++;
-  // render to counts and dups table
-  render.renderCount('dup', dupCnt, totalCnt);
-  render.renderTableRow('dup', address);
+    // if nothing found, render a not found
+    if (result) {
+        // render
+        address.render(result);
+        count.updateCount(result.type);
+    } else { // api returned a match
+        // check for rural or underserved
+        address.isRural(data.result, $('#year').val());
+    }
 }
 
 // on submit
 $('#geocode').submit(function(e) {
-  document.location.hash = 'results';
 
-  resets();
+    content.setup();
 
-  render.clearFileInput();
+    document.location.hash = 'results';
 
-  // count the inputs used
-  $('.input-address').each(function(index) {
-    if ($(this).val() !== '') {
-      rowCnt ++;
-    }
-  });
+    var addresses = [];
 
-  // if no inputs used
-  if (rowCnt === 0) {
-    // error
-    render.renderError('No rows entered.');
-  } else {
-
-    // update count
-    $('#rowCnt').text(rowCnt);
-
-    // for each input
     $('.input-address').each(function(index) {
-      // if its blank do nothing
-      // someone could leave a blank input in the middle of others
-      if ($(this).val() === '') {
-        return;
-      }
-      // check for duplicates
-      if (dups.indexOf($(this).val()) !== -1) {
-        addDups($(this).val());
-        // add warning to the field
-        $(this).addClass('warning');
-      } else {
-        // not a dup, remove the warning and error
-        $(this).removeClass('warning error');
-        // call API
-        census.getRuralUrban($(this).val());
-      }
-      // push the value to dups for checking others
-      dups.push($(this).val());
+        if ($(this).val() !== '') {
+            addresses.push($(this).val());
+        }
     });
-  }
 
-  return false;
+    count.updateAddressCount(addresses.length);
+    address.process(addresses);
+
+    return false;
 });
 
 // when file upload is used
 $('#file').change(function(e) {
-  rowCnt = 0;
-  // clear text inputs
-  render.clearTextInputs();
 
-  $('#noRows').addClass('hide');
+    var addresses = [];
 
-  // reset input count
-  inputCnt = 1;
+    // clear text inputs
+    textInput.clear();
 
-  // check for rows
-  $('#file').parse( {
-    config: {
-      header: true,
-      step: function(results, parser) {
-        if (results.data[0]['Street Address'] !== '' && !results.errors) {
-          return;
-        } else {
-          rowCnt ++;
+    $('#fileError').addClass('hide');
+
+    // parse the csv to get the count
+    $('#file').parse( {
+        config: {
+            header: true,
+            step: function(results, parser) {
+                if (results.data[0]['Street Address'] === '' && results.errors) {
+                    return;
+                } else {
+                    addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
+                }
+            },
+            complete: function(results, file) {
+                if (addresses.length === 0) {
+                    fileInput.error('There are no rows in this csv. Please update and try again.');
+                }
+            }
+        }, 
+        complete: function() {
+            console.log('All files done!');
         }
-      },
-      complete: function(results, file) {
-        if (rowCnt === 0) {
-          $('#noRows').removeClass('hide');
-        }
-      }
-    }
-  });
+    });
 });
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
-  document.location.hash = 'results';
+    content.setup();
+    var rowCount = 0;
+    var processedCount = 0;
 
-  // reset values
-  resets();
+    document.location.hash = 'results';
 
-  // clear remove inputs, except the first one
-  render.clearTextInputs();
+    // clear remove inputs, except the first one
+    textInput.clear();
 
-  // parse the csv to get the count
-  $('#file').parse( {
-    config: {
-      header: true,
-      step: function(results, parser) {
-        if (results.data[0]['Street Address'] === '' && results.errors) {
-          return;
-        } else {
-          rowCnt ++;
-        }
-      },
-      complete: function(results, file) {
-        $('#rowCnt').text(rowCnt);
-      }
-    }, 
-    complete: function() {
-      // must have been an empty csv
-      if (rowCnt === 0) {
-        render.renderError('The csv was empty.');
-      } else {
-        if (rowCnt > 250) {
-          var leftOver = rowCnt - 250;
-          render.renderError('You entered ' + rowCnt + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
-        }
-        // parse the csv to query API
-        $('#file').parse( {
-          config: {
+    var addresses = [];
+
+    // parse the csv to get the count
+    $('#file').parse({
+        config: {
             header: true,
             step: function(results, parser) {
-              if (processedCnt < 250) {
-                // check for blank row
                 if (results.data[0]['Street Address'] === '' && results.errors) {
-                  return;
+                    return;
                 } else {
-                  address = results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip;
-                  if (dups.indexOf(address) !== -1) {
-                    addDups(address);
-                  } else {
-                    census.getRuralUrban(address);
-                  }
-                  dups.push(address);
-                  processedCnt ++;
+                    if(rowCount < 250) {
+                        addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
+                        processedCount ++;
+                    }
+                    rowCount ++;
                 }
-              }
             },
             complete: function(results, file) {
-              console.log('query complete');
+                $('#rowCount').text(rowCount);
+                if (rowCount > 250) {
+                  var leftOver = rowCount - 250;
+                  content.error('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
+                }
+                count.updateAddressCount(addresses.length);
+                address.process(addresses);
             }
-          }, 
-          complete: function() {
-            console.log('All files done!');
-          }
-        });
-      }
-      console.log('All files done!');
-    }
-  });
+        }
+    });
 
-  return false;
+    return false;
 });

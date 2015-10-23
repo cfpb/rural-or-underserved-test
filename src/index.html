@@ -11,6 +11,16 @@
 </head>
 
 <body>
+    <div class="beta-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>This beta site is a work in progress.</p>
+                    <p>We're prototyping new ideas. Expect some errors and inaccuracies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="main-header">
         <div class="container">
             <div class="group">
@@ -54,8 +64,8 @@
                                 <input class="block margin-top-1 margin-bottom-1 full-width input-address" id="address1" name="address1" type="text" />
                             </div>
                             <p><a href="#" id="add-another" title="Add another address">Add another address</a></p>
-                            <input class="button" type="submit" value="Look up addresses" />
                         </fieldset>
+                        <input class="button" type="submit" value="Look up addresses" />
                     </form>
                 </div>
 
@@ -69,7 +79,7 @@
                             <input id="file" name="file" type="file" />
                             <input class="button" type="submit" value="Look up addresses" />
                         </fieldset>
-                        <p id="noRows" class="color-redorange hide">There are no rows in this csv. Please update and try again.</p>
+                        <p id="fileError" class="color-redorange hide"></p>
                         <p class="margin-top-1">Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
                     </form>
                 </div>
@@ -132,11 +142,11 @@
             </div>
             <div class="group">
                 <div class="col col-9 full-print">
-                    <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="rowCnt">0</strong> addresses processed for <strong class="chosenYear"></strong> safe harbor designation.</h2>
+                    <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="addressCount">0</strong> addresses processed for <strong class="chosenYear"></strong> safe harbor designation.</h2>
                     <h2 class="hide color-redorange" id="errorMessage"></h2>
                 </div>
                 <div class="col col-3 hide-print">
-                    <button class="button button-small right" id="print" title="Print results">Print results</button><button class="margin-right-1 button button-small right" id="download" title="Download results">Download results</button>
+                    <button class="button button-small right" id="print" title="Print results">Print results</button><button class="margin-right-1 button button-small right" id="download" title="Download results" download="rural-underserved.csv">Download results</button>
                 </div>
             </div>
             <div class="group" id="results-total">
@@ -150,7 +160,7 @@
                     <h1 class="super left inline-block margin-right-quarter"><a class="notFoundCnt no-decoration counter" href="#notFound">0</a></h1><h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
                 </div>
                 <div class="col col-3">
-                    <h1 class="super left inline-block margin-right-quarter"><a class="dupCnt no-decoration counter" href="#dup">0</a></h1><h4 class="inline-block half-width left padding-top-half">identified as duplicates</h4>
+                    <h1 class="super left inline-block margin-right-quarter"><a class="duplicateCnt no-decoration counter" href="#duplicate">0</a></h1><h4 class="inline-block half-width left padding-top-half">identified as duplicates</h4>
                 </div>
             </div>
             <div class="group">
@@ -209,8 +219,8 @@
                     </table>
                 </div>
 
-                <div id="dup" class="js-table hide col col-12 padding-top-2">
-                    <h3><span class="dupCnt counter">0</span> addresses were identified as duplicates</h3>
+                <div id="duplicate" class="js-table hide col col-12 padding-top-2">
+                    <h3><span class="duplicateCnt counter">0</span> addresses were identified as duplicates</h3>
                     <p>These addresses are included in your totals but have been identified as duplicates. Unless you have funded multiple, unrelated loans for the same address during the covered period, you should not include any address more than once. <a href="#learn-more">Learn more</a></p>
                     <p>To update or remove the information for these addresses, start a new search.</p>
 

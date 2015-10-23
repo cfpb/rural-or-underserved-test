@@ -1,55 +1,33 @@
 var $ = require('jquery');
-var render = require('./render');
+var contentControl = require('./contentControl');
+var count = require('./count');
+var textInput = require('./textInputs');
+var fileInput = require('./fileInput');
 
 // add inputs
 $('#add-another').click(function(e) {
   e.preventDefault();
-  inputCnt ++;
-
-  // remove the link if we have 10 inputs
-  if (inputCnt === 10) {
-    $('#add-another').remove();
-  }
-
-  if ($('#address' + inputCnt).val() === '') {
-    $('#address' + inputCnt).addClass('error');
-  } else {
-    $('#address' + inputCnt).removeClass('error');
-  }
-
-  // clone and add input
-  $('#address1').clone(true)
-    .appendTo('.input-container')
-    .attr('id', 'address' + inputCnt)
-    .val('')
-    .focus();
+  textInput.add();
 });
-
-// detect hash change
-window.onhashchange = function() {
-  if (document.location.hash !== '#results') {
-    // trigger a #link-about click event
-    $('#link-about').trigger("click");
-  }
-}
 
 // about click
 $('#link-about').click(function(e) {
   document.location.hash = '';
   e.preventDefault();
-  // clear remove inputs, except the first one
-  render.clearTextInputs();
-  render.clearFileInput();
-  render.showAbout();
+  // show about content
+  contentControl.showAbout();
+  // clear remove inputs
+  textInput.clear();
+  fileInput.clear();
+  // reset counts
+  count.reset();
+  // clear tables
+  contentControl.resetHTML();
 });
 
 // input blur
 $('.input-address').blur(function(e) {
-  if ($(this).val() === '') {
-    $(this).addClass('error');
-  } else {
-    $(this).removeClass('error warning');
-  }
+    textInput.isEmpty($(this));
 });
 
 // print

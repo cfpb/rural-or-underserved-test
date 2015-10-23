@@ -1,3 +1,6 @@
+$form-font-size: 16;
+$form-v-pad: 8;
+
 .fieldset-reset {
     border: 0;
     margin-left: 0;
@@ -28,16 +31,21 @@ input[type=search],
 input[type=tel],
 input[type=time],
 input[type=url],
-input[type=week] {
+input[type=week],
+input[type=file] {
     height: 2em;
-    padding: 5px;
+    padding: ($form-v-pad/$form-font-size)*1em 14/$form-font-size*1em;
     vertical-align: middle;
     -webkit-appearance: none;
 }
 
+input[type=file] {
+    width: 250px;
+}
+
 select {
     line-height: 1.75;
-    padding: 5px;
+    padding: ($form-v-pad/$form-font-size)*1em 14/$form-font-size*1em;
 }
 
 input.error {
