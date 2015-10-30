@@ -7,12 +7,11 @@ $form-v-pad: 8;
     margin-right: 0;
     padding: 0;
 }
-input,
+/*input,
 select,
 textarea,
 fieldset {
     border: 1px solid $gray-50;
-    border-radius: 2px;
     box-sizing: border-box;
     font-family: 'AvenirNextLTW01-Regular';
     font-size: 1em;
@@ -37,7 +36,7 @@ input[type=file] {
     padding: ($form-v-pad/$form-font-size)*1em 14/$form-font-size*1em;
     vertical-align: middle;
     -webkit-appearance: none;
-}
+}*/
 
 input[type=file] {
     width: 250px;

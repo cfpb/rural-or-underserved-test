@@ -7,6 +7,8 @@ var fileInput = require('./fileInput');
 require('./showMap');
 require('papaparse');
 require('./misc');
+require('./search-box');
+require('./header-nav');
 
 window.censusAPI = {};
 
@@ -74,7 +76,7 @@ $('#file').change(function(e) {
                     fileInput.error('There are no rows in this csv. Please update and try again.');
                 }
             }
-        }, 
+        },
         complete: function() {
             console.log('All files done!');
         }

@@ -3,9 +3,14 @@ $base-line-height: 22px;
 
 body {
     color: $black;
-    font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
+    /*font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;*/
     font-size: 100%;
-    line-height: $base-line-height;
+    line-height: 1.375;
+}
+
+.sans {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
 }
 
 strong {
@@ -26,6 +31,40 @@ a.no-decoration {
     border-bottom-width: 1px;
     text-decoration: none;
 }
+
+a {
+    border-bottom: 1px dotted #0071bc;
+    color: #0071bc;
+    padding-bottom: 0.1em;
+    text-decoration: none;
+
+    &:visited,
+    &.visited {
+        border-color: #4c2c92;
+        color: #4c2c92;
+    }
+
+    &:hover,
+    &.hover {
+        border-style: solid;
+        border-color: #205493;
+        color: #205493;
+    }
+
+    &:focus,
+    &.focus {
+        border-style: solid;
+        outline: thin dotted;
+    }
+
+    &:active,
+    &.active {
+        border-style: solid;
+        border-color: #046b99;
+        color: #046b99;
+    }
+  }
+
 
 h1,
 h2,
