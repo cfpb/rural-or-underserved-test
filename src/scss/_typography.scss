@@ -79,9 +79,10 @@ h6 {
 // line height calcs are eyeballed to 30px
 h1,
 .h1 { // 34px/44px
-    font-size: (34px/$base-font-size) * 1em;
-    line-height: (44/34);
-    margin-bottom: (16/34) * 1em;
+    font-size: 2.125em;
+    line-height: 1.29411765;
+    margin-top: 0;
+    margin-bottom: .47058824em;
 }
 
 h2,
