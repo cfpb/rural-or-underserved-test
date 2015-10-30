@@ -277,17 +277,27 @@
     }
 input {vertical-align: middle;}
 #header input {
-  border-radius: 0.25em;
+
 
 }
 input {
   font-size: 1em;
-    border: 1px inset #afafb3;
-    box-shadow: inset 2px 1px 2px -3px #aaa;
-    padding: .25em .5em;
-    background-color: #fff;
+  border: 1px solid #75787B;
+  padding: .375em;
+  background-color: #fff;
   margin: 0;
 }
+
+#header input {
+  font-size: 1em;
+  border: 1px inset #afafb3;
+  border-radius: 0.25em 0 0 0.25em;
+  padding: .25em .5em;
+  background-color: #fff;
+  margin: 0;
+}
+
+
 .ie6 input {vertical-align: text-bottom;}
   .inf {
     position: relative;
