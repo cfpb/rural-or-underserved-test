@@ -51,13 +51,11 @@ a {
 
     &:focus,
     &.focus {
-        border-style: solid;
         outline: thin dotted;
     }
 
     &:active,
     &.active {
-        border-style: solid;
         border-color: #046b99;
         color: #046b99;
     }

@@ -8,6 +8,15 @@ $form-v-pad: 8;
     padding: 0;
 }
 
+input {
+  font-size: 1em;
+  border: 1px solid #75787B;
+  padding: .375em;
+  background-color: #fff;
+  margin: 0;
+  vertical-align: middle;
+}
+
 select {
     border: 1px solid $gray-50;
     box-sizing: border-box;
