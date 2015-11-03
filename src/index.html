@@ -2,438 +2,539 @@
 <html>
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cricket.css">
-    <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/cricket.css">
+  <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 </head>
 
 <body>
-    <div class="beta-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p>This beta site is a work in progress.</p>
-                    <p>We're prototyping new ideas. Expect some errors and inaccuracies.</p>
-                </div>
-            </div>
+  <div class="beta-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>This beta site is a work in progress.</p>
+          <p>We're prototyping new ideas. Expect some errors and inaccuracies.</p>
         </div>
+      </div>
     </div>
-    <a class="u-visually-hidden" href="#primary-content" id="skip-link">Skip to content</a>
+  </div>
+  <a class="u-visually-hidden" href="#primary-content" id="skip-link">Skip to content</a>
 
-     <!-- top banner -->
-    <div class="nemo">
-        <div class="wrapper-banner">
-            <div class="wrapper-container">
-                <div class="split">
-                    <span class="official-website">An official website of the United States Government</span>
-                    <div class="split-right language-banner">
-                      <a href="/es/" hreflang="es" class="espanol-link">Español</a>
-                      <a href="/lang/#zh" hreflang="zh">中文</a>
-                      <a href="/lang/#vi" hreflang="vi">Tiếng Việt</a>
-                      <a href="/lang/#ko" hreflang="ko">한국의</a>
-                      <a href="/lang/#tl" hreflang="tl">Tagalog</a>
-                      <a href="/lang/#ru" hreflang="ru">Pусский</a>
-                      <a href="/lang/#ar" hreflang="ar">العربية</a>
-                      <a href="/lang/#ht" hreflang="ht">Kreyòl Ayisyen</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- header and nav -->
-        <header id="header">
-          <div role="banner">
-             <a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i><span class="u-visually-hidden">Menu</span></a>
-            <h1>
-              <a href="/" class="noStyles">
-                <img id="logo" class="logo__js" src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg" onerror="this.src='http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png';" alt="Consumer Financial Protection Bureau" width="262" height="66">
-                <noscript>
-                  <img id="logo" class="logo__no-js" src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png" alt="Consumer Financial Protection Bureau" width="262" height="66">
-                </noscript>
-              </a>
-            </h1>
-            <p class="lang"><span class="tel"><a href="tel:+18554112372">Contact us&nbsp;&nbsp;<strong>(855) 411-2372</strong></a></span></p>
-            <form accept-charset="UTF-8" action="http://search.consumerfinance.gov/search" class="single" id="search_form" method="get">
-              <input name="utf8" type="hidden" value="✓">
-              <input id="affiliate" name="affiliate" type="hidden" value="cfpb">
-              <div class="inf">
-                <label for="query" id="search-placeholder">Search</label>
-                <input id="query" name="query" type="text">
-              </div>
-              <button>Go</button>
-            </form>
+  <!-- top banner -->
+  <div class="nemo">
+    <div class="wrapper-banner">
+      <div class="wrapper-container">
+        <div class="split">
+          <span class="official-website">An official website of the United States Government</span>
+          <div class="split-right language-banner">
+            <a href="/es/" hreflang="es" class="espanol-link">Español</a>
+            <a href="/lang/#zh" hreflang="zh">中文</a>
+            <a href="/lang/#vi" hreflang="vi">Tiếng Việt</a>
+            <a href="/lang/#ko" hreflang="ko">한국의</a>
+            <a href="/lang/#tl" hreflang="tl">Tagalog</a>
+            <a href="/lang/#ru" hreflang="ru">Pусский</a>
+            <a href="/lang/#ar" hreflang="ar">العربية</a>
+            <a href="/lang/#ht" hreflang="ht">Kreyòl Ayisyen</a>
           </div>
-          <nav class="main" role="navigation">
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="#inside">Inside the CFPB</a></li>
-              <li><a href="#assistance">Get assistance</a></li>
-              <li><a href="#participate">Participate</a></li>
-              <li><a href="#regulation">Law &amp; Regulation</a></li>
-              <li><a href="#alert" class="complaint">Submit a complaint</a></li>
-            </ul>
-          </nav>
-        </header>
+        </div>
+      </div>
     </div>
 
-    <main>
-        <!-- about -->
-        <section id="about" class="container padding-top-2 margin-top-2 margin-bottom-2">
-            <div class="group">
-                <div class="col col-12">
-                  <h1>Rural and underserved areas automated tool</h1>
-                    <h2 class="inline-block">Look up addresses for loans extended in</h2>
-                    <select class="h2" id="year" name="year">
-                        <option value="2014">2014</option>
-                        <option selected value="2015">2015</option>
-                        <option value="2016">2016</option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="group bg-gray border-top-2 border-bottom-2 margin-bottom-2 sans">
-                <!-- manual input -->
-                <div class="col col-6 padding-2">
-                    <h5>Enter a property address</h5>
-                    <form id="geocode">
-                        <legend>Include street address, city, state/territory and Zip code for up to <strong>10</strong> properties.</legend>
-                        <fieldset class="fieldset-reset">
-                            <div class="input-container">
-                                <input class="block margin-top-1 margin-bottom-1 full-width input-address" id="address1" name="address1" type="text" />
-                            </div>
-                            <p><a href="#" id="add-another" title="Add another address">Add another address</a></p>
-                        </fieldset>
-                        <input class="button" type="submit" value="Look up addresses" />
-                    </form>
-                </div>
-
-                <!-- batch input -->
-                <div class="col col-6 padding-2">
-                    <h5>Batch upload</h5>
-                    <form id="geocode-csv">
-                        <legend><p>Upload a CSV file with address for up to <strong>250</strong> properties.</p></legend>
-                        <p><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
-                        <fieldset class="fieldset-reset">
-                            <input id="file" name="file" type="file" />
-                            <input class="button" type="submit" value="Look up addresses" />
-                        </fieldset>
-                        <p id="fileError" class="color-redorange hide"></p>
-                        <p class="margin-top-1">Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
-                    </form>
-                </div>
-            </div>
-            <div class="group sans">
-                <div class="col col-8">
-                    <h3>About this tool</h3>
-                        <p>This tool is maintained by the Consumer Financial Protection Bureau (CFPB) to help mortgage lenders determine which properties are located in a &ldquo;rural&rdquo; or &ldquo;underserved&rdquo; area as defined in 12 CFR 1026.35(b)(2)(iv)(A) and (B).</p>
-                        <p>If more than 50% of a lender&lsquo;s total covered transactions are secured by first liens on properties that are located in areas that are either &ldquo;rural&rdquo; or &ldquo;underserved&rdquo;, the lender may be exempt from certain regulatory requirements under the Truth in Lending Act, such as creating escrow account for certain high-priced mortgages and prohibiting balloon payment provisions with regard to &ldquo;qualified mortgages&rdquo; and high-cost mortgages.</p>
-                        <p class="margin-bottom-3"><a href="#" title="Lean more about this rule">Learn more about this rule</a></p>
-
-                        <h3>Frequently asked questions</h3>
-                        <p>We have included a list of frequently asked questions below.</p>
-                        <div class="border-top padding-top-1">
-                            <h4>How is &ldquo;rural&rdquo; defined?</h4>
-                        </div>
-                        <div class="border-top padding-top-1">
-                            <h4>How is &ldquo;underserved&rdquo; defined?</h4>
-                        </div>
-                        <div class="border-top padding-top-1">
-                            <h4>What are &ldquo;covered transactions&rdquo;?</h4>
-                        </div>
-                        <div class="border-top padding-top-1">
-                            <h4>What if the property address is not located in a state, e.g., it's in a territory?</h4>
-                        </div>
-                        <div class="border-top padding-top-1">
-                            <h4>What aren't addresses in 2014 included</h4>
-                        </div>
-                        <div class="border-top padding-top-1">
-                            <h4>Can this tool be used to determine if you are eligible for the &ldquo;rural&rdquo; exemption from the &sect;1026.35(c)(4) requirement for an additional appraisal?</h4>
-                        </div>
-                        <div class="border-top padding-top-1">
-                            <h4>What kinds of file formats does the tool accept for uploads?</h4>
-                            <p>We accept CSV, Excel, ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-                            <p>Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
-                        </div>
-                </div>
-                <!-- side bar -->
-                <div class="col col-4">
-                    <div class="padding-2">
-                    <h5 class="border-top"><span>Related information</span></h5>
-                    <p>Some other important information to be described here, if necessary. Probably on three to four lines.</p>
-                    <p><a href="#" title="Visit this information">Visit this information</a></p>
-
-                    <h5 class="border-top"><span>Related links</span></h5>
-                    <p><a href="#" title="Related website or information">Related website or information</a></p>
-                    <p><a href="#" title="Other information">Other information</a></p>
-                    <p><a href="#" title="Related website or information">Related website or information</a></p>
-                </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- results -->
-        <section id="results" class="group container margin-top-2 hide sans">
-            <div class="group">
-                <div class="col col-12">
-                    <p class="inline-block right hide-print"><a href="#" id="link-about">Back to About</a></p>
-                </div>
-            </div>
-            <div class="group">
-                <div class="col col-8 full-print">
-                    <h2 id="countMessage"><strong class="counter" id="totalCnt">0</strong> / <strong class="counter" id="addressCount">0</strong> addresses processed for <strong class="chosenYear"></strong> safe harbor designation.</h2>
-                    <h2 class="hide color-redorange" id="errorMessage"></h2>
-                </div>
-                <div class="col col-4 hide-print">
-                    <button class="button button-small right" id="print" title="Print results">Print results</button><button class="margin-right-1 button button-small right" id="download" title="Download results" download="rural-underserved.csv">Download results</button>
-                </div>
-            </div>
-            <div class="group" id="results-total">
-                <div class="col col-3">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#rural">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
-                </div>
-                <div class="col col-3">
-                    <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration counter" href="#notRural">0</a></h1><h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
-                </div>
-                <div class="col col-3">
-                    <h1 class="super left inline-block margin-right-quarter"><a class="notFoundCnt no-decoration counter" href="#notFound">0</a></h1><h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
-                </div>
-                <div class="col col-3">
-                    <h1 class="super left inline-block margin-right-quarter"><a class="duplicateCnt no-decoration counter" href="#duplicate">0</a></h1><h4 class="inline-block half-width left padding-top-half">identified as duplicates</h4>
-                </div>
-            </div>
-            <div class="group">
-                <div id="rural" class="js-table hide col col-12 padding-top-2">
-                  <hr />
-                    <h3><span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for <strong class="chosenYear"></strong></h3>
-                    <p>There properties can count toward your safe harbor percentage of rural or underserved properties.</p>
-
-                    <table class="table" style="border-width: 1px;" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Address Entered</th>
-                                <th>Address Identfied</th>
-                                <th>County</th>
-                                <th>Census Block</th>
-                                <th>Rural or Underserved?</th>
-                            </tr>
-                        </thead>
-                        <tbody class="data"></tbody>
-                    </table>
-                </div>
-
-                <div id="notRural" class="js-table hide col col-12 padding-top-2">
-                  <hr />
-                    <h3><span class="notRuralCnt counter">0</span> addresses are <strong>not</strong> designated as rural or underserved for <strong class="chosenYear"></strong></h3>
-                    <p>There properties will <strong>not</strong> count toward your safe harbor percentage of rural or underserved properties.</p>
-
-                    <table class="table" style="border-width: 1px;" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Address Entered</th>
-                                <th>Address Identfied</th>
-                                <th>County</th>
-                                <th>Census Block</th>
-                                <th>Rural or Underserved?</th>
-                            </tr>
-                        </thead>
-                        <tbody class="data"></tbody>
-                    </table>
-                </div>
-
-                <div id="notFound" class="js-table hide col col-12 padding-top-2">
-                  <hr />
-                    <h3><span class="notFoundCnt counter">0</span> addresses could not be identified confidently</h3>
-                    <p>The locations of these addresses could not be identified because the information provided was not sufficient or because the information matches with multiple addresses.</p>
-                    <p>Select "Show details" for more information about what we have identified for each address.</p>
-
-                    <table class="table" style="border-width: 1px;" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Address Entered</th>
-                                <th>Address Identfied</th>
-                                <th>County</th>
-                                <th>Census Block</th>
-                                <th>Rural or Underserved?</th>
-                            </tr>
-                        </thead>
-                        <tbody class="data"></tbody>
-                    </table>
-                </div>
-
-
-
-                <div id="duplicate" class="js-table hide col col-12 padding-top-2">
-                  <hr />
-                    <h3><span class="duplicateCnt counter">0</span> addresses were identified as duplicates</h3>
-                    <p>These addresses are included in your totals but have been identified as duplicates. Unless you have funded multiple, unrelated loans for the same address during the covered period, you should not include any address more than once. <a href="#learn-more">Learn more</a></p>
-                    <p>To update or remove the information for these addresses, start a new search.</p>
-
-                    <table class="table" style="border-width: 1px;" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Address Entered</th>
-                                <th>Address Identfied</th>
-                                <th>County</th>
-                                <th>Census Block</th>
-                                <th>Rural or Underserved?</th>
-                            </tr>
-                        </thead>
-                        <tbody class="data"></tbody>
-                    </table>
-                </div>
-        </section>
-    </main>
-
-    <div class="nemo">
-<section id="subnav">
-  <nav id="inside" style="left: 291.5px; top: 169px; display: none; height: 466px;">
-    <h4>Inside the CFPB</h4>
-    <ul>
-      <li><h5><a href="/the-bureau/" style="outline: none;">About us</a></h5></li>
-      <li><h5><a href="/jobs/">Jobs</a></h5></li>
-      <li><h5><a href="/contact-us/">Contact us</a></h5></li>
-      <li><h5><a href="/newsroom/">Newsroom</a></h5></li>
-      <li><h5><a href="/reports/">Reports</a></h5></li>
-      <li><h5><a href="/budget/">Budget and performance</a></h5></li>
-      <li><h5><a href="/strategic-plan/">Strategic plan</a></h5></li>
-      <li><h5><a href="/blog/">Blog</a></h5></li>
-      <li><h5><a href="/advisory-groups/">Advisory groups</a></h5></li>
-      <li><h5><a href="/doing-business-with-us/">Doing business with us</a></h5></li>
-  </ul>
-  </nav>
-  <nav id="assistance" style="">
-    <h4>Get assistance</h4>
-    <ul>
-      <li><h5><a href="/askcfpb/">Ask CFPB</a></h5>
-        <p>Get answers to your financial questions.</p></li>
-      <li><h5><a href="/paying-for-college/">Paying for College</a></h5></li>
-      <li><h5><a href="/owning-a-home/">Owning a Home</a></h5></li>
-      <li><h5><a href="/mortgagehelp/">Trouble paying your mortgage?</a></h5></li>
-      <li><h5><a href="https://help.consumerfinance.gov/app/account/complaints/list">Check the status of a complaint</a></h5></li>
-      <li><h5><a href="/fair-lending/">Protections against credit discrimination</a></h5></li>
-      <li>
-        <h5>Information for:</h5>
+    <!-- header and nav -->
+    <header id="header">
+      <div role="banner">
+        <a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i><span class="u-visually-hidden">Menu</span></a>
+        <h1>
+          <a href="/" class="noStyles">
+            <img id="logo" class="logo__js" src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg" onerror="this.src='http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png';" alt="Consumer Financial Protection Bureau"
+            width="262" height="66">
+            <noscript>
+              <img id="logo" class="logo__no-js" src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png" alt="Consumer Financial Protection Bureau" width="262" height="66">
+            </noscript>
+          </a>
+        </h1>
+        <p class="lang">
+          <span class="tel"><a href="tel:+18554112372">Contact us&nbsp;&nbsp;<strong>(855) 411-2372</strong></a></span>
+        </p>
+        <form accept-charset="UTF-8" action="http://search.consumerfinance.gov/search" class="single" id="search_form" method="get">
+          <input name="utf8" type="hidden" value="✓">
+          <input id="affiliate" name="affiliate" type="hidden" value="cfpb">
+          <div class="inf">
+            <label for="query" id="search-placeholder">Search</label>
+            <input id="query" name="query" type="text">
+          </div>
+          <button>Go</button>
+        </form>
+      </div>
+      <nav class="main" role="navigation">
         <ul>
-          <li><a href="/students/">Students</a></li>
-          <li><a href="/older-americans/">Older Americans</a></li>
-          <li><a href="/servicemembers/">Servicemembers and Veterans</a></li>
-          <li><a href="/small-financial-services-providers/">Community Banks &amp; Credit Unions</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="#inside">Inside the CFPB</a></li>
+          <li><a href="#assistance">Get assistance</a></li>
+          <li><a href="#participate">Participate</a></li>
+          <li><a href="#regulation">Law &amp; Regulation</a></li>
+          <li><a href="#alert" class="complaint">Submit a complaint</a></li>
         </ul>
-      </li>
-    </ul>
-  </nav>
-  <nav id="participate" style="">
-    <h4>Participate</h4>
-    <ul>
-      <li>
-        <h5>Know Before You Owe</h5>
-        <p>Making costs and risks clear.</p>
-        <ul>
-          <li><a href="/credit-cards/knowbeforeyouowe/">Credit cards</a></li>
-          <li><a href="/knowbeforeyouowe/">Mortgages</a></li>
-          <li><a href="/students/knowbeforeyouowe/">Student loans</a></li>
-        </ul>
-      </li>
-      <li>
-        <h5><a href="/your-story/">Tell your Story</a></h5>
-        <p>Help inform how we protect consumers &amp; create a fairer marketplace.</p>
-      </li>
-      <li>
-        <h5><a href="/complaintdatabase">Consumer Complaint Database</a></h5>
-      </li>
-      <li>
-        <h5><a href="/hmda">Home Mortgage Disclosure Act Database</a></h5>
-      </li>
-      <li>
-        <h5><a href="/open/">Open government</a></h5>
-        <ul>
-          <li><a href="/leadership-calendar/">Leadership calendar</a></li>
-          <li><a href="/foia/">FOIA</a></li>
-        </ul>
-      </li>
-      <li>
-        <h5><a href="/notice-and-comment/">Notice and comment</a></h5>
-        <p>Weigh in on current rulemakings.</p>
-      </li>
-    </ul>
-  </nav>
-  <nav id="regulation" style="">
-    <h4>Regulation</h4>
-    <ul>
-      <li><h5><a href="/guidance/supervision/manual/">Examination manual</a></h5></li>
-      <li><h5><a href="/guidance/">Guidance</a></h5></li>
-      <li><h5><a href="/notice-and-comment/">Notice and comment</a></h5></li>
-      <li><h5><a href="/regulations/">Regulations</a></h5></li>
-      <li><h5><a href="/regulatory-implementation/">Regulatory implementation</a></h5></li>
-      <li><h5><a href="/administrativeadjudication/">Administrative adjudication</a></h5></li>
-      <li><h5><a href="/amicus/">Amicus program</a></h5></li>
-    </ul>
-  </nav>
-  <nav id="alert" style="">
-    <h4>Submit a complaint</h4>
-    <ul>
-      <li>
-        <h5><a href="/complaint">Submit a complaint</a></h5>
-      </li>
-      <li><h5><a href="https://help.consumerfinance.gov/app/account/complaints/list">Check the status of your complaint</a></h5></li>
-      <li>
-        <h5><a href="/the-cfpb-wants-you-to-blow-the-whistle-on-lawbreakers/">Whistleblowers</a></h5>
-        <p>Confidentially report any wrongdoing you have observed.</p>
-      </li>
-    </ul>
-  </nav>
-  </section>
-</div>
+      </nav>
+    </header>
+  </div>
 
-<!-- footer -->
-<div class="nemo">
-<footer id="footer" class="nemo" role="contentinfo">
-<div>
-<a href="/" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo-vert.png" alt="Consumer Financial Protection Bureau" title="CFPB"></a>
-<nav>
-<ul>
-  <li><a href="/privacy-policy/">Privacy policy and legal notices</a></li>
-  <li><a href="/accessibility/">Accessibility</a></li>
-  <li><a href="/plain-writing/">Plain writing</a></li>
-  <li><a href="/no-fear-act/">No FEAR Act</a></li>
-  <li><a href="/foia/">FOIA</a></li>
-  <li><a href="/equal-employment-opportunity/whistleblowers/">Whistleblower Act</a></li>
-</ul>
-</nav>
-<nav>
-<ul>
-  <li><a href="http://usa.gov/">USA.gov</a></li>
-  <li><a href="http://www.federalreserve.gov/oig/default.htm">Office of Inspector General</a></li>
-  <li><a href="/ombudsman/">Ombudsman</a></li>
-</ul>
-</nav>
-<nav>
-<ul>
-  <li class="horizontal-list-item"><a href="http://facebook.com/cfpb" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/fb_footer_icon.png" alt="Visit us on Facebook"></a>&nbsp;&nbsp;</li>
-  <li class="horizontal-list-item"><a href="http://twitter.com/cfpb" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/twitter_footer_icon.png" alt="Visit us on Twitter"></a>&nbsp;&nbsp;</li>
-  <li class="horizontal-list-item"><a href="http://youtube.com/CFPB" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/youtube_footer_icon.png" alt="Visit us on Youtube"></a>&nbsp;&nbsp;</li>
-  <li class="horizontal-list-item"><a href="http://flickr.com/cfpbphotos" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/flickr_footer_icon.png" alt="Visit us on Flickr"></a>&nbsp;&nbsp;</li>
-  <li class="horizontal-list-item"><a href="/feed/" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/rss_footer_icon.png" alt="Subscribe to updates with RSS"></a></li>
-</ul>
-<p>Visite nuestro sitio web en español</p>
-<p><a href="/es/" hreflang="es" class="link-button espanol-link">Español</a></p>
-</nav>
-</div>
-<nav class="bottom">
-<ul>
-  <li><a href="/contact-us/">Contact us</a></li>
-  <li><a href="/newsroom/">Newsroom</a></li>
-  <li><a href="/jobs/">Jobs</a></li>
-  <li><a href="/open/">Open government</a></li>
-</ul>
-</nav>
-</footer>
-</div>
+  <main>
+    <!-- about -->
+    <section id="about" class="container padding-top-2 margin-top-2 margin-bottom-2">
+      <div class="group">
+        <div class="col col-12">
+          <h1>Rural and underserved areas automated tool</h1>
+          <div id="fileError" class="sans bg-redorange-20 border-2 border-error padding-1 margin-bottom-1 hide">
+            <h2>Formatting error</h2>
+            <p>
+              <strong>We've noticed the following errors:</strong>
+            </p>
+            <p id="errorDesc"></p>
+          </div>
+          <h2 class="inline-block">Look up addresses for loans extended in</h2>
+          <select class="h2" id="year" name="year">
+            <option value="2014">2014</option>
+            <option selected value="2015">2015</option>
+            <option value="2016">2016</option>
+          </select>
+        </div>
+      </div>
+      <div class="group sans">
+        <!-- manual input -->
+        <div class="col col-near-half padding-2 bg-gray border-2 margin-bottom-2">
+          <h5>Enter a property address</h5>
+          <form id="geocode">
+            <legend>Include street address, city, state/territory and Zip code for up to
+              <strong>10</strong> properties.</legend>
+            <fieldset class="fieldset-reset">
+              <div class="input-container">
+                <input class="block margin-top-1 margin-bottom-1 full-width input-address" id="address1" name="address1" type="text" />
+              </div>
+              <p><a href="#" id="add-another" title="Add another address">Add another address</a></p>
+            </fieldset>
+            <input class="button" type="submit" value="Look up addresses" />
+          </form>
+        </div>
 
-    <script src='js/cricket.js'></script>
+        <!-- batch input -->
+        <div class="col col-near-half col-offset-near-half padding-2 bg-gray border-2 margin-bottom-2">
+          <h5>Batch upload</h5>
+          <form id="geocode-csv">
+            <legend>
+              Upload a CSV file with columns named Street Address, City, State, and Zip for up to <strong>250</strong> properties.
+            </legend>
+            <p class="margin-top-1"><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
+            <fieldset class="fieldset-reset">
+              <input class="block margin-bottom-1" id="file" name="file" type="file" />
+            </fieldset>
+            <input class="button block" type="submit" value="Look up addresses" />
+          </form>
+        </div>
+      </div>
+
+      <!-- about this tool -->
+      <div class="group sans">
+        <div class="col col-8">
+          <h3>About this tool</h3>
+          <p>This tool is maintained by the Consumer Financial Protection Bureau (CFPB) to help mortgage lenders determine which properties are located in a &ldquo;rural&rdquo; or &ldquo;underserved&rdquo; area as defined in 12 CFR 1026.35(b)(2)(iv)(A) and
+            (B).</p>
+          <p>If more than 50% of a lender&lsquo;s total covered transactions are secured by first liens on properties that are located in areas that are either &ldquo;rural&rdquo; or &ldquo;underserved&rdquo;, the lender may be exempt from certain regulatory
+            requirements under the Truth in Lending Act, such as creating escrow account for certain high-priced mortgages and prohibiting balloon payment provisions with regard to &ldquo;qualified mortgages&rdquo; and high-cost mortgages.</p>
+          <p class="margin-bottom-3"><a href="#" title="Lean more about this rule">Learn more about this rule</a></p>
+          <!-- faq -->
+          <h3>Frequently asked questions</h3>
+          <p>We have included a list of frequently asked questions below.</p>
+          <div class="border-top padding-top-1">
+            <h4>How is &ldquo;rural&rdquo; defined?</h4>
+          </div>
+          <div class="border-top padding-top-1">
+            <h4>How is &ldquo;underserved&rdquo; defined?</h4>
+          </div>
+          <div class="border-top padding-top-1">
+            <h4>What are &ldquo;covered transactions&rdquo;?</h4>
+          </div>
+          <div class="border-top padding-top-1">
+            <h4>What if the property address is not located in a state, e.g., it's in a territory?</h4>
+          </div>
+          <div class="border-top padding-top-1">
+            <h4>What aren't addresses in 2014 included</h4>
+          </div>
+          <div class="border-top padding-top-1">
+            <h4>Can this tool be used to determine if you are eligible for the &ldquo;rural&rdquo; exemption from the &sect;1026.35(c)(4) requirement for an additional appraisal?</h4>
+          </div>
+          <div class="border-top padding-top-1">
+            <h4>What kinds of file formats does the tool accept for uploads?</h4>
+            <p>We accept CSV, Excel, ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <p>Do not upload any files including personal information, such as names, phone numbers, and Social Security numbers.</p>
+          </div>
+        </div>
+        <!-- side bar -->
+        <div class="col col-4">
+          <div class="padding-2">
+            <h5 class="border-top">
+              <span>Related information</span>
+            </h5>
+            <p>Some other important information to be described here, if necessary. Probably on three to four lines.</p>
+            <p><a href="#" title="Visit this information">Visit this information</a></p>
+
+            <h5 class="border-top">
+              <span>Related links</span>
+            </h5>
+            <p><a href="#" title="Related website or information">Related website or information</a></p>
+            <p><a href="#" title="Other information">Other information</a></p>
+            <p><a href="#" title="Related website or information">Related website or information</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- results -->
+    <section id="results" class="group container margin-top-2 hide sans">
+      <div class="group">
+        <div class="col col-12">
+          <p class="inline-block right hide-print"><a href="#" id="link-about">Back to About</a></p>
+        </div>
+      </div>
+      <div class="group">
+        <div class="col col-8 full-print">
+          <h2 id="countMessage">
+            <strong class="counter" id="totalCnt">0</strong> /
+            <strong class="counter" id="addressCount">0</strong> addresses processed for
+            <strong class="chosenYear"></strong> safe harbor designation.</h2>
+          <h2 class="hide color-redorange" id="errorMessage"></h2>
+        </div>
+        <div class="col col-4 hide-print">
+          <button class="button button-small right" id="print" title="Print results">Print results</button>
+          <button class="margin-right-1 button button-small right" id="download" title="Download results" download="rural-underserved.csv">Download results</button>
+        </div>
+      </div>
+      <div class="group" id="results-total">
+        <div class="col col-3">
+          <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#rural">0</a></h1>
+          <h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
+        </div>
+        <div class="col col-3">
+          <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration counter" href="#notRural">0</a></h1>
+          <h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
+        </div>
+        <div class="col col-3">
+          <h1 class="super left inline-block margin-right-quarter"><a class="notFoundCnt no-decoration counter" href="#notFound">0</a></h1>
+          <h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
+        </div>
+        <div class="col col-3">
+          <h1 class="super left inline-block margin-right-quarter"><a class="duplicateCnt no-decoration counter" href="#duplicate">0</a></h1>
+          <h4 class="inline-block half-width left padding-top-half">identified as duplicates</h4>
+        </div>
+      </div>
+      <div class="group">
+        <div id="rural" class="js-table hide col col-12 padding-top-2">
+          <hr />
+          <h3>
+            <span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for
+            <strong class="chosenYear"></strong>
+          </h3>
+          <p>There properties can count toward your safe harbor percentage of rural or underserved properties.</p>
+
+          <table class="table" style="border-width: 1px;" width="100%">
+            <thead>
+              <tr>
+                <th>Address Entered</th>
+                <th>Address Identfied</th>
+                <th>County</th>
+                <th>Census Block</th>
+                <th>Rural or Underserved?</th>
+              </tr>
+            </thead>
+            <tbody class="data"></tbody>
+          </table>
+        </div>
+
+        <div id="notRural" class="js-table hide col col-12 padding-top-2">
+          <hr />
+          <h3>
+            <span class="notRuralCnt counter">0</span> addresses are
+            <strong>not</strong> designated as rural or underserved for
+            <strong class="chosenYear"></strong>
+          </h3>
+          <p>There properties will
+            <strong>not</strong> count toward your safe harbor percentage of rural or underserved properties.</p>
+
+          <table class="table" style="border-width: 1px;" width="100%">
+            <thead>
+              <tr>
+                <th>Address Entered</th>
+                <th>Address Identfied</th>
+                <th>County</th>
+                <th>Census Block</th>
+                <th>Rural or Underserved?</th>
+              </tr>
+            </thead>
+            <tbody class="data"></tbody>
+          </table>
+        </div>
+
+        <div id="notFound" class="js-table hide col col-12 padding-top-2">
+          <hr />
+          <h3>
+            <span class="notFoundCnt counter">0</span> addresses could not be identified confidently</h3>
+          <p>The locations of these addresses could not be identified because the information provided was not sufficient or because the information matches with multiple addresses.</p>
+          <p>Select "Show details" for more information about what we have identified for each address.</p>
+
+          <table class="table" style="border-width: 1px;" width="100%">
+            <thead>
+              <tr>
+                <th>Address Entered</th>
+                <th>Address Identfied</th>
+                <th>County</th>
+                <th>Census Block</th>
+                <th>Rural or Underserved?</th>
+              </tr>
+            </thead>
+            <tbody class="data"></tbody>
+          </table>
+        </div>
+
+        <div id="duplicate" class="js-table hide col col-12 padding-top-2">
+          <hr />
+          <h3>
+            <span class="duplicateCnt counter">0</span> addresses were identified as duplicates</h3>
+          <p>These addresses are included in your totals but have been identified as duplicates. Unless you have funded multiple, unrelated loans for the same address during the covered period, you should not include any address more than once. <a href="#learn-more">Learn more</a></p>
+          <p>To update or remove the information for these addresses, start a new search.</p>
+
+          <table class="table" style="border-width: 1px;" width="100%">
+            <thead>
+              <tr>
+                <th>Address Entered</th>
+                <th>Address Identfied</th>
+                <th>County</th>
+                <th>Census Block</th>
+                <th>Rural or Underserved?</th>
+              </tr>
+            </thead>
+            <tbody class="data"></tbody>
+          </table>
+        </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <div class="nemo">
+    <section id="subnav">
+      <nav id="inside" style="left: 291.5px; top: 169px; display: none; height: 466px;">
+        <h4>Inside the CFPB</h4>
+        <ul>
+          <li>
+            <h5><a href="/the-bureau/" style="outline: none;">About us</a></h5>
+          </li>
+          <li>
+            <h5><a href="/jobs/">Jobs</a></h5>
+          </li>
+          <li>
+            <h5><a href="/contact-us/">Contact us</a></h5>
+          </li>
+          <li>
+            <h5><a href="/newsroom/">Newsroom</a></h5>
+          </li>
+          <li>
+            <h5><a href="/reports/">Reports</a></h5>
+          </li>
+          <li>
+            <h5><a href="/budget/">Budget and performance</a></h5>
+          </li>
+          <li>
+            <h5><a href="/strategic-plan/">Strategic plan</a></h5>
+          </li>
+          <li>
+            <h5><a href="/blog/">Blog</a></h5>
+          </li>
+          <li>
+            <h5><a href="/advisory-groups/">Advisory groups</a></h5>
+          </li>
+          <li>
+            <h5><a href="/doing-business-with-us/">Doing business with us</a></h5>
+          </li>
+        </ul>
+      </nav>
+      <nav id="assistance" style="">
+        <h4>Get assistance</h4>
+        <ul>
+          <li>
+            <h5><a href="/askcfpb/">Ask CFPB</a></h5>
+            <p>Get answers to your financial questions.</p>
+          </li>
+          <li>
+            <h5><a href="/paying-for-college/">Paying for College</a></h5>
+          </li>
+          <li>
+            <h5><a href="/owning-a-home/">Owning a Home</a></h5>
+          </li>
+          <li>
+            <h5><a href="/mortgagehelp/">Trouble paying your mortgage?</a></h5>
+          </li>
+          <li>
+            <h5><a href="https://help.consumerfinance.gov/app/account/complaints/list">Check the status of a complaint</a></h5>
+          </li>
+          <li>
+            <h5><a href="/fair-lending/">Protections against credit discrimination</a></h5>
+          </li>
+          <li>
+            <h5>Information for:</h5>
+            <ul>
+              <li><a href="/students/">Students</a></li>
+              <li><a href="/older-americans/">Older Americans</a></li>
+              <li><a href="/servicemembers/">Servicemembers and Veterans</a></li>
+              <li><a href="/small-financial-services-providers/">Community Banks &amp; Credit Unions</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <nav id="participate" style="">
+        <h4>Participate</h4>
+        <ul>
+          <li>
+            <h5>Know Before You Owe</h5>
+            <p>Making costs and risks clear.</p>
+            <ul>
+              <li><a href="/credit-cards/knowbeforeyouowe/">Credit cards</a></li>
+              <li><a href="/knowbeforeyouowe/">Mortgages</a></li>
+              <li><a href="/students/knowbeforeyouowe/">Student loans</a></li>
+            </ul>
+          </li>
+          <li>
+            <h5><a href="/your-story/">Tell your Story</a></h5>
+            <p>Help inform how we protect consumers &amp; create a fairer marketplace.</p>
+          </li>
+          <li>
+            <h5><a href="/complaintdatabase">Consumer Complaint Database</a></h5>
+          </li>
+          <li>
+            <h5><a href="/hmda">Home Mortgage Disclosure Act Database</a></h5>
+          </li>
+          <li>
+            <h5><a href="/open/">Open government</a></h5>
+            <ul>
+              <li><a href="/leadership-calendar/">Leadership calendar</a></li>
+              <li><a href="/foia/">FOIA</a></li>
+            </ul>
+          </li>
+          <li>
+            <h5><a href="/notice-and-comment/">Notice and comment</a></h5>
+            <p>Weigh in on current rulemakings.</p>
+          </li>
+        </ul>
+      </nav>
+      <nav id="regulation" style="">
+        <h4>Regulation</h4>
+        <ul>
+          <li>
+            <h5><a href="/guidance/supervision/manual/">Examination manual</a></h5>
+          </li>
+          <li>
+            <h5><a href="/guidance/">Guidance</a></h5>
+          </li>
+          <li>
+            <h5><a href="/notice-and-comment/">Notice and comment</a></h5>
+          </li>
+          <li>
+            <h5><a href="/regulations/">Regulations</a></h5>
+          </li>
+          <li>
+            <h5><a href="/regulatory-implementation/">Regulatory implementation</a></h5>
+          </li>
+          <li>
+            <h5><a href="/administrativeadjudication/">Administrative adjudication</a></h5>
+          </li>
+          <li>
+            <h5><a href="/amicus/">Amicus program</a></h5>
+          </li>
+        </ul>
+      </nav>
+      <nav id="alert" style="">
+        <h4>Submit a complaint</h4>
+        <ul>
+          <li>
+            <h5><a href="/complaint">Submit a complaint</a></h5>
+          </li>
+          <li>
+            <h5><a href="https://help.consumerfinance.gov/app/account/complaints/list">Check the status of your complaint</a></h5>
+          </li>
+          <li>
+            <h5><a href="/the-cfpb-wants-you-to-blow-the-whistle-on-lawbreakers/">Whistleblowers</a></h5>
+            <p>Confidentially report any wrongdoing you have observed.</p>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+
+  <!-- footer -->
+  <div class="nemo">
+    <footer id="footer" class="nemo" role="contentinfo">
+      <div>
+        <a href="/" class="noStyles">
+          <img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo-vert.png" alt="Consumer Financial Protection Bureau" title="CFPB">
+        </a>
+        <nav>
+          <ul>
+            <li><a href="/privacy-policy/">Privacy policy and legal notices</a></li>
+            <li><a href="/accessibility/">Accessibility</a></li>
+            <li><a href="/plain-writing/">Plain writing</a></li>
+            <li><a href="/no-fear-act/">No FEAR Act</a></li>
+            <li><a href="/foia/">FOIA</a></li>
+            <li><a href="/equal-employment-opportunity/whistleblowers/">Whistleblower Act</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <ul>
+            <li><a href="http://usa.gov/">USA.gov</a></li>
+            <li><a href="http://www.federalreserve.gov/oig/default.htm">Office of Inspector General</a></li>
+            <li><a href="/ombudsman/">Ombudsman</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <ul>
+            <li class="horizontal-list-item">
+              <a href="http://facebook.com/cfpb" class="noStyles">
+                <img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/fb_footer_icon.png" alt="Visit us on Facebook">
+              </a>&nbsp;&nbsp;</li>
+            <li class="horizontal-list-item">
+              <a href="http://twitter.com/cfpb" class="noStyles">
+                <img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/twitter_footer_icon.png" alt="Visit us on Twitter">
+              </a>&nbsp;&nbsp;</li>
+            <li class="horizontal-list-item">
+              <a href="http://youtube.com/CFPB" class="noStyles">
+                <img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/youtube_footer_icon.png" alt="Visit us on Youtube">
+              </a>&nbsp;&nbsp;</li>
+            <li class="horizontal-list-item">
+              <a href="http://flickr.com/cfpbphotos" class="noStyles">
+                <img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/flickr_footer_icon.png" alt="Visit us on Flickr">
+              </a>&nbsp;&nbsp;</li>
+            <li class="horizontal-list-item">
+              <a href="/feed/" class="noStyles">
+                <img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/rss_footer_icon.png" alt="Subscribe to updates with RSS">
+              </a>
+            </li>
+          </ul>
+          <p>Visite nuestro sitio web en español</p>
+          <p><a href="/es/" hreflang="es" class="link-button espanol-link">Español</a></p>
+        </nav>
+      </div>
+      <nav class="bottom">
+        <ul>
+          <li><a href="/contact-us/">Contact us</a></li>
+          <li><a href="/newsroom/">Newsroom</a></li>
+          <li><a href="/jobs/">Jobs</a></li>
+          <li><a href="/open/">Open government</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </div>
+
+  <script src='js/cricket.js'></script>
 </body>
 
 </html>

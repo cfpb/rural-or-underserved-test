@@ -1,3 +1,13 @@
+.border {
+    border-color: $gray-50;
+    border-style: solid;
+    border-width: 1px;
+}
+.border-2 {
+    border-color: $gray-50;
+    border-style: solid;
+    border-width: 2px;
+}
 .border-top {
     border-top-color: $gray-50;
     border-top-style: solid;
@@ -24,11 +34,24 @@
     border-top-style: solid;
     border-top-width: 2px;
 }
-
+.border-right-2 {
+    border-right-color: $gray-50;
+    border-right-style: solid;
+    border-right-width: 2px;
+}
 .border-bottom-2 {
     border-bottom-color: $gray-50;
     border-bottom-style: solid;
     border-bottom-width: 2px;
+}
+.border-left-2 {
+    border-left-color: $gray-50;
+    border-left-style: solid;
+    border-left-width: 2px;
+}
+
+.border-error {
+  border-color: $redorange;
 }
 
 .no-border {

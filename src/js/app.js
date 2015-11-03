@@ -73,7 +73,10 @@ $('#file').change(function(e) {
             },
             complete: function(results, file) {
                 if (addresses.length === 0) {
-                    fileInput.error('There are no rows in this csv. Please update and try again.');
+                    fileInput.error('- There are no rows in this csv. Please update and try again.');
+                }
+                if (addresses.length >= 250) {
+                    fileInput.error('- There are over 250 rows in the csv. We will only process the first 250 rows.');
                 }
             }
         },
