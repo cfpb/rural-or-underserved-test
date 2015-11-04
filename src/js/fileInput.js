@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
 var error = $('#fileError');
-var errorDesc = $('#errorDesc');
+var errorDesc = $('#fileErrorDesc');
 
 module.exports = function() {
     var fileInput = {};

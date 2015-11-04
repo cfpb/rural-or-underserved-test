@@ -1,5 +1,7 @@
 var $ = require('jquery');
 var count = require('./count');
+var errorContainer = $('#processError');
+var errorDesc = $('#processErrorDesc');
 
 var fullCountyList = require('../data/counties.json');
 
@@ -11,7 +13,7 @@ module.exports = function() {
     var geocode = function(address) {
         // api call
         $.ajax({
-            url: 'http://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?callback=censusAPI.callback',
+            url: 'http://geocoasdfding.geo.census.gov/geocoder/geographies/onelineaddress?callback=censusAPI.callback',
             dataType: 'jsonp',
             data: {
                 address: address,
@@ -22,7 +24,9 @@ module.exports = function() {
             }
         })
         .fail(function(jqXHR, textStatus) {
-            console.log(textStatus);
+          console.log(textStatus);
+            $('#processErrorDesc').append('<li>The query for <strong>' + address + '</strong> returned a 404.</li>');
+            $('#processError').removeClass('hide');
         });
     };
 
