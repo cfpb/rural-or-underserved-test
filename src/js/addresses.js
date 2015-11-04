@@ -91,7 +91,7 @@ module.exports = function() {
         // add the map link if needed
         if(result.rural != '-') {
             rowHTML = rowHTML
-                + ' <a href="#" class="hide-print jsLoadMap right" data-map="false" data-lat="' + result.x + '" data-lon="' + result.y + '" data-id="loc-' + mapID + '">Show map <span class="cf-icon cf-icon-plus-round"></span></a>'
+                + ' <a href="#" class="no-decoration hide-print jsLoadMap right" data-map="false" data-lat="' + result.x + '" data-lon="' + result.y + '" data-id="loc-' + mapID + '">Show map <span class="cf-icon cf-icon-plus-round"></span></a>'
         }
 
         rowHTML = rowHTML

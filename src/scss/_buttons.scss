@@ -66,3 +66,19 @@ button::before,
 .button-small {
     font-size: .75em;
 }
+
+.button-secondary {
+  color: $white;
+  background-color: $gray;
+
+  &:hover {
+    background: darken($gray, 10%);
+  }
+  &:active {
+    background: darken($gray, 15%);
+  }
+}
+
+a.button {
+  color: $white;
+}

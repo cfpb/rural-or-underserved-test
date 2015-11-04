@@ -18,7 +18,10 @@ strong {
 }
 
 a:link {
-    color: $pacific;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  color: $pacific;
+  text-decoration: none;
 }
 a:visited {
     color: $pacific;
@@ -27,9 +30,9 @@ a:hover {
     color: $redorange-80;
 }
 a.no-decoration {
-    border-bottom-style: dotted;
-    border-bottom-width: 1px;
-    text-decoration: none;
+  border-bottom-style: none;
+  border-bottom-width: 0;
+  text-decoration: none;
 }
 
 a {

@@ -193,13 +193,11 @@
     </section>
 
     <!-- results -->
-    <section id="results" class="group container margin-top-2 hide sans">
+    <section id="results" class="group container padding-top-2 margin-top-2 hide sans">
       <div class="group">
         <div class="col col-12">
-          <p class="inline-block right hide-print"><a href="#" id="link-about">Back to About</a></p>
+          <h1>Rural and underserved areas automated tool</h1>
         </div>
-      </div>
-      <div class="group">
         <div class="col col-8 full-print">
           <h2 id="countMessage">
             <strong class="counter" id="totalCnt">0</strong> /
@@ -208,111 +206,110 @@
           <h2 class="hide color-redorange" id="errorMessage"></h2>
         </div>
         <div class="col col-4 hide-print">
-          <button class="button button-small right" id="print" title="Print results">Print results</button>
-          <button class="margin-right-1 button button-small right" id="download" title="Download results" download="rural-underserved.csv">Download results</button>
+          <p class="inline-block right hide-print"><a class="button button-secondary no-decoration" href="#" id="link-about">Start a new search</a></p>
         </div>
       </div>
       <div class="group" id="results-total">
         <div class="col col-3">
-          <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter" href="#rural">0</a></h1>
+          <h1 class="super left inline-block  margin-right-quarter"><a class="ruralCnt no-decoration counter no-decoration" href="#rural">0</a></h1>
           <h4 class="inline-block half-width left padding-top-half">are designated as rural or underserved</h4>
         </div>
         <div class="col col-3">
-          <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration counter" href="#notRural">0</a></h1>
+          <h1 class="super left inline-block  margin-right-quarter"><a class="notRuralCnt no-decoration counter no-decoration" href="#notRural">0</a></h1>
           <h4 class="inline-block half-width left padding-top-half">are designated not as rural or underserved</h4>
         </div>
         <div class="col col-3">
-          <h1 class="super left inline-block margin-right-quarter"><a class="notFoundCnt no-decoration counter" href="#notFound">0</a></h1>
+          <h1 class="super left inline-block margin-right-quarter"><a class="notFoundCnt no-decoration counter no-decoration" href="#notFound">0</a></h1>
           <h4 class="inline-block half-width left padding-top-half">could not be identified</h4>
         </div>
         <div class="col col-3">
-          <h1 class="super left inline-block margin-right-quarter"><a class="duplicateCnt no-decoration counter" href="#duplicate">0</a></h1>
+          <h1 class="super left inline-block margin-right-quarter"><a class="duplicateCnt no-decoration counter no-decoration" href="#duplicate">0</a></h1>
           <h4 class="inline-block half-width left padding-top-half">identified as duplicates</h4>
+        </div>
+        <div class="col col-12 padding-top-1 padding-bottom-2">
+          <a class="margin-right-quarter" href="#" id="print" title="Print results">Print results</a> |
+          <a class="margin-left-quarter" href="#" id="download" title="Download results" download="rural-underserved.csv">Download results</a> <span class="cf-icon cf-icon-download"></span>
         </div>
       </div>
       <div class="group">
-        <div id="rural" class="js-table hide col col-12 padding-top-2">
-          <hr />
-          <h3>
-            <span class="ruralCnt counter">0</span> addresses are designated as rural or underserved for
+        <div id="rural" class="js-table hide col col-12 padding-top-2 padding-bottom-2">
+          <h2>
+            <strong><span class="ruralCnt counter">0</span></strong> addresses are designated as rural or underserved for
             <strong class="chosenYear"></strong>
-          </h3>
+          </h2>
           <p>There properties can count toward your safe harbor percentage of rural or underserved properties.</p>
 
           <table class="table" style="border-width: 1px;" width="100%">
             <thead>
               <tr>
-                <th>Address Entered</th>
-                <th>Address Identfied</th>
-                <th>County</th>
-                <th>Census Block</th>
-                <th>Rural or Underserved?</th>
+                <th width="26.5%">Address Entered</th>
+                <th width="26.5%">Address Identified</th>
+                <th width="10%">County</th>
+                <th width="15%">Census Block</th>
+                <th width="22%">Rural or Underserved?</th>
               </tr>
             </thead>
             <tbody class="data"></tbody>
           </table>
         </div>
 
-        <div id="notRural" class="js-table hide col col-12 padding-top-2">
-          <hr />
-          <h3>
-            <span class="notRuralCnt counter">0</span> addresses are
+        <div id="notRural" class="js-table hide col col-12 padding-top-2 padding-bottom-2">
+          <h2>
+            <strong><span class="notRuralCnt counter">0</span></strong> addresses are
             <strong>not</strong> designated as rural or underserved for
             <strong class="chosenYear"></strong>
-          </h3>
+          </h2>
           <p>There properties will
             <strong>not</strong> count toward your safe harbor percentage of rural or underserved properties.</p>
 
           <table class="table" style="border-width: 1px;" width="100%">
             <thead>
               <tr>
-                <th>Address Entered</th>
-                <th>Address Identfied</th>
-                <th>County</th>
-                <th>Census Block</th>
-                <th>Rural or Underserved?</th>
+                <th width="26.5%">Address Entered</th>
+                <th width="26.5%">Address Identified</th>
+                <th width="10%">County</th>
+                <th width="15%">Census Block</th>
+                <th width="22%">Rural or Underserved?</th>
               </tr>
             </thead>
             <tbody class="data"></tbody>
           </table>
         </div>
 
-        <div id="notFound" class="js-table hide col col-12 padding-top-2">
-          <hr />
-          <h3>
-            <span class="notFoundCnt counter">0</span> addresses could not be identified confidently</h3>
+        <div id="notFound" class="js-table hide col col-12 padding-top-2 padding-bottom-2">
+          <h2>
+            <strong><span class="notFoundCnt counter">0</span></strong> addresses could not be identified confidently</h2>
           <p>The locations of these addresses could not be identified because the information provided was not sufficient or because the information matches with multiple addresses.</p>
           <p>Select "Show details" for more information about what we have identified for each address.</p>
 
           <table class="table" style="border-width: 1px;" width="100%">
             <thead>
               <tr>
-                <th>Address Entered</th>
-                <th>Address Identfied</th>
-                <th>County</th>
-                <th>Census Block</th>
-                <th>Rural or Underserved?</th>
+                <th width="26.5%">Address Entered</th>
+                <th width="26.5%">Address Identified</th>
+                <th width="10%">County</th>
+                <th width="15%">Census Block</th>
+                <th width="22%">Rural or Underserved?</th>
               </tr>
             </thead>
             <tbody class="data"></tbody>
           </table>
         </div>
 
-        <div id="duplicate" class="js-table hide col col-12 padding-top-2">
-          <hr />
-          <h3>
-            <span class="duplicateCnt counter">0</span> addresses were identified as duplicates</h3>
+        <div id="duplicate" class="js-table hide col col-12 padding-top-2 padding-bottom-2">
+          <h2>
+            <strong><span class="duplicateCnt counter">0</span></strong> addresses were identified as duplicates</h2>
           <p>These addresses are included in your totals but have been identified as duplicates. Unless you have funded multiple, unrelated loans for the same address during the covered period, you should not include any address more than once. <a href="#learn-more">Learn more</a></p>
           <p>To update or remove the information for these addresses, start a new search.</p>
 
           <table class="table" style="border-width: 1px;" width="100%">
             <thead>
               <tr>
-                <th>Address Entered</th>
-                <th>Address Identfied</th>
-                <th>County</th>
-                <th>Census Block</th>
-                <th>Rural or Underserved?</th>
+                <th width="26.5%">Address Entered</th>
+                <th width="26.5%">Address Identified</th>
+                <th width="10%">County</th>
+                <th width="15%">Census Block</th>
+                <th width="22%">Rural or Underserved?</th>
               </tr>
             </thead>
             <tbody class="data"></tbody>

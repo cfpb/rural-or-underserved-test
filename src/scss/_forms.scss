@@ -16,6 +16,12 @@ input {
   margin: 0;
   vertical-align: middle;
 }
+input[type="text"]:focus {
+  border: 1px solid $pacific;
+  box-shadow: none;
+  outline: 1px solid $pacific;
+  outline-offset: 0;
+}
 
 select {
     border: 1px solid $gray-50;
