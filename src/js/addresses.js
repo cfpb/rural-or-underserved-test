@@ -24,9 +24,10 @@ module.exports = function() {
             }
         })
         .fail(function(jqXHR, textStatus) {
-          console.log(textStatus);
-            $('#processErrorDesc').append('<li>The query for <strong>' + address + '</strong> returned a 404.</li>');
+          if (jqXHR.status !== 200) {
+            $('#processErrorDesc').append('<li>The query for <strong>' + address + '</strong> returned a ' + jqXHR.status + '.</li>');
             $('#processError').removeClass('hide');
+          }
         });
     };
 
