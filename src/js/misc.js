@@ -78,22 +78,10 @@ var theCSV = '';
 var currentTable = '';
 var firstTable = true;
 function generateCSV() {
-  theCSV = '';
+  theCSV = 'Address Entered, Address Identified, County, Census Block, Rural or Underserved?' + '\n';
 
   // loop through each row
-  $('.table thead tr th, .table thead tr td, .table tbody tr td').each(function () {
-    // set the heading for csv
-    // one for each table
-    if (currentTable !== $(this).parents('.js-table').attr('id')) {
-      if (firstTable != true) { // for a new line after
-        theCSV = theCSV + '\n';
-      }
-      firstTable = false;
-      theCSV = theCSV + $(this).parents('.js-table').children('h3').text() + '\n';
-
-      currentTable = $(this).parents('.js-table').attr('id');
-    }
-
+  $('.table tbody tr td').each(function () {
     // add a data row
     if (!$(this).parents('.js-table').hasClass('hide')) { // if table isn't hidden (!)
       if(!$(this).attr('colspan')) { // map cols have colspan and we don't want those
