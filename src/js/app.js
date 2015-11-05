@@ -9,6 +9,7 @@ require('papaparse');
 require('./misc');
 require('./search-box');
 require('./header-nav');
+require('./expandables');
 
 window.censusAPI = {};
 
