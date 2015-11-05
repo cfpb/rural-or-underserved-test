@@ -106,7 +106,7 @@
       <div class="group sans">
         <!-- manual input -->
         <div class="col col-near-half padding-2 bg-gray border-2 margin-bottom-2">
-          <h5>Enter a property address</h5>
+          <h4>Enter addresses manually</h4>
           <form id="geocode">
             <legend>Include street address, city, state/territory and Zip code for up to
               <strong>10</strong> properties.</legend>
@@ -122,15 +122,19 @@
 
         <!-- batch input -->
         <div class="col col-near-half col-offset-near-half padding-2 bg-gray border-2 margin-bottom-2">
-          <h5>Batch upload</h5>
+          <h4>Upload a CSV file</h4>
           <form id="geocode-csv">
             <legend>
               Upload a CSV file with columns named Street Address, City, State, and Zip for up to <strong>250</strong> properties.
             </legend>
-            <p class="margin-top-1"><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
-            <fieldset class="fieldset-reset">
-              <input class="block margin-bottom-1" id="file" name="file" type="file" />
+            <fieldset class="fieldset-reset margin-top-1">
+              <div class="custom-file-input button button-secondary">
+                <span>Select file</span>
+                <input id="file" name="file" type="file" />
+              </div>
+              <input class="no-border" type="text" id="fileName" name="fileName" disabled="disabled" />
             </fieldset>
+            <p class="margin-top-1"><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
             <input class="button block" type="submit" value="Look up addresses" />
           </form>
         </div>

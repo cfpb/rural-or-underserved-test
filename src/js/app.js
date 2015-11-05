@@ -58,6 +58,14 @@ $('#file').change(function(e) {
     // clear text inputs
     textInput.clear();
 
+    // show file name
+    var uploadName = $('#file').val();
+    if (uploadName.indexOf('\\') > -1) {
+      uploadNameParts = uploadName.split('\\');
+      uploadName = uploadNameParts[uploadNameParts.length - 1];
+    }
+    $('#fileName').val(uploadName);
+
     $('#fileError').addClass('hide');
 
     // parse the csv to get the count
