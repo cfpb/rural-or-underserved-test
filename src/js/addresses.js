@@ -13,7 +13,7 @@ module.exports = function() {
     var geocode = function(address) {
         // api call
         $.ajax({
-            url: 'http://geocoasdfding.geo.census.gov/geocoder/geographies/onelineaddress?callback=censusAPI.callback',
+            url: 'http://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?callback=censusAPI.callback',
             dataType: 'jsonp',
             data: {
                 address: address,
