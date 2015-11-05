@@ -39,7 +39,7 @@ button,
     -webkit-appearance: none;
 
     &:hover {
-      background: $green;
+      background: darken($pacific, 10%);
     }
     &:active {
       background: darken($pacific, 15%);
