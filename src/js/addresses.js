@@ -1,5 +1,7 @@
 var $ = require('jquery');
 var count = require('./count');
+var errorContainer = $('#processError');
+var errorDesc = $('#processErrorDesc');
 
 var fullCountyList = require('../data/counties.json');
 
@@ -22,7 +24,10 @@ module.exports = function() {
             }
         })
         .fail(function(jqXHR, textStatus) {
-            console.log(textStatus);
+          if (jqXHR.status !== 200) {
+            $('#processErrorDesc').append('<li>The query for <strong>' + address + '</strong> returned a ' + jqXHR.status + '.</li>');
+            $('#processError').removeClass('hide');
+          }
         });
     };
 
