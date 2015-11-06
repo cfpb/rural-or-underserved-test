@@ -32,6 +32,12 @@ $max-width: 1170px;
 .col-9 {
     width: percentage(9/$columns);
 }
+.col-10 {
+    width: percentage(10/$columns);
+}
+.col-11 {
+    width: percentage(11/$columns);
+}
 .col-12 {
     width: percentage(12/$columns);
 }
