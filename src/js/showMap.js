@@ -20,7 +20,7 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
     $(this).parents('tr').children('td').addClass('no-border');
     // change text
     $(this).html('Hide map <span class="cf-icon cf-icon-minus-round"></span>');
-    
+
     // only show initiate the map the first time
     if (mapShown === false) {
       // set the map to true (won't try to initate again)
@@ -34,7 +34,7 @@ $('body').on('click', 'a.jsLoadMap', function(e) {
       map.doubleClickZoom.disable();
       map.scrollWheelZoom.disable();
       if (map.tap) map.tap.disable();
-      
+
       // add marker
       var marker = L.marker(latlng).addTo(map);
     }

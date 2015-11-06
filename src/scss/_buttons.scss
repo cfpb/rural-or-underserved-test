@@ -1,13 +1,33 @@
 $button-font-size: 16;
 $button-v-pad: 8;
 
+/*button,
+.button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #50a748;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  border-radius: 0.35em;
+  border: 1px outset #afafb3;
+  position: relative;
+  top: -1px;
+  padding: .45em .75em;
+  -webkit-transition: all 700ms ease;
+  -moz-transition: all 700ms ease;
+  transition: all 700ms ease;
+}*/
+
+button:disabled {
+  background-color: #a9dc93;
+}
+
 button,
 .button {
     background: $pacific;
     border: 0;
     border-radius: 2px;
     color: $white;
-    cursor: pointer;
+
     display: inline-block;
     font-family: 'AvenirNextLTW01-Regular';
     font-size: 1em;
@@ -45,5 +65,20 @@ button::before,
 
 .button-small {
     font-size: .75em;
-    padding: 3px 5px;
+}
+
+.button-secondary {
+  color: $white;
+  background-color: $gray;
+
+  &:hover {
+    background: darken($gray, 10%);
+  }
+  &:active {
+    background: darken($gray, 15%);
+  }
+}
+
+a.button {
+  color: $white;
 }

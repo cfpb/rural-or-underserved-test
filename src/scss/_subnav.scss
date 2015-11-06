@@ -1,0 +1,91 @@
+#subnav {
+  max-width: 976px;
+  margin: 0 auto;
+  padding: 1em 20px;
+  background-color: #fff;
+}
+
+.js #subnav {
+  width: auto;
+  padding: 0;
+  background-color: transparent;
+}
+
+#subnav nav {
+  display: inline-block;
+    /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+  vertical-align: top;
+  border: 1px solid #333;
+  padding: 0 1em;
+  background-color: #dbe6eb;
+  z-index: 100;
+}
+
+#subnav nav a {
+  color: #333;
+  border: none;
+  text-decoration: none;
+}
+
+#subnav nav h4 {
+  display: none;
+}
+
+#subnav nav ul {
+  margin: 1em 0;
+  width: 13em;
+  padding: 0;
+  list-style-type: none;
+}
+
+#subnav nav {
+  position: absolute;
+  top: 10.25em;
+  display: none;
+  border-top: none;
+}
+
+#subnav nav ul li {
+  border-bottom: 1px solid #afafb3;
+  padding: 0.5em;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+}
+
+#subnav nav ul li:last-child {
+  border-bottom: none;
+}
+
+#subnav nav ul li h5 {
+  margin: 0;
+}
+
+#subnav nav ul li p {
+  margin: 0;
+  font-size: 0.8333em;
+  color: #626263;
+}
+
+#subnav nav ul li ul li {
+  border-bottom: none;
+  padding: 0;
+  margin-top: 0.5em;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  word-wrap: normal;
+}
+
+#subnav .close {
+  font-size: 0.625em;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  display: block;
+  text-align: right;
+  padding-bottom: 1em;
+}
+
+#subnav a:hover,
+#subnav a:focus {
+  background-color: inherit;
+}

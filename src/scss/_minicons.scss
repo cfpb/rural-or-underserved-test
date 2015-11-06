@@ -21,15 +21,22 @@
 .lt-ie8 .cf-icon-plus-round {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e109');
 }
-.cf-icon-minus:before {
-  content: "\e110";
-}
-.lt-ie8 .cf-icon-minus {
-  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e110');
-}
 .cf-icon-minus-round:before {
   content: "\e111";
 }
 .lt-ie8 .cf-icon-minus-round {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e111');
+}
+
+.cf-icon-download:before  {
+  content: "\e406";
+}
+.lt-ie8 .cf-icon-download {
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e406');
+}
+
+a .cf-icon {
+  border-bottom-style: none;
+  border-bottom-width: 0;
+  text-decoration: none;
 }

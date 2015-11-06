@@ -7,12 +7,24 @@ $form-v-pad: 8;
     margin-right: 0;
     padding: 0;
 }
-input,
-select,
-textarea,
-fieldset {
+
+input {
+  font-size: 1em;
+  border: 1px solid #75787B;
+  padding: .375em;
+  background-color: #fff;
+  margin: 0;
+  vertical-align: middle;
+}
+input[type="text"]:focus {
+  border: 1px solid $pacific;
+  box-shadow: none;
+  outline: 1px solid $pacific;
+  outline-offset: 0;
+}
+
+select {
     border: 1px solid $gray-50;
-    border-radius: 2px;
     box-sizing: border-box;
     font-family: 'AvenirNextLTW01-Regular';
     font-size: 1em;
@@ -20,26 +32,8 @@ fieldset {
     margin-bottom: 0;
 }
 
-input[type=text],
-input[type=datetime],
-input[type=datetime-local],
-input[type=email],
-input[type=month],
-input[type=number],
-input[type=password],
-input[type=search],
-input[type=tel],
-input[type=time],
-input[type=url],
-input[type=week],
 input[type=file] {
-    height: 2em;
-    padding: ($form-v-pad/$form-font-size)*1em 14/$form-font-size*1em;
-    vertical-align: middle;
-    -webkit-appearance: none;
-}
-
-input[type=file] {
+    padding-bottom: .275em;
     width: 250px;
 }
 

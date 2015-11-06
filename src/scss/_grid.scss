@@ -1,5 +1,5 @@
 $columns: 12;
-$max-width: 1100px;
+$max-width: 1170px;
 
 .container {
     margin-left: auto;
@@ -11,11 +11,17 @@ $max-width: 1100px;
     float: left;
     box-sizing: border-box;
 }
+.col-2 {
+    width: percentage(2/$columns);
+}
 .col-3 {
     width: percentage(3/$columns);
 }
 .col-4 {
     width: percentage(4/$columns);
+}
+.col-5 {
+    width: percentage(5/$columns);
 }
 .col-6 {
     width: percentage(6/$columns);
@@ -28,4 +34,16 @@ $max-width: 1100px;
 }
 .col-12 {
     width: percentage(12/$columns);
+}
+
+.col-offset-2 {
+  margin-left: percentage(2/$columns);
+}
+
+.col-near-half {
+  width: 48%;
+}
+
+.col-offset-near-half {
+  margin-left: 2%;
 }

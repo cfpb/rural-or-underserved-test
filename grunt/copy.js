@@ -25,6 +25,12 @@ module.exports = {
                 src: ['data/*'],
                 dest: 'dist/',
                 expand: true,
+            },
+            {
+                cwd: 'src/',
+                src: ['csv-template.csv'],
+                dest: 'dist/',
+                expand: true,
             }
         ]
     },
@@ -52,6 +58,12 @@ module.exports = {
             {
                 cwd: 'src/',
                 src: ['data/*'],
+                dest: 'dist/',
+                expand: true,
+            },
+            {
+                cwd: 'src/',
+                src: ['csv-template.csv'],
                 dest: 'dist/',
                 expand: true,
             }

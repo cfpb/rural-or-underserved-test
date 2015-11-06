@@ -3,9 +3,14 @@ $base-line-height: 22px;
 
 body {
     color: $black;
-    font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
+    /*font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;*/
     font-size: 100%;
-    line-height: $base-line-height;
+    line-height: 1.375;
+}
+
+.sans {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
 }
 
 strong {
@@ -13,7 +18,10 @@ strong {
 }
 
 a:link {
-    color: $pacific;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  color: $pacific;
+  text-decoration: none;
 }
 a:visited {
     color: $pacific;
@@ -22,9 +30,44 @@ a:hover {
     color: $redorange-80;
 }
 a.no-decoration {
-    border-bottom-style: dotted;
-    border-bottom-width: 1px;
+  border-bottom-style: none;
+  border-bottom-width: 0;
+  text-decoration: none;
+}
+
+a {
+    border-bottom: 1px dotted #0071bc;
+    color: #0071bc;
+    padding-bottom: 0.1em;
     text-decoration: none;
+
+    &:visited,
+    &.visited {
+        border-color: #4c2c92;
+        color: #4c2c92;
+    }
+
+    &:hover,
+    &.hover {
+        color: #205493;
+    }
+
+    &:focus,
+    &.focus {
+        outline: thin dotted;
+    }
+
+    &:active,
+    &.active {
+        border-color: #046b99;
+        color: #046b99;
+    }
+  }
+
+hr {
+  border:none;
+  border-top: 1px solid $gray;
+  margin-bottom: 50px;
 }
 
 h1,
@@ -42,9 +85,10 @@ h6 {
 // line height calcs are eyeballed to 30px
 h1,
 .h1 { // 34px/44px
-    font-size: (34px/$base-font-size) * 1em;
-    line-height: (44/34);
-    margin-bottom: (16/34) * 1em;
+    font-size: 2.125em;
+    line-height: 1.29411765;
+    margin-top: 0;
+    margin-bottom: .47058824em;
 }
 
 h2,
@@ -74,7 +118,8 @@ h4,
 h5,
 .h5,
 h6,
-.h6 {
+.h6,
+th {
     font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
     font-style: normal;
     font-weight: bold;
