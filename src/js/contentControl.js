@@ -29,6 +29,8 @@ module.exports = function() {
     content.setup = function() {
         // set year
         $('.chosenYear').text($('#year').val());
+        $('.chosenYear1').text(Number($('#year').val()) + 1);
+        $('.chosenYear2').text(Number($('#year').val()) + 2);
         // set report generated date
         var date = new Date();
         var day = date.getDate();
@@ -42,7 +44,7 @@ module.exports = function() {
         this.resetHTML();
         this.showResults();
     }
-    
+
     content.showResults = function() {
         // hide about
         about.addClass('hide');
@@ -59,7 +61,7 @@ module.exports = function() {
 
         // hide the results
         results.addClass('hide');
-        
+
         hideData();
     }
 
