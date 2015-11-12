@@ -7,7 +7,7 @@ module.exports = function() {
     var fileInput = {};
 
     fileInput.clear = function() {
-        $('#file').val('');
+        $('#fileName').val('');
     }
 
     fileInput.error = function(message) {
