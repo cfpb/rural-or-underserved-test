@@ -127,7 +127,7 @@ $('#geocode-csv').submit(function(e) {
                 $('#rowCount').text(rowCount);
                 if (rowCount > 250) {
                   var leftOver = rowCount - 250;
-                  content.error('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
+                  fileInput.error('- There are over 250 rows in the csv. We will only process the first 250 rows.');
                 }
                 count.updateAddressCount(addresses.length);
                 address.process(addresses);

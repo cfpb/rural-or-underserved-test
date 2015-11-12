@@ -22,7 +22,8 @@ $('#link-about').click(function(e) {
   // reset counts
   count.reset();
   $('#fileError').addClass('hide');
-  $('#errorMessage').addClass('hide');
+  $('#processError').addClass('hide');
+  $('.js-error-message').html('');
   // clear tables
   contentControl.resetHTML();
 });
