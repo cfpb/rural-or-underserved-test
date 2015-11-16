@@ -17,7 +17,7 @@ describe('is adddress found', function() {
   });
 
   it('should be found', function() {
-    response.addressMatches.push(1);    
+    response.addressMatches.push(1);
     expect(isFound(response)).toBeTruthy();
   });
 });
