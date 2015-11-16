@@ -1,10 +1,9 @@
-var duplicates = [];
+module.exports = function(address, duplicates) {
+  var pass = false;
 
-module.exports = function(address) {
-  if (duplicates.indexOf(address) !== -1) {
-      return true;
-  } else {
-      duplicates.push(address);
-      return false;
+  if (typeof address === 'string' && Array.isArray(duplicates) && duplicates.indexOf(address) !== -1) {
+    pass = true;
   }
+
+  return pass;
 };

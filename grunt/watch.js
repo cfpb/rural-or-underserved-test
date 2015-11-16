@@ -5,7 +5,7 @@ module.exports = {
     },
     scripts: {
         files: 'src/js/*.js',
-        tasks: ['browserify:dev']
+        tasks: ['browserify:dev', 'browserify:specs', 'jasmine:dev']
     },
     html: {
         files: 'src/*.html',
@@ -23,6 +23,6 @@ module.exports = {
     },
     specs: {
       files: 'test/*Spec.js',
-      tasks: ['jasmine:dev']
+      tasks: ['browserify:specs', 'jasmine:dev']
     }
 }

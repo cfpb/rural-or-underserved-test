@@ -1,12 +1,12 @@
 module.exports = {
   dev: {
-    src : 'dist/js/cricket.js',
+    src : [],
     options : {
       specs : 'test/specs.js'
     }
   },
   coverage: {
-    src : 'dist/js/cricket.js',
+    src : [],
     options : {
       specs : 'test/specs.js',
 
