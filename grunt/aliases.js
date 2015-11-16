@@ -15,5 +15,9 @@ module.exports = {
   'test': [
     'browserify:specs',
     'jasmine:dev'
+  ],
+  'coverage': [
+    'browserify:specs',
+    'jasmine:coverage'
   ]
 };

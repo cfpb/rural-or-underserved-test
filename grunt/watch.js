@@ -20,5 +20,9 @@ module.exports = {
             'dist/*.html',
             'dist/js/cricket.js'
         ]
+    },
+    specs: {
+      files: 'test/*Spec.js',
+      tasks: ['jasmine:dev']
     }
 }
