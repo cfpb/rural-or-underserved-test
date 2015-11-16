@@ -13,7 +13,7 @@ module.exports = {
     'uglify'
   ],
   'test': [
-    'browserify',
+    'browserify:specs',
     'jasmine:dev'
   ]
 };

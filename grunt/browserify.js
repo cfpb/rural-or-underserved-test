@@ -11,7 +11,7 @@ module.exports = {
     },
     specs: {
       files: {
-        'test/specs.js': ['test/*Specs.js']
+        'test/specs.js': ['test/*Spec.js']
       }
     }
 }

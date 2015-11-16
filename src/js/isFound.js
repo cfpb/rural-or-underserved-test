@@ -1,7 +1,8 @@
 module.exports = function(response) {
-  if (response.addressMatches.length !== 0) {
-      return true;
-  } else {
-      return false;
+  var pass =false;
+  var match =response.addressMatches;
+  if (Array.isArray(match) && match.length !== 0) {
+        pass =true;
   }
+  return pass;
 };
