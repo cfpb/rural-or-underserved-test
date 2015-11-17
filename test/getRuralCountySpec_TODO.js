@@ -2,6 +2,7 @@ var counties = require('../src/js/getRuralCounties');
 
 describe('did ajax call respond', function() {
   var countyList;
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
   beforeEach(function(done) {
     counties('2015', function(data) {
@@ -15,5 +16,5 @@ describe('did ajax call respond', function() {
     expect(countyList).not.toEqual({});
     expect(countyList).not.toBeUndefined();
     done();
-  }, 1200);
+  });
 });
