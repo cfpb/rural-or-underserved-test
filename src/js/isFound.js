@@ -5,6 +5,5 @@ module.exports = function(response) {
   if (Array.isArray(match) && match.length !== 0) {
     pass = true;
   }
-  
   return pass;
 };
