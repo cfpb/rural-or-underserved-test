@@ -44,13 +44,6 @@ module.exports = {
             },
             {
                 cwd: 'src/',
-                src: ['*.html'],
-                dest: 'dist/',
-                expand: true,
-                flatten: true
-            },
-            {
-                cwd: 'src/',
                 src: ['fonts/*'],
                 dest: 'dist/',
                 expand: true,
