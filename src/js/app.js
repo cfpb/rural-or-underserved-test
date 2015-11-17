@@ -1,9 +1,18 @@
 var $ = require('jquery');
 var content = require('./contentControl');
-var address = require('./addresses');
+var addressRender = require('./addressRender');
 var count = require('./count');
 var textInput = require('./textInputs');
 var fileInput = require('./fileInput');
+
+var census = require('./callCensus');
+var isDup = require('./isDup');
+var isFound = require('./isFound');
+var ruralCounties = require('./getRuralCounties');
+var isInCounty = require('./isInCounty');
+var countyName = require('./setCountyName');
+var isUrban = require('./isUrban');
+
 require('./showMap');
 require('papaparse');
 require('./misc');
@@ -11,44 +20,98 @@ require('./search-box');
 require('./header-nav');
 require('./expandables');
 
-window.censusAPI = {};
+var censusResponse;
 
-censusAPI.callback = function(data) {
-    var input = data.result.input.address.address;
+window.callbacks = {};
 
-    // check if found in api
-    var result = address.isFound(data.result);
+callbacks.censusAPI = function(data) {
+  censusResponse = data;
 
-    // if nothing found, render a not found
-    if (result) {
-        // render
-        address.render(result);
-        count.updateCount(result.type);
-    } else { // api returned a match
-        // check for rural or underserved
-        address.isRural(data.result, $('#year').val());
+  if (isFound(data.result)) {
+    ruralCounties($('#year').val(), callbacks.getRuralCounties);
+  } else {
+    var result = {};
+    result.input = data.result.input.address.address;
+    result.address = 'Address not identfied';
+    result.countyName = '-';
+    result.block = '-';
+    result.rural = '-';
+    result.type = 'notFound';
+    count.updateCount(result.type);
+    addressRender(result);
+  }
+}
+
+callbacks.getRuralCounties = function(data) {
+  var result = {};
+  result.input = censusResponse.result.input.address.address;
+  result.address = censusResponse.result.addressMatches[0].matchedAddress;
+  result.block = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK;
+  result.x = censusResponse.result.addressMatches[0].coordinates.x;
+  result.y = censusResponse.result.addressMatches[0].coordinates.y;
+
+  var fips = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].STATE + censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
+  result.countyName = countyName(fips);
+
+  if(isInCounty(fips, data)) {
+    result.rural = 'Yes';
+    result.type = 'rural';
+  } else {
+    var urbanClusters = censusResponse.result.addressMatches[0].geographies['Urban Clusters'];
+    var urbanAreas = censusResponse.result.addressMatches[0].geographies['Urbanized Areas'];
+
+    if(isUrban(urbanClusters, urbanAreas)) {
+      result.rural = 'Yes';
+      result.type = 'rural';
+    } else {
+      result.rural = 'No';
+      result.type = 'notRural';
     }
+  }
+
+  addressRender(result);
+  count.updateCount(result.type);
+}
+
+processAddresses = function(addresses) {
+  duplicates = [];
+
+  $.each(addresses, function(index, address) {
+    // if its not dup
+    if (!isDup(address, duplicates)) {
+      census(address, 'callbacks.censusAPI');
+      duplicates.push(address);
+    } else {
+      // setup the result to render
+      var result = {};
+      result.input = address;
+      result.address = 'Duplicate';
+      result.countyName = '-';
+      result.block = '-';
+      result.rural = '-';
+      result.type = 'duplicate';
+      addressRender(result);
+      count.updateCount(result.type);
+    }
+  });
 }
 
 // on submit
 $('#geocode').submit(function(e) {
+  var addresses = [];
 
-    content.setup();
+  content.setup();
+  document.location.hash = 'results';
 
-    document.location.hash = 'results';
+  $('.input-address').each(function(index) {
+      if ($(this).val() !== '') {
+          addresses.push($(this).val());
+      }
+  });
 
-    var addresses = [];
-
-    $('.input-address').each(function(index) {
-        if ($(this).val() !== '') {
-            addresses.push($(this).val());
-        }
-    });
-
-    count.updateAddressCount(addresses.length);
-    address.process(addresses);
-
-    return false;
+  count.updateAddressCount(addresses.length);
+  processAddresses(addresses);
+  return false;
 });
 
 // when file upload is used
