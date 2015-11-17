@@ -193,7 +193,7 @@ $('#geocode-csv').submit(function(e) {
                   fileInput.error('- There are over 250 rows in the csv. We will only process the first 250 rows.');
                 }
                 count.updateAddressCount(addresses.length);
-                address.process(addresses);
+                processAddresses(addresses);
             }
         }
     });
