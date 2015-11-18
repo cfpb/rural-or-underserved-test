@@ -17,6 +17,7 @@ module.exports = {
     'jasmine:dev'
   ],
   'coverage': [
+    'browserify:dev',
     'browserify:specs',
     'jasmine:coverage'
   ]

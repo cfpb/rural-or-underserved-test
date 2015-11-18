@@ -3,9 +3,6 @@ var addressRender = require('../src/js/addressRender');
 describe('adding a row and diplaying a table', function() {
   jasmine.getFixtures().fixturesPath = 'test/fixtures';
   var testResult = {};
-  beforeEach(function(){
-
-  });
 
   it('table container should be visible and table should have a row', function() {
     testResult.input = 'test address';
