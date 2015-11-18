@@ -2,7 +2,13 @@ module.exports = {
   dev: {
     src : [],
     options : {
-      specs : 'test/specs.js'
+      specs : 'test/specs.js',
+      vendor: [
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+      ],
+      '--web-security': false,
+      '--local-to-remote-url-access' : true
     }
   },
   coverage: {
@@ -14,6 +20,10 @@ module.exports = {
         coverage: 'coverage/coverage.json',
         report: 'coverage'
       },
+      vendor: [
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+      ],
       '--web-security': false,
       '--local-to-remote-url-access' : true
     }
