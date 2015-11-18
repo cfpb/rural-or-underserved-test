@@ -9285,6 +9285,7 @@ module.exports = function() {
 
         $('#fileError').addClass('hide');
         $('#errorMessage').addClass('hide');
+
         count.reset();
         this.resetHTML();
         this.showResults();
@@ -9375,7 +9376,6 @@ module.exports = function(response) {
 
 },{}],8:[function(require,module,exports){
 module.exports = function(fips, counties) {
-  console.log('isInCounty');
   var pass = false;
 
   for (i in counties.fips) {
@@ -9519,7 +9519,7 @@ describe('controlling content', function() {
     expect($('#about')).toHaveClass('hide');
   });
 
-  
+
 });
 
 },{"../src/js/contentControl":4}],13:[function(require,module,exports){

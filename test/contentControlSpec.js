@@ -45,5 +45,5 @@ describe('controlling content', function() {
     expect($('#about')).toHaveClass('hide');
   });
 
-  
+
 });
