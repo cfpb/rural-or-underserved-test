@@ -14,6 +14,8 @@ $('#add-another').click(function(e) {
 $('#link-about').click(function(e) {
   document.location.hash = '';
   e.preventDefault();
+  $('#fileError').addClass('hide');
+  $('#fileErrorDesc').html('');
   // show about content
   contentControl.showAbout();
   // clear remove inputs
