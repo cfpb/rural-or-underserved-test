@@ -1,8 +1,5 @@
 var $ = require('jquery');
 
-var error = $('#fileError');
-var errorDesc = $('#fileErrorDesc');
-
 module.exports = function() {
     var fileInput = {};
 
@@ -11,8 +8,8 @@ module.exports = function() {
     }
 
     fileInput.error = function(message) {
-        errorDesc.html(message);
-        error.removeClass('hide');
+        $('#fileErrorDesc').html(message);
+        $('#fileError').removeClass('hide');
     }
 
     return fileInput;

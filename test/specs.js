@@ -9251,6 +9251,107 @@ module.exports = function(result) {
 }
 
 },{"jquery":1}],4:[function(require,module,exports){
+var $ = require('jquery');
+var count = require('./count');
+
+var monthNames = [
+    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
+
+module.exports = function() {
+
+    function hideData() {
+        // hide the data sections
+        // these get shown as needed in addresses.js (render)
+        $('#rural').addClass('hide');
+        $('#notRural').addClass('hide');
+        $('#duplicate').addClass('hide');
+        $('#notFound').addClass('hide');
+    }
+
+    var content = {};
+
+    content.setup = function() {
+        // set year
+        $('.chosenYear').text($('#year').val());
+        $('.chosenYear1').text(Number($('#year').val()) + 1);
+        $('.chosenYear2').text(Number($('#year').val()) + 2);
+        // set report generated date
+        var date = new Date();
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
+
+        $('#fileError').addClass('hide');
+        $('#errorMessage').addClass('hide');
+        count.reset();
+        this.resetHTML();
+        this.showResults();
+    }
+
+    content.showResults = function() {
+        // hide about
+        $('#about').addClass('hide');
+
+        hideData();
+
+        // show the results
+        $('#results').removeClass('hide');
+    }
+
+    content.showAbout = function() {
+        // show about
+        $('#about').removeClass('hide');
+
+        // hide the results
+        $('#results').addClass('hide');
+
+        hideData();
+    }
+
+    content.resetHTML = function() {
+        // clear the body of all the tables (data)
+        $('tbody').html('');
+    }
+
+    content.error = function(message) {
+        $('#errorMessage').html(message);
+        $('#errorMessage').removeClass('hide');
+    }
+
+    return content;
+}();
+
+},{"./count":5,"jquery":1}],5:[function(require,module,exports){
+var $ = require('jquery');
+
+module.exports = function() {
+    var counters = {};
+
+    counters.reset = function() {
+        $('.counter').html('0');
+    }
+
+    counters.updateAddressCount = function(number) {
+        $('#addressCount').text(number);
+    }
+
+    counters.updateCount = function(type) {
+        // add one to correct type
+        var typeCount = parseInt($('a.' + type + 'Cnt').text());
+        typeCount++;
+        $('.' + type + 'Cnt').text(typeCount);
+        
+        // add one to the total
+        var totalCount = parseInt($('#totalCnt').text());
+        totalCount++;
+        $('#totalCnt').text(totalCount);
+    }
+
+    return counters;
+}();
+},{"jquery":1}],6:[function(require,module,exports){
 module.exports = function(address, duplicates) {
   var pass = false;
 
@@ -9261,7 +9362,7 @@ module.exports = function(address, duplicates) {
   return pass;
 };
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = function(response) {
   var pass = false;
   var match = response.addressMatches;
@@ -9272,7 +9373,7 @@ module.exports = function(response) {
   return pass;
 };
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 module.exports = function(fips, counties) {
   console.log('isInCounty');
   var pass = false;
@@ -9289,7 +9390,7 @@ module.exports = function(fips, counties) {
   return pass;
 };
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = function(urbanClusters, urbanAreas) {
   var pass = false;
 
@@ -9300,7 +9401,7 @@ module.exports = function(urbanClusters, urbanAreas) {
   return pass;
 };
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var fullCountyList = require('../data/counties.json');
 
 module.exports = function(fipsCode) {
@@ -9321,7 +9422,7 @@ module.exports = function(fipsCode) {
   return countyName;
 };
 
-},{"../data/counties.json":2}],9:[function(require,module,exports){
+},{"../data/counties.json":2}],11:[function(require,module,exports){
 var addressRender = require('../src/js/addressRender');
 
 describe('adding a row and diplaying a table', function() {
@@ -9370,7 +9471,58 @@ describe('adding a row and diplaying a table', function() {
   });
 });
 
-},{"../src/js/addressRender":3}],10:[function(require,module,exports){
+},{"../src/js/addressRender":3}],12:[function(require,module,exports){
+var content = require('../src/js/contentControl');
+
+describe('controlling content', function() {
+  jasmine.getFixtures().fixturesPath = 'test/fixtures';
+
+  beforeEach(function(){
+    loadFixtures('aboutAndResults.html');
+  });
+
+  it('show and hide results and about', function() {
+    content.showResults();
+    expect($('#results')).not.toHaveClass('hide');
+    expect($('#about')).toHaveClass('hide');
+    expect($('#rural')).toHaveClass('hide');
+    expect($('#notRural')).toHaveClass('hide');
+    expect($('#notFound')).toHaveClass('hide');
+    expect($('#duplicate')).toHaveClass('hide');
+
+    content.showAbout();
+    expect($('#about')).not.toHaveClass('hide');
+    expect($('#results')).toHaveClass('hide');
+    expect($('#rural')).toHaveClass('hide');
+    expect($('#notRural')).toHaveClass('hide');
+    expect($('#notFound')).toHaveClass('hide');
+    expect($('#duplicate')).toHaveClass('hide');
+  });
+
+  it('reset all tbody to empty string', function() {
+    content.resetHTML();
+    expect($('tbody')).toBeEmpty();
+  });
+
+  it('sets up everything for results', function() {
+    content.setup();
+    expect($('.chosenYear')).toContainText('2015');
+    expect($('.chosenYear1')).toContainText('2016');
+    expect($('.chosenYear2')).toContainText('2017');
+
+    expect($('#fileError')).toHaveClass('hide');
+    expect($('#errorMessage')).toHaveClass('hide');
+
+    expect($('tbody')).toBeEmpty();
+
+    expect($('#results')).not.toHaveClass('hide');
+    expect($('#about')).toHaveClass('hide');
+  });
+
+  
+});
+
+},{"../src/js/contentControl":4}],13:[function(require,module,exports){
 var isDup = require('../src/js/isDup');
 
 describe('is adddress duplicate', function() {
@@ -9403,7 +9555,7 @@ describe('is adddress duplicate', function() {
 
 });
 
-},{"../src/js/isDup":4}],11:[function(require,module,exports){
+},{"../src/js/isDup":6}],14:[function(require,module,exports){
 var isFound = require('../src/js/isFound');
 
 describe('is adddress found', function() {
@@ -9429,7 +9581,7 @@ describe('is adddress found', function() {
   });
 });
 
-},{"../src/js/isFound":5}],12:[function(require,module,exports){
+},{"../src/js/isFound":7}],15:[function(require,module,exports){
 var counties = require('../src/js/isInCounty');
 
 describe('is adddress in rural county', function() {
@@ -9456,7 +9608,7 @@ describe('is adddress in rural county', function() {
 
 });
 
-},{"../src/js/isInCounty":6}],13:[function(require,module,exports){
+},{"../src/js/isInCounty":8}],16:[function(require,module,exports){
 var isUrban = require('../src/js/isUrban');
 
 describe('is adddress urban', function() {
@@ -9482,7 +9634,7 @@ describe('is adddress urban', function() {
 
 });
 
-},{"../src/js/isUrban":7}],14:[function(require,module,exports){
+},{"../src/js/isUrban":9}],17:[function(require,module,exports){
 var county = require('../src/js/setCountyName');
 
 describe('set county name', function() {
@@ -9511,4 +9663,4 @@ describe('set county name', function() {
   });
 });
 
-},{"../src/js/setCountyName":8}]},{},[9,10,11,12,13,14]);
+},{"../src/js/setCountyName":10}]},{},[11,12,13,14,15,16,17]);
