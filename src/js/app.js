@@ -69,6 +69,8 @@ callbacks.getRuralCounties = function(data) {
     }
   }
 
+  result.id = Date.now();
+
   addressRender(result);
   count.updateCount(result.type);
 }
