@@ -2,7 +2,7 @@ var $ = require('jquery');
 var content = require('./contentControl');
 var addressRender = require('./addressRender');
 var count = require('./count');
-var textInput = require('./textInputs');
+var textInputs = require('./textInputs');
 var fileInput = require('./fileInput');
 
 var census = require('./callCensus');
@@ -122,17 +122,16 @@ $('#file').change(function(e) {
     var addresses = [];
 
     // clear text inputs
-    textInput.clear();
+    textInputs.reset();
 
     // show file name
-    var uploadName = $('#file').val();
-    if (uploadName.indexOf('\\') > -1) {
-      uploadNameParts = uploadName.split('\\');
-      uploadName = uploadNameParts[uploadNameParts.length - 1];
-    }
-    $('#fileName').val(uploadName);
+    //var uploadName = $('#file').val();
 
-    $('#fileError').addClass('hide');
+    fileInput.setFileName(fileInput.getUploadName($('#file').val()));
+
+    //$('#fileName').val(fileInput.getUploadName($('#file').val()));
+
+    fileInput.resetError();
 
     // parse the csv to get the count
     $('#file').parse( {
@@ -147,10 +146,11 @@ $('#file').change(function(e) {
             },
             complete: function(results, file) {
                 if (addresses.length === 0) {
-                    fileInput.error('- There are no rows in this csv. Please update and try again.');
+                  fileInput.setError('- There are no rows in this csv. Please update and try again.');
                 }
                 if (addresses.length >= 250) {
-                    fileInput.error('- There are over 250 rows in the csv. We will only process the first 250 rows.');
+                  var leftOver = addresses.length - 250;
+                  fileInput.setError('You entered ' + addresses.length + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
                 }
             }
         },
@@ -169,7 +169,7 @@ $('#geocode-csv').submit(function(e) {
     document.location.hash = 'results';
 
     // clear remove inputs, except the first one
-    textInput.clear();
+    textInputs.reset();
 
     var addresses = [];
 
@@ -193,7 +193,7 @@ $('#geocode-csv').submit(function(e) {
                 if (rowCount > 250) {
                   var leftOver = rowCount - 250;
 
-                  fileInput.error('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
+                  fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
                 }
                 count.updateAddressCount(addresses.length);
                 processAddresses(addresses);
