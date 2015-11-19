@@ -9353,6 +9353,46 @@ module.exports = function() {
     return counters;
 }();
 },{"jquery":1}],6:[function(require,module,exports){
+var $ = require('jquery');
+
+module.exports = function() {
+    var fileInput = {};
+
+    var uploadName = '';
+
+    fileInput.resetFileName = function() {
+      $('#fileName').val('');
+    }
+
+    fileInput.setFileName = function(filename) {
+      $('#fileName').val(filename);
+    }
+
+    fileInput.resetError = function() {
+      $('#fileErrorDesc').html('');
+      $('#fileError').addClass('hide');
+    }
+
+    fileInput.setError = function(message) {
+        $('#fileErrorDesc').html(message);
+        $('#fileError').removeClass('hide');
+    }
+
+    fileInput.getUploadName = function(filename) {
+      var uploadName = filename;
+      if (uploadName.indexOf('\\') > -1) {
+        uploadNameParts = uploadName.split('\\');
+        uploadName = uploadNameParts[uploadNameParts.length - 1];
+      }
+
+      return uploadName;
+    }
+
+    return fileInput;
+
+}();
+
+},{"jquery":1}],7:[function(require,module,exports){
 module.exports = function(address, duplicates) {
   var pass = false;
 
@@ -9363,7 +9403,7 @@ module.exports = function(address, duplicates) {
   return pass;
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 module.exports = function(response) {
   var pass = false;
   var match = response.addressMatches;
@@ -9374,7 +9414,7 @@ module.exports = function(response) {
   return pass;
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = function(fips, counties) {
   var pass = false;
 
@@ -9390,7 +9430,7 @@ module.exports = function(fips, counties) {
   return pass;
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = function(urbanClusters, urbanAreas) {
   var pass = false;
 
@@ -9401,7 +9441,7 @@ module.exports = function(urbanClusters, urbanAreas) {
   return pass;
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var fullCountyList = require('../data/counties.json');
 
 module.exports = function(fipsCode) {
@@ -9422,15 +9462,68 @@ module.exports = function(fipsCode) {
   return countyName;
 };
 
-},{"../data/counties.json":2}],11:[function(require,module,exports){
+},{"../data/counties.json":2}],12:[function(require,module,exports){
+var $ = require('jquery');
+
+module.exports = function() {
+    var textInputs = {};
+
+    textInputs.count = 1;
+
+    textInputs.reset = function() {
+      textInputs.count = 1;
+
+      $('.input-address').each(function(index) {
+          if ($(this).attr('id') !== 'address1') {
+              $(this).remove();
+          } else {
+              $(this).val('').removeClass('error');
+          }
+      });
+
+      $('#add-another').removeClass('hide');
+    }
+
+    textInputs.add = function() {
+      textInputs.count++;
+
+      if (textInputs.count === 10) {
+        $('#add-another').addClass('hide');
+      }
+
+      var previous = textInputs.count - 1;
+
+      if ($('#address' + previous).val() === '') {
+          $('#address' + previous).addClass('error');
+      } else {
+          $('#address' + previous).removeClass('error');
+      }
+
+      $('#address1').clone(true)
+        .appendTo('.input-container')
+        .attr('id', 'address' + textInputs.count)
+        .val('')
+        .focus();
+    }
+
+    textInputs.toggleError = function(e) {
+      if ($(e.target).val() === '') {
+          $(e.target).addClass('error');
+      } else {
+          $(e.target).removeClass('error');
+      }
+    }
+
+    return textInputs;
+
+}();
+
+},{"jquery":1}],13:[function(require,module,exports){
 var addressRender = require('../src/js/addressRender');
 
 describe('adding a row and diplaying a table', function() {
   jasmine.getFixtures().fixturesPath = 'test/fixtures';
   var testResult = {};
-  beforeEach(function(){
-
-  });
 
   it('table container should be visible and table should have a row', function() {
     testResult.input = 'test address';
@@ -9471,7 +9564,7 @@ describe('adding a row and diplaying a table', function() {
   });
 });
 
-},{"../src/js/addressRender":3}],12:[function(require,module,exports){
+},{"../src/js/addressRender":3}],14:[function(require,module,exports){
 var content = require('../src/js/contentControl');
 
 describe('controlling content', function() {
@@ -9522,7 +9615,50 @@ describe('controlling content', function() {
 
 });
 
-},{"../src/js/contentControl":4}],13:[function(require,module,exports){
+},{"../src/js/contentControl":4}],15:[function(require,module,exports){
+fileInput = require('../src/js/fileInput');
+
+describe('file input', function() {
+  jasmine.getFixtures().fixturesPath = 'test/fixtures';
+  var filename;
+  var error;
+  beforeEach(function(){
+    loadFixtures('fileInput.html');
+  });
+
+  it('should return the filename', function() {
+    filename = 'C:\\FakePath\\filename.csv';
+    expect(fileInput.getUploadName(filename)).toBe('filename.csv');
+    filename = 'test.csv';
+    expect(fileInput.getUploadName(filename)).toBe('test.csv');
+  });
+
+  it('should set the filename', function() {
+    filename = 'test.csv';
+    fileInput.setFileName(filename);
+    expect($('#fileName')).toHaveValue('test.csv');
+  });
+
+  it('should REset the filename', function() {
+    fileInput.resetFileName();
+    expect($('#fileName')).toHaveValue('');
+  });
+
+  it('should set the file error', function() {
+    error = 'This is an error';
+    fileInput.setError(error);
+    expect($('#fileErrorDesc')).toContainText('This is an error');
+    expect($('#fileError')).not.toHaveClass('hide');
+  });
+
+  it('should REset the file error', function() {
+    fileInput.resetError();
+    expect($('#fileErrorDesc')).toContainText('');
+    expect($('#fileError')).toHaveClass('hide');
+  });
+});
+
+},{"../src/js/fileInput":6}],16:[function(require,module,exports){
 var isDup = require('../src/js/isDup');
 
 describe('is adddress duplicate', function() {
@@ -9555,7 +9691,7 @@ describe('is adddress duplicate', function() {
 
 });
 
-},{"../src/js/isDup":6}],14:[function(require,module,exports){
+},{"../src/js/isDup":7}],17:[function(require,module,exports){
 var isFound = require('../src/js/isFound');
 
 describe('is adddress found', function() {
@@ -9581,7 +9717,7 @@ describe('is adddress found', function() {
   });
 });
 
-},{"../src/js/isFound":7}],15:[function(require,module,exports){
+},{"../src/js/isFound":8}],18:[function(require,module,exports){
 var counties = require('../src/js/isInCounty');
 
 describe('is adddress in rural county', function() {
@@ -9608,7 +9744,7 @@ describe('is adddress in rural county', function() {
 
 });
 
-},{"../src/js/isInCounty":8}],16:[function(require,module,exports){
+},{"../src/js/isInCounty":9}],19:[function(require,module,exports){
 var isUrban = require('../src/js/isUrban');
 
 describe('is adddress urban', function() {
@@ -9634,7 +9770,7 @@ describe('is adddress urban', function() {
 
 });
 
-},{"../src/js/isUrban":9}],17:[function(require,module,exports){
+},{"../src/js/isUrban":10}],20:[function(require,module,exports){
 var county = require('../src/js/setCountyName');
 
 describe('set county name', function() {
@@ -9663,4 +9799,61 @@ describe('set county name', function() {
   });
 });
 
-},{"../src/js/setCountyName":10}]},{},[11,12,13,14,15,16,17]);
+},{"../src/js/setCountyName":11}],21:[function(require,module,exports){
+inputs = require('../src/js/textInputs');
+
+describe('text input', function() {
+  jasmine.getFixtures().fixturesPath = 'test/fixtures';
+  var e = {};
+  beforeEach(function(){
+    loadFixtures('textInput.html');
+  });
+
+  it('should add another input and remove #add-another after 10', function() {
+    expect($('#address1')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address2')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address3')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address4')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address5')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address6')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address7')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address8')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address9')[0]).toBeInDOM();
+    inputs.add();
+    expect($('#address10')[0]).toBeInDOM();
+    expect($('#add-another')).toHaveClass('hide');
+  });
+
+  it('should remove all but 1', function() {
+    inputs.reset();
+    expect($('#address1')[0]).toBeInDOM();
+    expect($('#address2')[0]).not.toBeInDOM();
+    expect($('#add-another')).not.toHaveClass('hide');
+    expect($('#address1')[0]).not.toHaveClass('error');
+  });
+
+  it('should have error', function() {
+    e.target = $('#address1');
+    inputs.toggleError(e);
+    expect($('#address1')[0]).toBeInDOM();
+    expect($('#address1')[0]).toHaveClass('error');
+  });
+
+  it('should not have error', function() {
+    e.target = $('#address1');
+    $('#address1').val('something');
+    inputs.toggleError(e);
+    expect($('#address1')[0]).toBeInDOM();
+    expect($('#address1')[0]).not.toHaveClass('error');
+  });
+});
+
+},{"../src/js/textInputs":12}]},{},[13,14,15,16,17,18,19,20,21]);
