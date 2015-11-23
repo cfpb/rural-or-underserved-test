@@ -83,18 +83,29 @@
   </div>
 
   <main>
+    <div class="group container padding-top-2 margin-top-2">
+      <div class="col col-12">
+        <h1>Rural and underserved areas tool</h1>
+        <div id="fileError" class="sans bg-gold-20 border-2 border-warning padding-1 margin-bottom-1 hide">
+          <h2>Formatting error</h2>
+          <p>
+            <strong>We've noticed the following errors:</strong>
+          </p>
+          <p id="fileErrorDesc" class="js-error-message"></p>
+        </div>
+        <div id="processError" class="sans bg-gold-20 border-2 border-warning padding-1 margin-bottom-1 hide">
+          <h2>Processing error</h2>
+          <p>
+            <strong>The following addresses were not processed because of an issue with the Census API. To determine whether these addresses are designated as rural or underserved, start a new search.</strong>
+          </p>
+          <ul id="processErrorDesc" class="js-error-message"></ul>
+        </div>
+      </div>
+    </div>
     <!-- about -->
-    <section id="about" class="container padding-top-2 margin-top-2 margin-bottom-2">
+    <section id="about" class="container margin-bottom-2">
       <div class="group">
         <div class="col col-12">
-          <h1>Rural and underserved areas tool</h1>
-          <div id="fileError" class="sans bg-redorange-20 border-2 border-error padding-1 margin-bottom-1 hide">
-            <h2>Formatting error</h2>
-            <p>
-              <strong>We've noticed the following errors:</strong>
-            </p>
-            <p id="fileErrorDesc"></p>
-          </div>
           <h2 class="inline-block">Check status of properties for loans extended in </h2>
           <select class="h2" id="year" name="year">
             <option value="2014">2014</option>
@@ -138,11 +149,18 @@
             <input class="button block" type="submit" value="Check addresses" />
           </form>
         </div>
+
+        <div class="col col-12 margin-bottom-2">
+          <p>
+            Do no include personal information, such as names, phone numbers, and Social Security numbers.<br />
+            The CFPB will not retain any information submitted through this tool.
+          </p>
+        </div>
       </div>
 
       <!-- about this tool -->
-      <div class="group sans">
-        <div class="col col-8">
+      <div class="group sans border-top-2">
+        <div class="col col-8 padding-top-2 padding-right-2">
           <h2>About this tool</h2>
           <p>
             This tool is maintained by the Consumer Financial Protection Bureau (CFPB or Bureau) to help creditors determine which properties are located in a &ldquo;rural&rdquo; or &ldquo;underserved&rdquo; area as defined in 12 CFR 1026.35(b)(2)(iv)(A) and (B).  A creditor may rely on this tool to provide a safe harbor determination that a property is located in a rural or underserved area.  However, the tool is not applicable to the exemption from the § 1026.35(c)(4) requirement for an additional appraisal, which is based on &ldquo;rural county&rdquo; and not &ldquo;rural area.&rdquo;  The CFPB publishes a list of counties that are entirely rural to facilitate compliance with the exemption in § 1026.35(c)(4)(vii)(H).
@@ -478,24 +496,14 @@
     </section>
 
     <!-- results -->
-    <section id="results" class="group container padding-top-2 margin-top-2 hide sans">
+    <section id="results" class="group container hide sans">
       <div class="group">
-        <div class="col col-12">
-          <h1>Rural and underserved areas tool</h1>
-          <div id="processError" class="sans bg-redorange-20 border-2 border-error padding-1 margin-bottom-1 hide">
-            <h2>Processing error</h2>
-            <p>
-              <strong>We've noticed the following errors:</strong>
-            </p>
-            <ul id="processErrorDesc"></ul>
-          </div>
-        </div>
         <div class="col col-8 full-print">
           <h2 id="countMessage">
             <strong class="counter" id="totalCnt">0</strong> /
             <strong class="counter" id="addressCount">0</strong> addresses processed for
-            <strong class="chosenYear"></strong> rural or underserved area safe harbor designation.</h2>
-          <h2 class="hide color-redorange" id="errorMessage"></h2>
+            <strong class="chosenYear"></strong> rural or underserved area safe harbor designation.
+          </h2>
         </div>
         <div class="col col-4 hide-print">
           <p class="inline-block right hide-print"><a class="button button-secondary no-decoration" href="#" id="link-about">Start a new search</a></p>
@@ -529,7 +537,7 @@
             <strong><span class="ruralCnt counter">0</span></strong> addresses are designated as rural or underserved for
             <strong class="chosenYear"></strong>
           </h2>
-          <p>First-lien covered transactions extended in <span class="chosenYear">2015</span> that are secured by these properties can be counted as rural or underserved in your determination of whether more than 50 percent of your first-lien covered transactions in <span class="chosenYear">2015</span> are secured by properties located in rural or underserved areas.  If your institution meets this more than 50 percent test based on your <span class="chosenYear">2015</span> loans, you meet the requirement of operating predominantly in rural or underserved areas for purposes of <span class="chosenYear1">2016</span> and for loan applications received before April 1, <span class="chosenYear2">2017</span>.  </p>
+          <p class="col-6">First-lien covered transactions extended in <span class="chosenYear">2015</span> that are secured by these properties can be counted as rural or underserved in your determination of whether more than 50 percent of your first-lien covered transactions in <span class="chosenYear">2015</span> are secured by properties located in rural or underserved areas.  If your institution meets this more than 50 percent test based on your <span class="chosenYear">2015</span> loans, you meet the requirement of operating predominantly in rural or underserved areas for purposes of <span class="chosenYear1">2016</span> and for loan applications received before April 1, <span class="chosenYear2">2017</span>.</p>
 
           <table class="table" style="border-width: 1px;" width="100%">
             <thead>
@@ -551,7 +559,7 @@
             <strong>not</strong> designated as rural or underserved for
             <strong class="chosenYear"></strong>
           </h2>
-          <p>These properties should <strong>not</strong> be counted as rural or underserved in your more than 50 percent test.</p>
+          <p class="col-6">These properties should <strong>not</strong> be counted as rural or underserved in your more than 50 percent test.</p>
 
           <table class="table" style="border-width: 1px;" width="100%">
             <thead>
@@ -571,10 +579,10 @@
           <h2 class="js-table-title">
             <strong><span class="notFoundCnt counter">0</span></strong> addresses could not be identified
           </h2>
-          <p>
+          <p class="col-6">
             The locations of these addresses could not be identified because the information provided was not sufficient, the information could not be matched with an address or the information matches with multiple addresses.
           </p>
-          <p>
+          <p class="col-6">
             To run your search again once you have updated the information for these addresses, return to the previous page and start a new search.
           </p>
 
@@ -596,10 +604,10 @@
           <h2 class="js-table-title">
             <strong><span class="duplicateCnt counter">0</span></strong> addresses were identified as duplicates
           </h2>
-          <p>
-            The tool identified these properties as duplicate entries.  Duplicate entries are still counted in the other three categories of results.  An address appears in the duplicate count because there is more than one identical address in your CSV file.  These duplicates should not be included in your more than 50 percent test calculation of rural or underserved properties.
+          <p class="col-6">
+            The tool identified these properties as duplicate entries. An address appears in the duplicate count because there is more than one identical address in your CSV file. Duplicates should not be included in your more than 50 percent test calculation of rural or underserved properties.
           </p>
-          <p>
+          <p class="col-6">
             To update or remove the information for these addresses, start a new search.
           </p>
 
@@ -615,6 +623,15 @@
             </thead>
             <tbody class="data"></tbody>
           </table>
+        </div>
+
+        <div class="col col-6 margin-top-2">
+          <h5 class="border-top">
+            <span>About these results</span>
+          </h5>
+          <p>
+            The tool identifies whether a property is located in a rural or underserved area in a particular year. The results delineate which properties can or cannot count toward the more than 50 percent test to determine whether a property is designated as rural or underserved.
+          </p>
         </div>
     </section>
   </main>
