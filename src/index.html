@@ -83,18 +83,22 @@
   </div>
 
   <main>
+    <div class="group container padding-top-2 margin-top-2">
+      <div class="col col-12">
+        <h1>Rural and underserved areas tool</h1>
+        <div id="fileError" class="sans bg-gold-20 border-2 border-warning padding-1 margin-bottom-1 hide">
+          <h2>Formatting error</h2>
+          <p>
+            <strong>We've noticed the following errors:</strong>
+          </p>
+          <p id="fileErrorDesc"></p>
+        </div>
+      </div>
+    </div>
     <!-- about -->
-    <section id="about" class="container padding-top-2 margin-top-2 margin-bottom-2">
+    <section id="about" class="container margin-bottom-2">
       <div class="group">
         <div class="col col-12">
-          <h1>Rural and underserved areas tool</h1>
-          <div id="fileError" class="sans bg-redorange-20 border-2 border-error padding-1 margin-bottom-1 hide">
-            <h2>Formatting error</h2>
-            <p>
-              <strong>We've noticed the following errors:</strong>
-            </p>
-            <p id="fileErrorDesc"></p>
-          </div>
           <h2 class="inline-block">Check status of properties for loans extended in </h2>
           <select class="h2" id="year" name="year">
             <option value="2014">2014</option>
@@ -478,18 +482,8 @@
     </section>
 
     <!-- results -->
-    <section id="results" class="group container padding-top-2 margin-top-2 hide sans">
+    <section id="results" class="group container hide sans">
       <div class="group">
-        <div class="col col-12">
-          <h1>Rural and underserved areas tool</h1>
-          <div id="processError" class="sans bg-redorange-20 border-2 border-error padding-1 margin-bottom-1 hide">
-            <h2>Processing error</h2>
-            <p>
-              <strong>We've noticed the following errors:</strong>
-            </p>
-            <ul id="processErrorDesc"></ul>
-          </div>
-        </div>
         <div class="col col-8 full-print">
           <h2 id="countMessage">
             <strong class="counter" id="totalCnt">0</strong> /

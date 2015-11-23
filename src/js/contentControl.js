@@ -38,8 +38,6 @@ module.exports = function() {
         var year = date.getFullYear();
         $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
 
-        $('#fileError').addClass('hide');
-        error.addClass('hide');
         count.reset();
         this.resetHTML();
         this.showResults();
