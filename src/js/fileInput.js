@@ -14,8 +14,9 @@ module.exports = function() {
     }
 
     fileInput.resetError = function() {
-      $('#fileErrorDesc').html('');
       $('#fileError').addClass('hide');
+      $('#processError').addClass('hide');
+      $('.js-error-message').html('');
     }
 
     fileInput.setError = function(message) {

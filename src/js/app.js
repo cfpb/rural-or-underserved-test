@@ -155,7 +155,6 @@ $('#file').change(function(e) {
             }
         },
         complete: function() {
-            console.log('All files done!');
         }
     });
 });
