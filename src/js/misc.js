@@ -7,7 +7,6 @@ var fileInput = require('./fileInput');
 $(function(){
   // add inputs
   $('#add-another').on('click', function(e) {
-    console.log('adding another');
     e.preventDefault();
     textInputs.add();
   });
@@ -29,9 +28,7 @@ $(function(){
     fileInput.resetFileName();
     // reset counts
     count.reset();
-    $('#fileError').addClass('hide');
-    $('#processError').addClass('hide');
-    $('.js-error-message').html('');
+    fileInput.resetError();
     // clear tables
     contentControl.resetHTML();
   });
