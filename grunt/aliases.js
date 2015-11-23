@@ -10,6 +10,7 @@ module.exports = {
         'sass:build',
         'browserify:dev',
         'copy:build',
+        'htmlmin:build',
         'uglify'
     ]
 };

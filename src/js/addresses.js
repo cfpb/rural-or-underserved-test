@@ -25,7 +25,7 @@ module.exports = function() {
         })
         .fail(function(jqXHR, textStatus) {
           if (jqXHR.status !== 200) {
-            $('#processErrorDesc').append('<li>The query for <strong>' + address + '</strong> returned a ' + jqXHR.status + '.</li>');
+            $('#processErrorDesc').append('<li>' + address + '</li>');
             $('#processError').removeClass('hide');
           }
         });

@@ -21,6 +21,9 @@ $('#link-about').click(function(e) {
   fileInput.clear();
   // reset counts
   count.reset();
+  $('#fileError').addClass('hide');
+  $('#processError').addClass('hide');
+  $('.js-error-message').html('');
   // clear tables
   contentControl.resetHTML();
 });
