@@ -1,17 +1,12 @@
 var $ = require('jquery');
 var content = require('./contentControl');
-var addressRender = require('./addressRender');
+var addr = require('./address');
 var count = require('./count');
 var textInputs = require('./textInputs');
 var fileInput = require('./fileInput');
 
 var census = require('./callCensus');
-var isDup = require('./isDup');
-var isFound = require('./isFound');
 var ruralCounties = require('./getRuralCounties');
-var isInCounty = require('./isInCounty');
-var countyName = require('./setCountyName');
-var isUrban = require('./isUrban');
 
 require('./showMap');
 require('papaparse');
@@ -27,7 +22,7 @@ window.callbacks = {};
 callbacks.censusAPI = function(data) {
   censusResponse = data;
 
-  if (isFound(data.result)) {
+  if (addr.isFound(data.result)) {
     ruralCounties($('#year').val(), callbacks.getRuralCounties);
   } else {
     var result = {};
@@ -38,7 +33,7 @@ callbacks.censusAPI = function(data) {
     result.rural = '-';
     result.type = 'notFound';
     count.updateCount(result.type);
-    addressRender(result);
+    addr.render(result);
   }
 }
 
@@ -51,16 +46,16 @@ callbacks.getRuralCounties = function(data) {
   result.y = censusResponse.result.addressMatches[0].coordinates.y;
 
   var fips = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].STATE + censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
-  result.countyName = countyName(fips);
+  result.countyName = addr.setCountyName(fips);
 
-  if(isInCounty(fips, data)) {
+  if(addr.isInCounty(fips, data)) {
     result.rural = 'Yes';
     result.type = 'rural';
   } else {
     var urbanClusters = censusResponse.result.addressMatches[0].geographies['Urban Clusters'];
     var urbanAreas = censusResponse.result.addressMatches[0].geographies['Urbanized Areas'];
 
-    if(isUrban(urbanClusters, urbanAreas)) {
+    if(addr.isUrban(urbanClusters, urbanAreas)) {
       result.rural = 'Yes';
       result.type = 'rural';
     } else {
@@ -71,7 +66,7 @@ callbacks.getRuralCounties = function(data) {
 
   result.id = Date.now();
 
-  addressRender(result);
+  addr.render(result);
   count.updateCount(result.type);
 }
 
@@ -80,7 +75,7 @@ processAddresses = function(addresses) {
 
   $.each(addresses, function(index, address) {
     // if its not dup
-    if (!isDup(address, duplicates)) {
+    if (!addr.isDup(address, duplicates)) {
       census(address, 'callbacks.censusAPI');
       duplicates.push(address);
     } else {
@@ -92,7 +87,7 @@ processAddresses = function(addresses) {
       result.block = '-';
       result.rural = '-';
       result.type = 'duplicate';
-      addressRender(result);
+      addr.render(result);
       count.updateCount(result.type);
     }
   });
