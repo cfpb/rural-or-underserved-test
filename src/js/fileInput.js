@@ -6,7 +6,7 @@ module.exports = function() {
     var uploadName = '';
 
     fileInput.resetFileName = function() {
-      $('#fileName').val('');
+      $('#fileName').val('No file chosen');
     }
 
     fileInput.setFileName = function(filename) {

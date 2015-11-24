@@ -1,4 +1,5 @@
 var addr = require('../src/js/address');
+
 describe('address functions', function() {
   describe('is adddress duplicate', function() {
     var address,
