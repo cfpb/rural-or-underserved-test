@@ -9319,6 +9319,28 @@ module.exports = function() {
 }();
 
 },{"../data/counties.json":2,"jquery":1}],4:[function(require,module,exports){
+module.exports = function() {
+  var addressParse = {};
+
+  addressParse.isValid = function(row) {
+    var pass = true;
+
+    if (row.data[0]['Street Address'] === '' && row.errors) {
+        pass = false;
+    }
+
+    return pass;
+  }
+
+  addressParse.pushAddress = function(row, addresses) {
+    addresses.push(row.data[0]['Street Address'] + ', ' + row.data[0].City + ', ' + row.data[0].State + ' ' + row.data[0].Zip);
+    return addresses;
+  }
+
+  return addressParse;
+}();
+
+},{}],5:[function(require,module,exports){
 var $ = require('jquery');
 var count = require('./count');
 
@@ -9392,7 +9414,7 @@ module.exports = function() {
     return content;
 }();
 
-},{"./count":5,"jquery":1}],5:[function(require,module,exports){
+},{"./count":6,"jquery":1}],6:[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = function() {
@@ -9420,7 +9442,7 @@ module.exports = function() {
 
     return counters;
 }();
-},{"jquery":1}],6:[function(require,module,exports){
+},{"jquery":1}],7:[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = function() {
@@ -9429,7 +9451,7 @@ module.exports = function() {
     var uploadName = '';
 
     fileInput.resetFileName = function() {
-      $('#fileName').val('');
+      $('#fileName').val('No file chosen');
     }
 
     fileInput.setFileName = function(filename) {
@@ -9461,7 +9483,7 @@ module.exports = function() {
 
 }();
 
-},{"jquery":1}],7:[function(require,module,exports){
+},{"jquery":1}],8:[function(require,module,exports){
 var $ = require('jquery');
 
 module.exports = function() {
@@ -9517,8 +9539,64 @@ module.exports = function() {
 
 }();
 
-},{"jquery":1}],8:[function(require,module,exports){
+},{"jquery":1}],9:[function(require,module,exports){
+var addrParse = require('../src/js/addressParse');
+
+describe('address parse functions (from csv)', function() {
+  describe('is address valid', function() {
+    var row = {};
+    var addresses = [];
+
+    it('should be valid', function() {
+      row.data = [];
+      row.data[0] = {
+        "City": "City",
+        "State": "State",
+        "Street Address": "Street",
+        "Zip": "12345"
+      };
+
+      expect(addrParse.isValid(row)).toBeTruthy();
+    });
+
+    it('should NOT be valid', function() {
+      row.data = [];
+      row.data[0] = {
+        "City": "City",
+        "State": "State",
+        "Street Address": "",
+        "Zip": "12345"
+      };
+      row.errors = [];
+      row.errors[0] = 'true';
+
+      expect(addrParse.isValid(row)).toBeFalsy();
+    });
+  });
+
+  describe('push an addresses', function() {
+    var row = {};
+    var addresses = [];
+
+    it('should be push an address', function() {
+      row.data = [];
+      row.data[0] = {
+        "City": "City",
+        "State": "State",
+        "Street Address": "Street",
+        "Zip": "12345"
+      };
+
+      addresses = addrParse.pushAddress(row, addresses);
+
+      expect(addresses).toContain('Street, City, State 12345');
+    });
+  });
+});
+
+},{"../src/js/addressParse":4}],10:[function(require,module,exports){
 var addr = require('../src/js/address');
+
 describe('address functions', function() {
   describe('is adddress duplicate', function() {
     var address,
@@ -9664,7 +9742,7 @@ describe('address functions', function() {
   });
 });
 
-},{"../src/js/address":3}],9:[function(require,module,exports){
+},{"../src/js/address":3}],11:[function(require,module,exports){
 var content = require('../src/js/contentControl');
 
 describe('controlling content', function() {
@@ -9715,7 +9793,7 @@ describe('controlling content', function() {
 
 });
 
-},{"../src/js/contentControl":4}],10:[function(require,module,exports){
+},{"../src/js/contentControl":5}],12:[function(require,module,exports){
 fileInput = require('../src/js/fileInput');
 
 describe('file input', function() {
@@ -9741,7 +9819,7 @@ describe('file input', function() {
 
   it('should REset the filename', function() {
     fileInput.resetFileName();
-    expect($('#fileName')).toHaveValue('');
+    expect($('#fileName')).toHaveValue('No file chosen');
   });
 
   it('should set the file error', function() {
@@ -9758,7 +9836,7 @@ describe('file input', function() {
   });
 });
 
-},{"../src/js/fileInput":6}],11:[function(require,module,exports){
+},{"../src/js/fileInput":7}],13:[function(require,module,exports){
 inputs = require('../src/js/textInputs');
 
 describe('text input', function() {
@@ -9815,4 +9893,4 @@ describe('text input', function() {
   });
 });
 
-},{"../src/js/textInputs":7}]},{},[8,9,10,11]);
+},{"../src/js/textInputs":8}]},{},[9,10,11,12,13]);

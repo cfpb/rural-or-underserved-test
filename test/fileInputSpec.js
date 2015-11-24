@@ -23,7 +23,7 @@ describe('file input', function() {
 
   it('should REset the filename', function() {
     fileInput.resetFileName();
-    expect($('#fileName')).toHaveValue('');
+    expect($('#fileName')).toHaveValue('No file chosen');
   });
 
   it('should set the file error', function() {

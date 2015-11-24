@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var content = require('./contentControl');
 var addr = require('./address');
+var addrParse = require('./addressParse');
 var count = require('./count');
 var textInputs = require('./textInputs');
 var fileInput = require('./fileInput');
@@ -101,9 +102,9 @@ $('#geocode').submit(function(e) {
   document.location.hash = 'results';
 
   $('.input-address').each(function(index) {
-      if ($(this).val() !== '') {
-          addresses.push($(this).val());
-      }
+    if ($(this).val() !== '') {
+      addresses.push($(this).val());
+    }
   });
 
   count.updateAddressCount(addresses.length);
@@ -113,86 +114,72 @@ $('#geocode').submit(function(e) {
 
 // when file upload is used
 $('#file').change(function(e) {
+  var rowCount = 0;
+  textInputs.reset();
+  $('#fileName').val(fileInput.getUploadName($('#file').val()));
+  fileInput.resetError();
 
-    var addresses = [];
-
-    // clear text inputs
-    textInputs.reset();
-
-    // show file name
-    //var uploadName = $('#file').val();
-
-    fileInput.setFileName(fileInput.getUploadName($('#file').val()));
-
-    //$('#fileName').val(fileInput.getUploadName($('#file').val()));
-
-    fileInput.resetError();
-
-    // parse the csv to get the count
-    $('#file').parse( {
-        config: {
-            header: true,
-            step: function(results, parser) {
-                if (results.data[0]['Street Address'] === '' && results.errors) {
-                    return;
-                } else {
-                    addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
-                }
-            },
-            complete: function(results, file) {
-                if (addresses.length === 0) {
-                  fileInput.setError('- There are no rows in this csv. Please update and try again.');
-                }
-                if (addresses.length >= 250) {
-                  var leftOver = addresses.length - 250;
-                  fileInput.setError('You entered ' + addresses.length + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
-                }
-            }
-        },
-        complete: function() {
+  // parse the csv to get the count
+  $('#file').parse( {
+    config: {
+      header: true,
+      step: function(results, parser) {
+        if (!addrParse.isValid(results)) {
+          return;
+        } else {
+          rowCount ++;
         }
-    });
+      },
+      complete: function(results, file) {
+        if (rowCount === 0) {
+          fileInput.setError('There are no rows in this csv. Please update and try again.');
+        }
+        if (rowCount >= 250) {
+          var leftOver = rowCount - 250;
+          fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
+        }
+      }
+    },
+    complete: function() {
+    }
+  });
 });
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
     content.setup();
     var rowCount = 0;
-    var processedCount = 0;
-
-    document.location.hash = 'results';
-
-    // clear remove inputs, except the first one
     textInputs.reset();
 
     var addresses = [];
 
     // parse the csv to get the count
     $('#file').parse({
-        config: {
-            header: true,
-            step: function(results, parser) {
-                if (results.data[0]['Street Address'] === '' && results.errors) {
-                    return;
-                } else {
-                    if(rowCount < 250) {
-                        addresses.push(results.data[0]['Street Address'] + ', ' + results.data[0].City + ', ' + results.data[0].State + ' ' + results.data[0].Zip);
-                        processedCount ++;
-                    }
-                    rowCount ++;
-                }
-            },
-            complete: function(results, file) {
-                $('#rowCount').text(rowCount);
-                if (rowCount > 250) {
-                  var leftOver = rowCount - 250;
-
-                  fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. Please recheck the remaining ' + leftOver + '.');
-                }
-                count.updateAddressCount(addresses.length);
-                processAddresses(addresses);
+      config: {
+        header: true,
+        step: function(results, parser) {
+          if (!addrParse.isValid(results)) {
+            return;
+          } else {
+            if(rowCount < 250) {
+              addresses = addrParse.pushAddress(results, addresses);
             }
+            rowCount ++;
+          }
+        },
+        complete: function(results, file) {
+          if (rowCount === 0) {
+            fileInput.setError('There are no rows in this csv. Please update and try again.');
+          }
+          if (rowCount >= 250) {
+            var leftOver = rowCount - 250;
+            fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
+          }
+
+          count.updateAddressCount(addresses.length);
+          processAddresses(addresses);
         }
+      }
     });
 
     return false;
