@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "jquery": "^2.1.4",
+    "leaflet-pip": "^0.1.1",
     "mapbox.js": "^2.2.2",
     "normalize.css": "^3.0.3",
     "papaparse": "^4.1.2"

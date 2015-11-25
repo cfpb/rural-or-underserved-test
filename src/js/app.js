@@ -6,7 +6,7 @@ var count = require('./count');
 var textInputs = require('./textInputs');
 var fileInput = require('./fileInput');
 
-var census = require('./callCensus');
+var mapbox = require('./callMapbox');
 var ruralCounties = require('./getRuralCounties');
 
 require('./showMap');
@@ -20,14 +20,12 @@ var censusResponse;
 
 window.callbacks = {};
 
-callbacks.censusAPI = function(data) {
-  censusResponse = data;
-
-  if (addr.isFound(data.result)) {
-    ruralCounties($('#year').val(), callbacks.getRuralCounties);
+callbacks.mapboxAPI = function(err, data) {
+  if (addr.isFound(data.results)) {
+    addr.isRural(data, $('#year').val());
   } else {
     var result = {};
-    result.input = data.result.input.address.address;
+    result.input = addr.getInput(data.results.query);
     result.address = 'Address not identfied';
     result.countyName = '-';
     result.block = '-';
@@ -77,7 +75,7 @@ processAddresses = function(addresses) {
   $.each(addresses, function(index, address) {
     // if its not dup
     if (!addr.isDup(address, duplicates)) {
-      census(address, 'callbacks.censusAPI');
+      mapbox(address, callbacks.mapboxAPI);
       duplicates.push(address);
     } else {
       // setup the result to render
