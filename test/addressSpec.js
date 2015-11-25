@@ -36,7 +36,7 @@ describe('address functions', function() {
 
     beforeEach(function(){
       response = {};
-      response.addressMatches = [];
+      response.features = [];
     });
 
     it('should NOT be found - 0 length array', function() {
@@ -44,12 +44,12 @@ describe('address functions', function() {
     });
 
     it('should NOT be found - NOT an array', function() {
-      response.addressMatches = 'string';
+      response.features = 'string';
       expect(addr.isFound(response)).toBeFalsy();
     });
 
     it('should be found', function() {
-      response.addressMatches.push(1);
+      response.features.push(1);
       expect(addr.isFound(response)).toBeTruthy();
     });
   });

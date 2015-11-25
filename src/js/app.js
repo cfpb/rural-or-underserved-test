@@ -36,39 +36,6 @@ callbacks.mapboxAPI = function(err, data) {
   }
 }
 
-callbacks.getRuralCounties = function(data) {
-  var result = {};
-  result.input = censusResponse.result.input.address.address;
-  result.address = censusResponse.result.addressMatches[0].matchedAddress;
-  result.block = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK;
-  result.x = censusResponse.result.addressMatches[0].coordinates.x;
-  result.y = censusResponse.result.addressMatches[0].coordinates.y;
-
-  var fips = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].STATE + censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
-  result.countyName = addr.setCountyName(fips);
-
-  if(addr.isInCounty(fips, data)) {
-    result.rural = 'Yes';
-    result.type = 'rural';
-  } else {
-    var urbanClusters = censusResponse.result.addressMatches[0].geographies['Urban Clusters'];
-    var urbanAreas = censusResponse.result.addressMatches[0].geographies['Urbanized Areas'];
-
-    if(addr.isUrban(urbanClusters, urbanAreas)) {
-      result.rural = 'Yes';
-      result.type = 'rural';
-    } else {
-      result.rural = 'No';
-      result.type = 'notRural';
-    }
-  }
-
-  result.id = Date.now();
-
-  addr.render(result);
-  count.updateCount(result.type);
-}
-
 processAddresses = function(addresses) {
   duplicates = [];
 

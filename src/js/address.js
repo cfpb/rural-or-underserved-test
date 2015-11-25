@@ -28,8 +28,7 @@ module.exports = function() {
   address.isFound = function(response) {
     var pass = false;
     var features = response.features;
-
-    if (features.length !== 0) {
+    if (Array.isArray(features) && features.length !== 0) {
       pass = true;
     }
     return pass;
@@ -123,12 +122,9 @@ module.exports = function() {
                 format: 'jsonp'
             },
             success: function load(fcc) {
-              console.log(fcc);
-              console.log(result.input);
                 var state = fcc.State.code.toLowerCase();
                 result.state = state;
                 result.block = fcc.Block.FIPS;
-                //fipsCode = fcc.County.FIPS;
 
                 result.countyName = fcc.County.name;
                 result.countyFIPS = fcc.County.FIPS;
