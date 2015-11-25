@@ -31,6 +31,12 @@ module.exports = {
                 src: ['csv-template.csv'],
                 dest: 'dist/',
                 expand: true,
+            },
+            {
+                cwd: 'src/',
+                src: ['geojson/*'],
+                dest: 'dist/',
+                expand: true,
             }
         ]
     },
@@ -57,6 +63,12 @@ module.exports = {
             {
                 cwd: 'src/',
                 src: ['csv-template.csv'],
+                dest: 'dist/',
+                expand: true,
+            },
+            {
+                cwd: 'src/',
+                src: ['geojson/*'],
                 dest: 'dist/',
                 expand: true,
             }
