@@ -7,7 +7,7 @@ var textInputs = require('./textInputs');
 var fileInput = require('./fileInput');
 
 var mapbox = require('./callMapbox');
-var ruralCounties = require('./getRuralCounties');
+// var ruralCounties = require('./getRuralCounties');
 
 require('./showMap');
 require('papaparse');
