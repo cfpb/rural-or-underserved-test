@@ -4,3 +4,4 @@ dist
 coverage
 .grunt
 test/specs.js
+src/geojson/mk_geojson.py
