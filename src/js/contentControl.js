@@ -6,8 +6,7 @@ var results = $('#results'),
     nR = $('#notRural'),
     nF = $('#notFound'),
     dup = $('#duplicate'),
-    about = $('#about'),
-    error = $('#errorMessage');
+    about = $('#about');
 
 var monthNames = [
     "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
@@ -68,10 +67,10 @@ module.exports = function() {
         $('tbody').html('');
     }
 
-    content.error = function(message) {
+    /*content.error = function(message) {
         error.html(message);
         error.removeClass('hide');
-    }
+    }*/
 
     return content;
 }();
