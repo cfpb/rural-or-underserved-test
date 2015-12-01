@@ -5,7 +5,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki
 // when a.jsLoadMap is clicked
 $('body').on('click', 'a.jsLoadMap', function(e) {
   e.preventDefault();
-
+  console.log('show map');
   // setup vars (data attributes)
   var lat = $(this).data('lat');
   var lon = $(this).data('lon');
