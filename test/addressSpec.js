@@ -58,14 +58,14 @@ describe('address functions', function() {
     var countyList;
 
     beforeEach(function() {
-      countyList = {
+      countyList = [{
           "fips": [
             ["01005", "AL, Barbour County"],
             ["01011", "AL, Bullock County"],
             ["01013", "AL, Butler County"],
             ["01019", "AL, Cherokee County"]
           ]
-        };
+        }];
     });
 
     it('should NOT be in county', function() {

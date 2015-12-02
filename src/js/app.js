@@ -7,6 +7,7 @@ var textInputs = require('./textInputs');
 var fileInput = require('./fileInput');
 
 var census = require('./callCensus');
+var tiger = require('./callTiger');
 var ruralCounties = require('./getRuralCounties');
 
 require('./showMap');
@@ -16,15 +17,56 @@ require('./search-box');
 require('./header-nav');
 require('./expandables');
 
-var censusResponse;
-
 window.callbacks = {};
 
 callbacks.censusAPI = function(data) {
-  censusResponse = data;
-
+  //var tigerURL = 'http://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer';
+  //tiger(x, y, 'callbacks.tiger');
   if (addr.isFound(data.result)) {
-    ruralCounties($('#year').val(), callbacks.getRuralCounties);
+    var result = {};
+    result.x = data.result.addressMatches[0].coordinates.x;
+    result.y = data.result.addressMatches[0].coordinates.y;
+
+    $.when(ruralCounties($('#year').val()), tiger(result.x, result.y, '86'), tiger(result.x, result.y, '66'), tiger(result.x, result.y, '64'), tiger(result.x, result.y, '12'))
+      .then(function(rural, countyData, UCData, UAData, blockData) {
+        var censusCounty = JSON.parse(countyData[0]);
+        var censusUC = JSON.parse(UCData[0]);
+        var censusUA = JSON.parse(UAData[0]);
+        var censusBlock = JSON.parse(blockData[0]);
+
+        var result = {};
+        result.input = data.result.input.address.address;
+        result.address = data.result.addressMatches[0].matchedAddress;
+        result.block = censusBlock.features[0].attributes.BLOCK;
+        result.countyName = censusCounty.features[0].attributes.BASENAME;
+
+        var fips = censusCounty.features[0].attributes.STATE + censusCounty.features[0].attributes.COUNTY;
+
+        if(addr.isInCounty(fips, rural)) {
+          result.rural = 'Yes';
+          result.type = 'rural';
+        } else {
+          if(addr.isUrban(censusUC.features, censusUA.features)) {
+            result.rural = 'Yes';
+            result.type = 'rural';
+          } else {
+            result.rural = 'No';
+            result.type = 'notRural';
+          }
+        }
+
+        result.id = Date.now();
+
+        addr.render(result);
+        count.updateCount(result.type);
+
+        /*console.log(rural);
+        console.log(data);
+        console.log(censusCounty);
+        console.log(censusUC);
+        console.log(censusUA);
+        console.log(censusBlock);*/
+      });
   } else {
     var result = {};
     result.input = data.result.input.address.address;
@@ -36,6 +78,10 @@ callbacks.censusAPI = function(data) {
     count.updateCount(result.type);
     addr.render(result);
   }
+}
+
+callbacks.tiger = function(data) {
+  console.log(data);
 }
 
 callbacks.getRuralCounties = function(data) {

@@ -26,9 +26,8 @@ module.exports = function() {
 
   address.isInCounty = function(fips, counties) {
     var pass = false;
-
-    for (i in counties.fips) {
-      if(fips === counties.fips[i][0]) {
+    for (i in counties[0].fips) {
+      if(fips === counties[0].fips[i][0]) {
         pass = true;
         break;
       } else {
