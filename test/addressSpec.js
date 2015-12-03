@@ -116,7 +116,7 @@ describe('address functions', function() {
       addr.render(testResult);
       expect($('#duplicate')).toBeInDOM();
       expect($('#duplicate')).toBeVisible();
-      expect($('#duplicate tbody')).toHaveHtml('<tr><td>test address</td><td>Duplicate</td><td>-</td><td>-</td><td>-</td></tr>');
+      expect($('#duplicate tbody')).toHaveHtml('<tr><td>test address</td><td>Duplicate</td><td>-</td><td>-</td></tr>');
     });
 
     it('table container should be visible and table should have a row with a map', function() {
