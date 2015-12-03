@@ -70,7 +70,6 @@ module.exports = function() {
     var rowHTML = '<tr><td>' + result.input + '</td>'
       + '<td>' + result.address + '</td>'
       + '<td>' + result.countyName + '</td>'
-      + '<td>' + result.block + '</td>'
       + '<td>' + result.rural;
 
     // add the map link if needed
