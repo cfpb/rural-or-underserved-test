@@ -2,13 +2,11 @@ var $ = require('jquery');
 
 module.exports = function(address, rural, cb) {
   $.ajax({
-    url: 'http://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?',
+    url: 'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?',
     dataType: 'jsonp',
     data: {
       address: address,
-      benchmark: 'Public_AR_Census2010',
-      vintage: 'Census2010_Census2010',
-      layers: '68,70,14',
+      benchmark: '4',
       format: 'jsonp'
     },
     success: function(data) {
