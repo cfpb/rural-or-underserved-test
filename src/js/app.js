@@ -19,14 +19,14 @@ require('./expandables');
 
 window.callbacks = {};
 
-callbacks.censusAPI = function(data) {
+callbacks.censusAPI = function(data, rural) {
   if (addr.isFound(data.result)) {
     var result = {};
     result.x = data.result.addressMatches[0].coordinates.x;
     result.y = data.result.addressMatches[0].coordinates.y;
 
-    $.when(ruralCounties($('#year').val()), tiger(result.x, result.y, '86'), tiger(result.x, result.y, '66'), tiger(result.x, result.y, '64'), tiger(result.x, result.y, '12'))
-      .then(function(rural, countyData, UCData, UAData, blockData) {
+    $.when(tiger(result.x, result.y, '86'), tiger(result.x, result.y, '66'), tiger(result.x, result.y, '64'), tiger(result.x, result.y, '12'))
+      .then(function(countyData, UCData, UAData, blockData) {
         var censusCounty = JSON.parse(countyData[0]);
         var censusUC = JSON.parse(UCData[0]);
         var censusUA = JSON.parse(UAData[0]);
@@ -74,24 +74,27 @@ callbacks.censusAPI = function(data) {
 processAddresses = function(addresses) {
   duplicates = [];
 
-  $.each(addresses, function(index, address) {
-    // if its not dup
-    if (!addr.isDup(address, duplicates)) {
-      census(address, 'callbacks.censusAPI');
-      duplicates.push(address);
-    } else {
-      // setup the result to render
-      var result = {};
-      result.input = address;
-      result.address = 'Duplicate';
-      result.countyName = '-';
-      result.block = '-';
-      result.rural = '-';
-      result.type = 'duplicate';
-      addr.render(result);
-      count.updateCount(result.type);
-    }
-  });
+  $.when(ruralCounties($('#year').val()))
+    .then(function(rural) {
+      $.each(addresses, function(index, address) {
+        // if its not dup
+        if (!addr.isDup(address, duplicates)) {
+          census(address, rural, 'callbacks.censusAPI');
+          duplicates.push(address);
+        } else {
+          // setup the result to render
+          var result = {};
+          result.input = address;
+          result.address = 'Duplicate';
+          result.countyName = '-';
+          result.block = '-';
+          result.rural = '-';
+          result.type = 'duplicate';
+          addr.render(result);
+          count.updateCount(result.type);
+        }
+      });
+    });
 }
 
 // on submit
