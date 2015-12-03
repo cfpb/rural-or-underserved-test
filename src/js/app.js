@@ -32,7 +32,6 @@ callbacks.censusAPI = function(data, rural) {
         var censusUA = JSON.parse(UAData[0]);
         var censusBlock = JSON.parse(blockData[0]);
 
-        var result = {};
         result.input = data.result.input.address.address;
         result.address = data.result.addressMatches[0].matchedAddress;
         result.block = censusBlock.features[0].attributes.BLOCK;
