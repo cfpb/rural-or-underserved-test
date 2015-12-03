@@ -25,16 +25,16 @@ callbacks.censusAPI = function(data, rural) {
     result.x = data.result.addressMatches[0].coordinates.x;
     result.y = data.result.addressMatches[0].coordinates.y;
 
-    $.when(tiger(result.x, result.y, '86'), tiger(result.x, result.y, '66'), tiger(result.x, result.y, '64'), tiger(result.x, result.y, '12'))
-    .then(function(countyData, UCData, UAData, blockData) {
+    $.when(tiger(result.x, result.y, '86'),
+      tiger(result.x, result.y, '66'),
+      tiger(result.x, result.y, '64'))
+    .then(function(countyData, UCData, UAData) {
       var censusCounty = JSON.parse(countyData[0]);
       var censusUC = JSON.parse(UCData[0]);
       var censusUA = JSON.parse(UAData[0]);
-      var censusBlock = JSON.parse(blockData[0]);
 
       result.input = data.result.input.address.address;
       result.address = data.result.addressMatches[0].matchedAddress;
-      result.block = censusBlock.features[0].attributes.BLOCK;
       result.countyName = censusCounty.features[0].attributes.BASENAME;
 
       var fips = censusCounty.features[0].attributes.STATE + censusCounty.features[0].attributes.COUNTY;
