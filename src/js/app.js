@@ -20,8 +20,6 @@ require('./expandables');
 window.callbacks = {};
 
 callbacks.censusAPI = function(data) {
-  //var tigerURL = 'http://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer';
-  //tiger(x, y, 'callbacks.tiger');
   if (addr.isFound(data.result)) {
     var result = {};
     result.x = data.result.addressMatches[0].coordinates.x;
@@ -59,13 +57,6 @@ callbacks.censusAPI = function(data) {
 
         addr.render(result);
         count.updateCount(result.type);
-
-        /*console.log(rural);
-        console.log(data);
-        console.log(censusCounty);
-        console.log(censusUC);
-        console.log(censusUA);
-        console.log(censusBlock);*/
       });
   } else {
     var result = {};
@@ -78,43 +69,6 @@ callbacks.censusAPI = function(data) {
     count.updateCount(result.type);
     addr.render(result);
   }
-}
-
-callbacks.tiger = function(data) {
-  console.log(data);
-}
-
-callbacks.getRuralCounties = function(data) {
-  var result = {};
-  result.input = censusResponse.result.input.address.address;
-  result.address = censusResponse.result.addressMatches[0].matchedAddress;
-  result.block = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].BLOCK;
-  result.x = censusResponse.result.addressMatches[0].coordinates.x;
-  result.y = censusResponse.result.addressMatches[0].coordinates.y;
-
-  var fips = censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].STATE + censusResponse.result.addressMatches[0].geographies['Census Blocks'][0].COUNTY;
-  result.countyName = addr.setCountyName(fips);
-
-  if(addr.isInCounty(fips, data)) {
-    result.rural = 'Yes';
-    result.type = 'rural';
-  } else {
-    var urbanClusters = censusResponse.result.addressMatches[0].geographies['Urban Clusters'];
-    var urbanAreas = censusResponse.result.addressMatches[0].geographies['Urbanized Areas'];
-
-    if(addr.isUrban(urbanClusters, urbanAreas)) {
-      result.rural = 'Yes';
-      result.type = 'rural';
-    } else {
-      result.rural = 'No';
-      result.type = 'notRural';
-    }
-  }
-
-  result.id = Date.now();
-
-  addr.render(result);
-  count.updateCount(result.type);
 }
 
 processAddresses = function(addresses) {
