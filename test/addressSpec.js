@@ -109,7 +109,6 @@ describe('address functions', function() {
       testResult.input = 'test address';
       testResult.address = 'Duplicate';
       testResult.countyName = '-';
-      testResult.rural = null;
       testResult.type = 'duplicate';
       loadFixtures('tableDuplicate.html');
       addr.render(testResult);
@@ -122,7 +121,6 @@ describe('address functions', function() {
       testResult.input = '123 Main';
       testResult.address = '123 Main';
       testResult.countyName = 'County';
-      testResult.rural = true;
       testResult.type = 'rural';
       testResult.x = -72.1;
       testResult.y = -72.1;

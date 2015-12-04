@@ -48,9 +48,9 @@ module.exports = function() {
 
   address.render = function(result) {
     var rural;
-    if (result.rural === true) {
+    if (result.type === 'rural') {
       rural = 'Yes';
-    } else if (result.rural === false) {
+    } else if (result.type === 'notRural') {
       rural = 'No';
     } else {
       rural = '-';
@@ -62,7 +62,7 @@ module.exports = function() {
       + '<td>' + rural;
 
     // add the map link if needed
-    if(result.rural !== null) {
+    if(rural !== '-') {
       rowHTML = rowHTML
         + ' <a href="#" class="no-decoration hide-print jsLoadMap right" data-map="false" data-lat="' + result.x + '" data-lon="' + result.y + '" data-id="loc-' + result.id + '">Show map <span class="cf-icon cf-icon-plus-round"></span></a>'
     }
@@ -71,7 +71,7 @@ module.exports = function() {
       + '</td></tr>';
 
     // add the map if needed
-    if(result.rural !== null) {
+    if(rural !== '-') {
       rowHTML = rowHTML
       + '<tr class="hide"><td colspan="5"><div class="map" id="loc-' + result.id + '"></div></td></tr>';
     }
