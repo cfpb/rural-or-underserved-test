@@ -18,7 +18,6 @@ $(function(){
 
   // about click
   $('#link-about').click(function(e) {
-    document.location.hash = '';
     e.preventDefault();
     fileInput.resetError();
     // show about content

@@ -96,7 +96,6 @@ $('#geocode').submit(function(e) {
   var addresses = [];
 
   content.setup();
-  document.location.hash = 'results';
 
   $('.input-address').each(function(index) {
     if ($(this).val() !== '') {
