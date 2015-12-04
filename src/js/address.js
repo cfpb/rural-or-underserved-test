@@ -5,23 +5,13 @@ module.exports = function() {
   var address = {};
 
   address.isDup = function(address, duplicates) {
-    var pass = false;
-
-    if (typeof address === 'string' && Array.isArray(duplicates) && duplicates.indexOf(address) !== -1) {
-      pass = true;
-    }
-
-    return pass;
+    return typeof address === 'string' && Array.isArray(duplicates) && duplicates.indexOf(address) !== -1;
   }
 
   address.isFound = function(response) {
-    var pass = false;
     var match = response.addressMatches;
 
-    if (Array.isArray(match) && match.length !== 0) {
-      pass = true;
-    }
-    return pass;
+    return Array.isArray(match) && match.length !== 0;
   }
 
   address.isInCounty = function(fips, counties) {
@@ -30,8 +20,6 @@ module.exports = function() {
       if(fips === counties.fips[i][0]) {
         pass = true;
         break;
-      } else {
-        continue;
       }
     }
 
@@ -39,13 +27,7 @@ module.exports = function() {
   };
 
   address.isUrban = function(urbanClusters, urbanAreas) {
-    var pass = false;
-
-    if ((urbanClusters === null || urbanClusters.length === 0) && (urbanAreas === null || urbanAreas.length === 0)) {
-      pass = true;
-    }
-
-    return pass;
+    return (urbanClusters === null || urbanClusters.length === 0) && (urbanAreas === null || urbanAreas.length === 0);
   };
 
   address.setCountyName = function(fipsCode) {
@@ -58,8 +40,6 @@ module.exports = function() {
                       .replace('County', '')
                       .replace(/^\s+|\s+$/gm,'');
         break;
-      } else {
-        continue;
       }
     }
 
