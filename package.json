@@ -55,5 +55,8 @@
     "transform": [
       "browserify-shim"
     ]
+  },
+  "scripts": {
+    "test": "grunt test",
   }
 }
