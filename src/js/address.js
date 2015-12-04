@@ -47,13 +47,22 @@ module.exports = function() {
   };
 
   address.render = function(result) {
+    var rural;
+    if (result.rural === true) {
+      rural = 'Yes';
+    } else if (result.rural === false) {
+      rural = 'No';
+    } else {
+      rural = '-';
+    }
+
     var rowHTML = '<tr><td>' + result.input + '</td>'
       + '<td>' + result.address + '</td>'
       + '<td>' + result.countyName + '</td>'
-      + '<td>' + result.rural;
+      + '<td>' + rural;
 
     // add the map link if needed
-    if(result.rural !== '-') {
+    if(result.rural !== null) {
       rowHTML = rowHTML
         + ' <a href="#" class="no-decoration hide-print jsLoadMap right" data-map="false" data-lat="' + result.x + '" data-lon="' + result.y + '" data-id="loc-' + result.id + '">Show map <span class="cf-icon cf-icon-plus-round"></span></a>'
     }
@@ -62,7 +71,7 @@ module.exports = function() {
       + '</td></tr>';
 
     // add the map if needed
-    if(result.rural !== '-') {
+    if(result.rural !== null) {
       rowHTML = rowHTML
       + '<tr class="hide"><td colspan="5"><div class="map" id="loc-' + result.id + '"></div></td></tr>';
     }

@@ -40,14 +40,14 @@ callbacks.censusAPI = function(data, rural) {
       var fips = censusCounty.features[0].attributes.STATE + censusCounty.features[0].attributes.COUNTY;
 
       if(addr.isInCounty(fips, rural)) {
-        result.rural = 'Yes';
+        result.rural = true;
         result.type = 'rural';
       } else {
         if(addr.isRuralCensus(censusUC.features, censusUA.features)) {
-          result.rural = 'Yes';
+          result.rural = true;
           result.type = 'rural';
         } else {
-          result.rural = 'No';
+          result.rural = false;
           result.type = 'notRural';
         }
       }
@@ -63,7 +63,7 @@ callbacks.censusAPI = function(data, rural) {
     result.address = 'Address not identfied';
     result.countyName = '-';
     result.block = '-';
-    result.rural = '-';
+    result.rural = null;
     result.type = 'notFound';
     count.updateCount(result.type);
     addr.render(result);
@@ -87,7 +87,7 @@ processAddresses = function(addresses) {
         result.address = 'Duplicate';
         result.countyName = '-';
         result.block = '-';
-        result.rural = '-';
+        result.rural = null;
         result.type = 'duplicate';
         addr.render(result);
         count.updateCount(result.type);
