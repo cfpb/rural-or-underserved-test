@@ -78,25 +78,25 @@ describe('address functions', function() {
 
   });
 
-  describe('is adddress urban', function() {
-    it('should NOT be urban - one 0 length array', function() {
-      expect(addr.isUrban([true], [])).toBeFalsy();
+  describe('is adddress rural', function() {
+    it('should NOT be rural - one 0 length array', function() {
+      expect(addr.isRuralCensus([true], [])).toBeFalsy();
     });
 
-    it('should NOT be urban - one null', function() {
-      expect(addr.isUrban(null, [true])).toBeFalsy();
+    it('should NOT be rural - one null', function() {
+      expect(addr.isRuralCensus(null, [true])).toBeFalsy();
     });
 
-    it('should NOT be urban', function() {
-      expect(addr.isUrban([true], [true])).toBeFalsy();
+    it('should NOT be rural', function() {
+      expect(addr.isRuralCensus([true], [true])).toBeFalsy();
     });
 
-    it('should be urban - 0 length arrays', function() {
-      expect(addr.isUrban([], [])).toBeTruthy();
+    it('should be rural - 0 length arrays', function() {
+      expect(addr.isRuralCensus([], [])).toBeTruthy();
     });
 
-    it('should be urban - nulls', function() {
-      expect(addr.isUrban(null, null)).toBeTruthy();
+    it('should be rural - nulls', function() {
+      expect(addr.isRuralCensus(null, null)).toBeTruthy();
     });
 
   });

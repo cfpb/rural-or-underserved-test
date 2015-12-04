@@ -43,7 +43,7 @@ callbacks.censusAPI = function(data, rural) {
         result.rural = 'Yes';
         result.type = 'rural';
       } else {
-        if(addr.isUrban(censusUC.features, censusUA.features)) {
+        if(addr.isRuralCensus(censusUC.features, censusUA.features)) {
           result.rural = 'Yes';
           result.type = 'rural';
         } else {

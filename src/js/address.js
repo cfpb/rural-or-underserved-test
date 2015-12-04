@@ -26,7 +26,7 @@ module.exports = function() {
     return pass;
   };
 
-  address.isUrban = function(urbanClusters, urbanAreas) {
+  address.isRuralCensus = function(urbanClusters, urbanAreas) {
     return (urbanClusters === null || urbanClusters.length === 0) && (urbanAreas === null || urbanAreas.length === 0);
   };
 
