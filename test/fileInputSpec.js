@@ -38,4 +38,11 @@ describe('file input', function() {
     expect($('#fileErrorDesc')).toContainText('');
     expect($('#fileError')).toHaveClass('hide');
   });
+
+  it('should be a csv', function() {
+    filename = 'test.csv';
+    expect(fileInput.isCSV(filename)).toBeTruthy();
+    filename = 'test.txt';
+    expect(fileInput.isCSV(filename)).toBeFalsy();
+  });
 });

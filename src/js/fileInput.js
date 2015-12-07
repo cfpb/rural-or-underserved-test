@@ -34,6 +34,10 @@ module.exports = function() {
       return uploadName;
     }
 
+    fileInput.isCSV = function(filename) {
+      return filename.substr(filename.lastIndexOf('.')+1) === 'csv';
+    }
+
     return fileInput;
 
 }();
