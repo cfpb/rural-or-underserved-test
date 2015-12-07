@@ -40,6 +40,9 @@ input[type=file] {
 select {
     line-height: 1.75;
     padding: ($form-v-pad/$form-font-size)*1em 14/$form-font-size*1em;
+    &.h2 {
+      margin-left: 5px;
+    }
 }
 
 input.error {
