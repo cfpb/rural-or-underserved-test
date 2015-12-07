@@ -12,15 +12,27 @@ module.exports = function() {
     }
 
     counters.updateCount = function(type) {
-        // add one to correct type
-        var typeCount = parseInt($('a.' + type + 'Cnt').text());
-        typeCount++;
-        $('.' + type + 'Cnt').text(typeCount);
-        
-        // add one to the total
-        var totalCount = parseInt($('#totalCnt').text());
-        totalCount++;
-        $('#totalCnt').text(totalCount);
+      var noun = 'addresses';
+      var verb = 'are';
+
+      // add one to correct type
+      var typeCount = parseInt($('a.' + type + 'Cnt').text());
+      typeCount++;
+      $('.' + type + 'Cnt').text(typeCount);
+
+      if(typeCount === 1) {
+        noun = 'address';
+        verb = 'is'
+      }
+
+      $('.' + type + 'Verb').text(verb);
+
+      $('.' + type + 'Case').text(noun + ' ' + verb);
+
+      // add one to the total
+      var totalCount = parseInt($('#totalCnt').text());
+      totalCount++;
+      $('#totalCnt').text(totalCount);
     }
 
     return counters;
