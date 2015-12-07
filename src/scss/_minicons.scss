@@ -35,6 +35,28 @@
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e406');
 }
 
+.download-link:after {
+  content: "\e406";
+
+  font-family: 'CFPB Minicons';
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+a.download-link {
+  border-bottom-width: 0;
+  text-decoration: none;
+  span {
+    border-bottom-width: 1px;
+    border-bottom-style: inherit;
+  }
+}
+
 a .cf-icon {
   border-bottom-style: none;
   border-bottom-width: 0;
