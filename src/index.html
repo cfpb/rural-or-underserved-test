@@ -11,16 +11,6 @@
 </head>
 
 <body>
-  <div class="beta-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <p>This beta site is a work in progress.</p>
-          <p>We're prototyping new ideas. Expect some errors and inaccuracies.</p>
-        </div>
-      </div>
-    </div>
-  </div>
   <a class="u-visually-hidden" href="#primary-content" id="skip-link">Skip to content</a>
 
   <!-- top banner -->
@@ -96,7 +86,7 @@
         <div id="processError" class="sans bg-gold-20 border-2 border-warning padding-1 margin-bottom-1 hide">
           <h2>Processing error</h2>
           <p>
-            <strong>The following addresses were not processed because of an issue with the Census API. To determine whether these addresses are designated as rural or underserved, start a new search.</strong>
+            <strong>The following addresses were not processed because the server was temporarily unavailable. To try again, start a new search.</strong>
           </p>
           <ul id="processErrorDesc" class="js-error-message"></ul>
         </div>
@@ -437,6 +427,12 @@
               <p>
                 A comma-separated values (CSV) file derives its name from a file containing multiple data fields separated by commas to distinguish where each field starts and ends.  Files are stored in plain text as numbers and letters with one record per line.
               </p>
+
+              <p>
+                You can create a CSV file in Microsoft Excel. Use the headings and format provided in the sample CSV file to type in or export your address data. Select &ldquo;Save as&rdquo; and choose &ldquo;CSV (Comma delimited)&rdquo; in the <em>Save as type</em> field.
+              </p>
+
+              <img src="img/csv.png" alt="Saving a CSV" />
             </div>
           </div>
           <div class="border-top padding-top-1">

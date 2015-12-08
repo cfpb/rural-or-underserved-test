@@ -1,5 +1,7 @@
 # Rural and underserved areas automated tool
 
+[![Build Status](https://travis-ci.org/cfpb/rural-or-underserved-test.svg?branch=master)](https://travis-ci.org/cfpb/rural-or-underserved-test)
+
 The Rural and Underserved Tool helps creditors comply with the recent amendments to Reg Z (Truth in Lending). The rule allows small creditors to be eligible for special provisions and exemptions if the lender conducts more than 50% of its business in the previous year in rural or underserved areas.  A creditor may rely on this tool to provide a safe harbor determination that a property is located in a rural or underserved area. The new rule defines rural as counties not in or adjacent to a Metropolitan Statistical Area OR outside an Urban Area/Urban Cluster as defined by the US Census Bureau. While the CFPB publishes a list of counties that are entirely rural or underserved to facilitate compliance with the first part of the definition of rural and for underserved, the newly expanded rule to include urban areas and urban clusters using census blocks is too difficult to determine without a tool. Creditors can select a year and enter addresses into the tool, either one at a time or more than one at a time (a “batch upload”), and the tool provides a determination of whether each address is in a rural or underserved area for the year selected.
 
 # We want your feedback, but will not be able to respond to everyone
