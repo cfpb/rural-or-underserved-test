@@ -14,7 +14,7 @@
   <a class="u-visually-hidden" href="#primary-content" id="skip-link">Skip to content</a>
 
   <!-- top banner -->
-  <div class="nemo">
+  <div class="nemo hide-print">
     <div class="wrapper-banner">
       <div class="wrapper-container">
         <div class="split">
@@ -75,6 +75,7 @@
   <main>
     <div class="group container padding-top-2 margin-top-2">
       <div class="col col-12">
+        <h5 class="report-date print-only"></h5>
         <h1>Rural and underserved areas tool</h1>
         <div id="fileError" class="sans bg-gold-20 border-2 border-warning padding-1 margin-bottom-1 hide">
           <h2>Formatting error</h2>
@@ -106,7 +107,7 @@
       </div>
       <div class="group sans">
         <!-- manual input -->
-        <div class="col col-near-half padding-2 bg-gray border-2 margin-bottom-2">
+        <div class="col col-near-half padding-2 bg-gray border margin-bottom-2">
           <h4>Enter addresses manually</h4>
           <form id="geocode">
             <legend>Include street address, city, state/territory and ZIP code for up to
@@ -122,7 +123,7 @@
         </div>
 
         <!-- batch input -->
-        <div class="col col-near-half col-offset-near-half padding-2 bg-gray border-2 margin-bottom-2">
+        <div class="col col-near-half col-offset-near-half padding-2 bg-gray border margin-bottom-2">
           <h4>Upload a CSV file</h4>
           <form id="geocode-csv">
             <legend>
@@ -135,7 +136,7 @@
               </div>
               <input class="no-border" type="text" id="fileName" name="fileName" disabled="disabled" value="No file chosen" />
             </fieldset>
-            <p class="margin-top-1"><a download href="csv-template.csv" title="Download CSV template">Download CSV template</a></p>
+            <p class="margin-top-1"><a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>Download CSV template</span>&nbsp;</a></p>
             <input class="button block" type="submit" value="Check addresses" />
           </form>
         </div>
@@ -166,7 +167,7 @@
 
           <!-- faq -->
           <h2>Frequently asked questions</h2>
-          <h3>Questions on the tool</h3>
+          <h3 class="margin-top-2">Questions on the tool</h3>
           <div class="border-top padding-top-1">
             <a href="#" class="no-decoration right question">Show <span class="cf-icon cf-icon-plus-round"></span></a>
             <a href="#" class="hide no-decoration right question">Hide <span class="cf-icon cf-icon-minus-round"></span></a>
@@ -465,7 +466,7 @@
             </h5>
             <p>In the final rule published in the Federal Register on October 2, 2015 (80 FR 59944), the Bureau revised its regulatory definitions of small creditor, and rural areas, for purposes of certain special provisions and exemptions from various requirements provided to certain small creditors under the Bureau’s rules.  The revisions to Regulation Z (Truth in Lending) will go into effect on January 1, 2016.</p>
 
-            <h5 class="border-top">
+            <h5 class="border-top margin-top-4">
               <span>Related links</span>
             </h5>
             <p>
@@ -522,9 +523,9 @@
           <h1 class="super left inline-block margin-right-quarter"><a class="duplicateCnt no-decoration counter no-decoration" href="#duplicate">0</a></h1>
           <h4 class="inline-block half-width left padding-top-half">identified as duplicate</h4>
         </div>
-        <div class="col col-12 padding-top-1 padding-bottom-2">
+        <div class="col col-12 padding-top-1 padding-bottom-2 hide-print">
           <a class="margin-right-quarter" href="#" id="print" title="Print results">Print results</a> |
-          <a class="margin-left-quarter" href="#" id="download" title="Download results">Download results</a> <span class="cf-icon cf-icon-download"></span>
+          <a class="download-link margin-left-quarter" href="#" id="download" title="Download results"><span>Download results</span>&nbsp;</a>
         </div>
       </div>
       <div class="group">
