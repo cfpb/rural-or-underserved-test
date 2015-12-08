@@ -114,35 +114,40 @@ $('#file').change(function(e) {
   textInputs.reset();
   $('#fileName').val(fileInput.getUploadName($('#file').val()));
   fileInput.resetError();
-
-  // parse the csv to get the count
-  $('#file').parse( {
-    config: {
-      header: true,
-      step: function(results, parser) {
-        if (!addrParse.isValid(results)) {
-          return;
-        } else {
-          rowCount ++;
+  
+  if(fileInput.isCSV($('#file').val())) {
+    // parse the csv to get the count
+    $('#file').parse( {
+      config: {
+        header: true,
+        step: function(results, parser) {
+          if (!addrParse.isValid(results)) {
+            return;
+          } else {
+            rowCount ++;
+          }
+        },
+        complete: function(results, file) {
+          if (rowCount === 0) {
+            fileInput.setError('There are no rows in this csv. Please update and try again.');
+          }
+          if (rowCount >= 250) {
+            var leftOver = rowCount - 250;
+            fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
+          }
         }
       },
-      complete: function(results, file) {
-        if (rowCount === 0) {
-          fileInput.setError('There are no rows in this csv. Please update and try again.');
-        }
-        if (rowCount >= 250) {
-          var leftOver = rowCount - 250;
-          fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
-        }
+      complete: function() {
       }
-    },
-    complete: function() {
-    }
-  });
+    });
+  } else {
+    fileInput.setError('This file is not a csv.');
+  }
 });
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
+  if(fileInput.isCSV($('#file').val())) {
     content.setup();
     var rowCount = 0;
     textInputs.reset();
@@ -177,6 +182,9 @@ $('#geocode-csv').submit(function(e) {
         }
       }
     });
+  } else {
+    fileInput.setError('This file is not a csv.');
+  }
 
     return false;
 });
