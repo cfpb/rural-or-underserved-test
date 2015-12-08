@@ -12,8 +12,18 @@
         border-width: 3px;
     }
 
+    #header,
+    #footer {
+      display: none;
+    }
+
+    .container.margin-top-2 {
+      margin-top: 0;
+    }
+
     h1 {
         font-size: 22px;
+        margin-top: 0;
     }
 
     h2 {
@@ -32,6 +42,10 @@
         width: 100%;
     }
 
+    .report-date {
+      color: $gray-80;
+    }
+
     #results-total {
         background: $gray-10;
         padding: 10px;
@@ -41,5 +55,9 @@
             border-bottom-width: 0;
             color: $black;
         }
+    }
+
+    [class^="col-"] {
+      width: 100%;
     }
 }
