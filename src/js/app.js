@@ -103,6 +103,10 @@ $('#geocode').submit(function(e) {
     }
   });
 
+  if (addresses.length > 1) {
+    $('#results-total').removeClass('hide');
+  }
+
   count.updateAddressCount(addresses.length);
   processAddresses(addresses);
   return false;
@@ -176,7 +180,9 @@ $('#geocode-csv').submit(function(e) {
             var leftOver = rowCount - 250;
             fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
           }
-
+          if (addresses.length > 1) {
+            $('#results-total').removeClass('hide');
+          }
           count.updateAddressCount(addresses.length);
           processAddresses(addresses);
         }
