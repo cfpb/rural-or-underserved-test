@@ -56,6 +56,7 @@ module.exports = function() {
     if (rowCount >= 5) {
       hideRow = true;
       $('#' + result.type + 'More').removeClass('hide');
+      $('#' + result.type + 'All').removeClass('hide');
     }
 
     var rural;
@@ -67,11 +68,11 @@ module.exports = function() {
       rural = '-';
     }
 
-    var rowHTML = '<tr';
+    var rowHTML = '<tr class="data';
     if (hideRow === true) {
-      rowHTML = rowHTML + ' class="hide"';
+      rowHTML = rowHTML + ' hide';
     }
-    rowHTML = rowHTML + '><td>' + result.input + '</td>'
+    rowHTML = rowHTML + '"><td>' + result.input + '</td>'
       + '<td>' + result.address + '</td>'
       + '<td>' + result.countyName + '</td>'
       + '<td>' + rural;
