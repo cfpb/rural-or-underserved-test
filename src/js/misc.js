@@ -58,7 +58,10 @@ $(function(){
 
   // print
   $('#print').click(function() {
-      window.print();
+    $('tbody tr.data').removeClass('hide');
+    $('.button-more').addClass('hide');
+    $('.view-all').addClass('hide');
+    window.print();
   });
 
   // csv download
