@@ -47,6 +47,15 @@ module.exports = function() {
   };
 
   address.render = function(result) {
+    console.log(result.type + ' has ' + $('#' + result.type + ' tbody tr').length + 'rows');
+    var rowCount = $('#' + result.type + ' tbody tr').length;
+    if (result.type === 'rural' || result.type === 'notRural') {
+      rowCount = $('#' + result.type + ' tbody tr').length / 2;
+    }
+    var hideRow = false;
+    if (rowCount >= 5) {
+      hideRow = true;
+    }
     var rural;
     if (result.type === 'rural') {
       rural = 'Yes';
@@ -56,7 +65,13 @@ module.exports = function() {
       rural = '-';
     }
 
-    var rowHTML = '<tr><td>' + result.input + '</td>'
+    var rowHTML = '<tr';
+
+    if (hideRow === true) {
+      rowHTML = rowHTML + ' class="hide"';
+    }
+
+    rowHTML = rowHTML + '><td>' + result.input + '</td>'
       + '<td>' + result.address + '</td>'
       + '<td>' + result.countyName + '</td>'
       + '<td>' + rural;
