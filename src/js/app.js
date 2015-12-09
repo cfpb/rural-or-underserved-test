@@ -151,7 +151,9 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
-  if(fileInput.isCSV($('#file').val())) {
+  if ($('#file').val() === '' || $('#file').val() === 'No file chosen' || $('#file').val() === null) {
+    fileInput.setError('You have not selected a file. Use the "Select file" button to select the file with your addresses.');
+  } else if(fileInput.isCSV($('#file').val())) {
     content.setup();
     var rowCount = 0;
     textInputs.reset();
