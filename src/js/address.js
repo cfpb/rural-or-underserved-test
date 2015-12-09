@@ -47,6 +47,18 @@ module.exports = function() {
   };
 
   address.render = function(result) {
+    var rowCount = $('#' + result.type + ' tbody tr').length;
+    if (result.type === 'rural' || result.type === 'notRural') {
+      rowCount = $('#' + result.type + ' tbody tr').length / 2;
+    }
+
+    var hideRow = false;
+    if (rowCount >= 5) {
+      hideRow = true;
+      $('#' + result.type + 'More').removeClass('hide');
+      $('#' + result.type + 'All').removeClass('hide');
+    }
+
     var rural;
     if (result.type === 'rural') {
       rural = 'Yes';
@@ -56,20 +68,21 @@ module.exports = function() {
       rural = '-';
     }
 
-    var rowHTML = '<tr><td>' + result.input + '</td>'
+    var rowHTML = '<tr class="data';
+    if (hideRow === true) {
+      rowHTML = rowHTML + ' hide';
+    }
+    rowHTML = rowHTML + '"><td>' + result.input + '</td>'
       + '<td>' + result.address + '</td>'
       + '<td>' + result.countyName + '</td>'
       + '<td>' + rural;
-
     // add the map link if needed
     if(rural !== '-') {
       rowHTML = rowHTML
         + ' <a href="#" class="no-decoration hide-print jsLoadMap right" data-map="false" data-lat="' + result.x + '" data-lon="' + result.y + '" data-id="loc-' + result.id + '">Show map <span class="cf-icon cf-icon-plus-round"></span></a>'
     }
-
     rowHTML = rowHTML
       + '</td></tr>';
-
     // add the map if needed
     if(rural !== '-') {
       rowHTML = rowHTML

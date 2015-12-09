@@ -114,7 +114,7 @@ $('#file').change(function(e) {
   textInputs.reset();
   $('#fileName').val(fileInput.getUploadName($('#file').val()));
   fileInput.resetError();
-  
+
   if(fileInput.isCSV($('#file').val())) {
     // parse the csv to get the count
     $('#file').parse( {
@@ -141,7 +141,7 @@ $('#file').change(function(e) {
       }
     });
   } else {
-    fileInput.setError('This file is not a csv.');
+    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
   }
 });
 
@@ -183,7 +183,7 @@ $('#geocode-csv').submit(function(e) {
       }
     });
   } else {
-    fileInput.setError('This file is not a csv.');
+    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
   }
 
     return false;
