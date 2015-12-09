@@ -24,7 +24,6 @@ $(function(){
     contentControl.showAbout();
     // clear remove inputs
     textInputs.reset();
-    //fileInput.resetFileName();
     // reset counts
     count.reset();
     fileInput.resetError();
