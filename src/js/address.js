@@ -47,15 +47,17 @@ module.exports = function() {
   };
 
   address.render = function(result) {
-    console.log(result.type + ' has ' + $('#' + result.type + ' tbody tr').length + 'rows');
     var rowCount = $('#' + result.type + ' tbody tr').length;
     if (result.type === 'rural' || result.type === 'notRural') {
       rowCount = $('#' + result.type + ' tbody tr').length / 2;
     }
+
     var hideRow = false;
     if (rowCount >= 5) {
       hideRow = true;
+      $('#' + result.type + 'More').removeClass('hide');
     }
+
     var rural;
     if (result.type === 'rural') {
       rural = 'Yes';
@@ -66,25 +68,20 @@ module.exports = function() {
     }
 
     var rowHTML = '<tr';
-
     if (hideRow === true) {
       rowHTML = rowHTML + ' class="hide"';
     }
-
     rowHTML = rowHTML + '><td>' + result.input + '</td>'
       + '<td>' + result.address + '</td>'
       + '<td>' + result.countyName + '</td>'
       + '<td>' + rural;
-
     // add the map link if needed
     if(rural !== '-') {
       rowHTML = rowHTML
         + ' <a href="#" class="no-decoration hide-print jsLoadMap right" data-map="false" data-lat="' + result.x + '" data-lon="' + result.y + '" data-id="loc-' + result.id + '">Show map <span class="cf-icon cf-icon-plus-round"></span></a>'
     }
-
     rowHTML = rowHTML
       + '</td></tr>';
-
     // add the map if needed
     if(rural !== '-') {
       rowHTML = rowHTML
