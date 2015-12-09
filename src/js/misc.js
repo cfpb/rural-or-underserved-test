@@ -103,7 +103,12 @@ $(function(){
   var currentTable = '';
   var firstTable = true;
   function generateCSV() {
-    theCSV = 'Address Entered, Address Identified, County, Census Block, Rural or Underserved?' + '\n';
+    var date = new Date();
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    theCSV = 'Address entered, Address identified, County, Rural or underserved?, Date processed' + '\n';
 
     // loop through each row
     $('.table tbody tr td').each(function () {
@@ -114,7 +119,7 @@ $(function(){
           theCSV = theCSV + ('"' + thisString + '"'); // put the content in first
 
           if ($(this).is(':last-child')) {
-            theCSV = theCSV + '\n';
+            theCSV = theCSV + ',' + monthIndex + '/' + day + '/' + year + '\n';
           } else {
             theCSV = theCSV + ',';
           }
