@@ -141,7 +141,7 @@ $('#file').change(function(e) {
       }
     });
   } else {
-    fileInput.setError('The file uploaded is not a CSV file. This tool can only process CSV files that use our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
+    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
   }
 });
 
@@ -183,7 +183,7 @@ $('#geocode-csv').submit(function(e) {
       }
     });
   } else {
-    fileInput.setError('The file uploaded is not a CSV file. This tool can only process CSV files that use our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
+    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
   }
 
     return false;
