@@ -1,5 +1,12 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 $columns: 12;
-$max-width: 1170px;
+$max-width: 1200px;
 
 .container {
     margin-left: auto;
@@ -9,7 +16,8 @@ $max-width: 1170px;
 
 .col {
     float: left;
-    box-sizing: border-box;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 .col-2 {
     width: percentage(2/$columns);
