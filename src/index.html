@@ -107,38 +107,42 @@
       </div>
       <div class="group sans">
         <!-- manual input -->
-        <div class="col col-near-half padding-2 bg-gray border margin-bottom-2">
-          <h4>Enter addresses manually</h4>
-          <form id="geocode">
-            <legend>Include street address, city, state/territory and ZIP code for up to
-              <strong>10</strong> properties.</legend>
-            <fieldset class="fieldset-reset">
-              <div class="input-container">
-                <input class="block margin-top-1 margin-bottom-1 full-width input-address" id="address1" name="address1" type="text" />
-              </div>
-              <p><a href="#" id="add-another" title="Add another address">Add another address</a></p>
-            </fieldset>
-            <input class="button" type="submit" value="Check addresses" />
-          </form>
+        <div class="col col-6 margin-bottom-2">
+          <div class="bg-gray border padding-2">
+            <h4>Enter addresses manually</h4>
+            <form id="geocode">
+              <legend>Include street address, city, state/territory and ZIP code for up to
+                <strong>10</strong> properties.</legend>
+              <fieldset class="fieldset-reset">
+                <div class="input-container">
+                  <input class="block margin-top-1 margin-bottom-1 full-width input-address" id="address1" name="address1" type="text" />
+                </div>
+                <p><a href="#" id="add-another" title="Add another address">Add another address</a></p>
+              </fieldset>
+              <input class="button" type="submit" value="Check addresses" />
+            </form>
+          </div>
         </div>
 
         <!-- batch input -->
-        <div class="col col-near-half col-offset-near-half padding-2 bg-gray border margin-bottom-2">
-          <h4>Upload a CSV file</h4>
-          <form id="geocode-csv">
-            <legend>
-              To check on more than one loan, upload a CSV file with addresses for up to <strong>250</strong> properties.
-            </legend>
-            <fieldset class="fieldset-reset margin-top-1">
-              <div class="custom-file-input button button-secondary">
-                <label for="file">Select file</label>
-                <input id="file" name="file" type="file" />
-              </div>
-              <input class="no-border" type="text" id="fileName" name="fileName" disabled="disabled" value="No file chosen" />
-            </fieldset>
-            <p class="margin-top-1"><a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>Download CSV template</span>&nbsp;</a></p>
-            <input class="button block" type="submit" value="Check addresses" />
-          </form>
+        <div class="col col-6 margin-bottom-2">
+          <div class="bg-gray border padding-2 right">
+            <h4>Upload a CSV file</h4>
+            <form id="geocode-csv">
+              <legend>
+                To check on more than one loan, upload a CSV file with addresses for up to <strong>250</strong> properties.
+              </legend>
+              <fieldset class="fieldset-reset margin-top-1">
+                <div class="custom-file-input button button-secondary">
+                  <label for="file">Select file</label>
+                  <input id="file" name="file" type="file" />
+                </div>
+                <input class="no-border" type="text" id="fileName" name="fileName" disabled="disabled" value="No file chosen" />
+              </fieldset>
+              <p class="margin-top-1"><a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>Download CSV template</span>&nbsp;</a></p>
+              <input class="button block" type="submit" value="Check addresses" />
+            </form>
+          </div>
         </div>
 
         <div class="col col-12 margin-bottom-2">
