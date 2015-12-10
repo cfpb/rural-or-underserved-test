@@ -94,7 +94,7 @@ $(function(){
         window.open('data:text/csv;charset=utf-8,' + escape(theCSV));
     } else {
         var blob = new Blob([theCSV], {type: 'text/csv'});
-        navigator.msSaveOrOpenBlob(blob, 'strings.csv');
+        navigator.msSaveBlob(blob, 'strings.csv');
     }
   });
 
