@@ -58,9 +58,6 @@ $(function(){
 
   // print
   $('#print').click(function() {
-    $('tbody tr.data').removeClass('hide');
-    $('.button-more').addClass('hide');
-    $('.view-all').addClass('hide');
     window.print();
   });
 

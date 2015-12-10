@@ -8,7 +8,9 @@
     }
 
     #header,
-    #footer {
+    #footer,
+    .button-more,
+    .view-all {
       display: none;
     }
 
@@ -71,5 +73,15 @@
     th,
     td {
       padding: .1em;
+    }
+    tbody tr.data.hide {
+      position: relative;
+      overflow: visible;
+      clip: auto;
+      height: auto;
+      width: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
     }
 }
