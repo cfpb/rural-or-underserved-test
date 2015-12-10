@@ -26,3 +26,12 @@
 .bg-gold-20 {
   background-color: $gold-20;
 }
+
+.warn {
+  background-color: $gold-20;
+  border-color: $gold;
+}
+.error {
+  background-color: $redorange-20;
+  border-color: $redorange;
+}

@@ -125,19 +125,27 @@ $('#file').change(function(e) {
       config: {
         header: true,
         step: function(results, parser) {
+          //console.log(results);
+          //console.log(parser);
+          console.log(addrParse.isValid(results));
           if (!addrParse.isValid(results)) {
+            parser.abort();
+            fileInput.setError('The header row of your CSV file does not match our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. Please adjust your CSV file and try again.', 'error');
             return;
           } else {
-            rowCount ++;
+            if (results.data[0]['Street Address'] !== '') {
+              rowCount ++;
+            }
+            console.log(rowCount);
           }
         },
         complete: function(results, file) {
           if (rowCount === 0) {
-            fileInput.setError('There are no rows in this csv. Please update and try again.');
+            fileInput.setError('There are no rows in this csv. Please update and try again.', 'error');
           }
           if (rowCount >= 250) {
             var leftOver = rowCount - 250;
-            fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
+            fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.', 'warn');
           }
         }
       },
@@ -145,20 +153,19 @@ $('#file').change(function(e) {
       }
     });
   } else {
-    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
+    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.', 'error');
   }
 });
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
   if ($('#file').val() === '' || $('#file').val() === 'No file chosen' || $('#file').val() === null) {
-    fileInput.setError('You have not selected a file. Use the "Select file" button to select the file with your addresses.');
+    fileInput.setError('You have not selected a file. Use the "Select file" button to select the file with your addresses.', 'error');
   } else if(fileInput.isCSV($('#file').val())) {
-    content.setup();
+    var pass = true;
     var rowCount = 0;
-    textInputs.reset();
-
     var addresses = [];
+    textInputs.reset();
 
     // parse the csv to get the count
     $('#file').parse({
@@ -166,9 +173,12 @@ $('#geocode-csv').submit(function(e) {
         header: true,
         step: function(results, parser) {
           if (!addrParse.isValid(results)) {
+            parser.abort();
+            pass = false;
+            fileInput.setError('The header row of your CSV file does not match our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. Please adjust your CSV file and try again.', 'error');
             return;
           } else {
-            if(rowCount < 250) {
+            if(rowCount < 250 && results.data[0]['Street Address'] !== '') {
               addresses = addrParse.pushAddress(results, addresses);
             }
             rowCount ++;
@@ -176,22 +186,26 @@ $('#geocode-csv').submit(function(e) {
         },
         complete: function(results, file) {
           if (rowCount === 0) {
-            fileInput.setError('There are no rows in this csv. Please update and try again.');
+            pass = false;
+            fileInput.setError('There are no rows in this csv. Please update and try again.', 'error');
           }
           if (rowCount >= 250) {
             var leftOver = rowCount - 250;
-            fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
+            fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.', 'warn');
           }
           if (addresses.length > 1) {
             $('#results-total').removeClass('hide');
           }
-          count.updateAddressCount(addresses.length);
-          processAddresses(addresses);
+          if (pass === true) {
+            content.setup();
+            count.updateAddressCount(addresses.length);
+            processAddresses(addresses);
+          }
         }
       }
     });
   } else {
-    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.');
+    fileInput.setError('The file uploaded is not a CSV file. Please try again with a CSV file that uses our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. For more information about CSV files, view our Frequently Asked Questions below.', 'error');
   }
 
     return false;

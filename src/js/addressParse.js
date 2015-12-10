@@ -2,13 +2,7 @@ module.exports = function() {
   var addressParse = {};
 
   addressParse.isValid = function(row) {
-    var pass = true;
-
-    if (row.data[0]['Street Address'] === '' && row.errors) {
-        pass = false;
-    }
-
-    return pass;
+    return row.meta.fields[0] === 'Street Address' && row.meta.fields[1] === 'City' && row.meta.fields[2] === 'State' && row.meta.fields[3] === 'Zip';
   }
 
   addressParse.pushAddress = function(row, addresses) {
