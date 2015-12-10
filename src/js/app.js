@@ -103,6 +103,10 @@ $('#geocode').submit(function(e) {
     }
   });
 
+  if (addresses.length > 1) {
+    $('#results-total').removeClass('hide');
+  }
+
   count.updateAddressCount(addresses.length);
   processAddresses(addresses);
   return false;
@@ -147,7 +151,9 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
-  if(fileInput.isCSV($('#file').val())) {
+  if ($('#file').val() === '' || $('#file').val() === 'No file chosen' || $('#file').val() === null) {
+    fileInput.setError('You have not selected a file. Use the "Select file" button to select the file with your addresses.');
+  } else if(fileInput.isCSV($('#file').val())) {
     content.setup();
     var rowCount = 0;
     textInputs.reset();
@@ -176,7 +182,9 @@ $('#geocode-csv').submit(function(e) {
             var leftOver = rowCount - 250;
             fileInput.setError('You entered ' + rowCount + ' addresses for ' + $('#year').val() + ' safe harbor designation. We have a limit of 250 addresses. You can run the first 250 now, but please recheck the remaining ' + leftOver + '.');
           }
-
+          if (addresses.length > 1) {
+            $('#results-total').removeClass('hide');
+          }
           count.updateAddressCount(addresses.length);
           processAddresses(addresses);
         }

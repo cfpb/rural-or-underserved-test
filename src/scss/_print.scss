@@ -7,13 +7,10 @@
         display: block;
     }
 
-    .main-header {
-        border-color: $gray-50;
-        border-width: 3px;
-    }
-
     #header,
-    #footer {
+    #footer,
+    .button-more,
+    .view-all {
       display: none;
     }
 
@@ -21,17 +18,27 @@
       margin-top: 0;
     }
 
-    h1 {
-        font-size: 22px;
+    h1,
+    .super {
+        font-size: 18px;
         margin-top: 0;
     }
 
     h2 {
-        font-size: 20px;
+        font-size: 14px;
+    }
+
+    h4 {
+      font-size: 12px;
     }
 
     h5 {
         font-size: 12px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 1;
     }
 
     #logo {
@@ -48,7 +55,7 @@
 
     #results-total {
         background: $gray-10;
-        padding: 10px;
+        padding: 3px;
 
         a.no-decoration {
             border-bottom-style: none;
@@ -59,5 +66,22 @@
 
     [class^="col-"] {
       width: 100%;
+    }
+    table {
+      font-size: 12px;
+    }
+    th,
+    td {
+      padding: .1em;
+    }
+    tbody tr.data.hide {
+      position: relative;
+      overflow: visible;
+      clip: auto;
+      height: auto;
+      width: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
     }
 }
