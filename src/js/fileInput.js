@@ -19,9 +19,12 @@ module.exports = function() {
       $('.js-error-message').html('');
     }
 
-    fileInput.setError = function(message) {
+    fileInput.setError = function(message, type) {
         $('#fileErrorDesc').html(message);
         $('#fileError').removeClass('hide');
+        $('#fileError').removeClass('warn');
+        $('#fileError').removeClass('error');
+        $('#fileError').addClass(type);
     }
 
     fileInput.getUploadName = function(filename) {

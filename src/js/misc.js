@@ -91,10 +91,10 @@ $(function(){
   $('#download').click(function() {
     generateCSV();
     if (detectIE() === false) {
-        window.open('data:text/csv;charset=utf-8,' + escape(theCSV));
+        window.open('data:text/csv;charset=utf-8;' + escape(theCSV));
     } else {
-        var blob = new Blob([theCSV], {type: 'text/csv'});
-        navigator.msSaveOrOpenBlob(blob, 'strings.csv');
+        var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8;'});
+        navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
     }
   });
 
