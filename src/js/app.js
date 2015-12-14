@@ -125,9 +125,6 @@ $('#file').change(function(e) {
       config: {
         header: true,
         step: function(results, parser) {
-          //console.log(results);
-          //console.log(parser);
-          console.log(addrParse.isValid(results));
           if (!addrParse.isValid(results)) {
             parser.abort();
             fileInput.setError('The header row of your CSV file does not match our <a class="download-link" download href="csv-template.csv" title="Download CSV template"><span>CSV template</span>&nbsp;</a>. Please adjust your CSV file and try again.', 'error');
@@ -136,7 +133,6 @@ $('#file').change(function(e) {
             if (results.data[0]['Street Address'] !== '') {
               rowCount ++;
             }
-            console.log(rowCount);
           }
         },
         complete: function(results, file) {
