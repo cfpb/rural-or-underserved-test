@@ -88,21 +88,21 @@ $(function(){
     return false;
   }
 
-  $('#download').click(function() {
+  var theCSV = '';
+
+  $('#download').click(function(e) {
+    e.preventDefault();
     generateCSV();
     if (detectIE() === false) {
-        window.open('data:text/csv;charset=utf-8;' + escape(theCSV));
+        window.open('data:text/csv;charset=utf-8,' + escape(theCSV));
     } else {
-        var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8;'});
+        var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
         navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
     }
   });
 
-  // to csv
-  var theCSV = '';
-  var currentTable = '';
-  var firstTable = true;
   function generateCSV() {
+    theCSV = '';
     var date = new Date();
     var day = date.getDate();
     var monthIndex = date.getMonth();
