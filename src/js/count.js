@@ -33,6 +33,11 @@ module.exports = function() {
       var totalCount = parseInt($('#totalCnt').text(), 10);
       totalCount++;
       $('#totalCnt').text(totalCount);
+
+      // hide spinner
+      if ($('#totalCnt').text() === $('#addressCount').text()) {
+        $('#spinner').addClass('hide');
+      }
     }
 
     return counters;
