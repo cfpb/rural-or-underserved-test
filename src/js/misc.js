@@ -88,13 +88,19 @@ $(function(){
     return false;
   }
 
-  var theCSV = '';
-
   $('#download').click(function(e) {
     e.preventDefault();
-    generateCSV();
+    var theCSV = generateCSV();
     if (detectIE() === false) {
-        window.open('data:text/csv;charset=utf-8,' + escape(theCSV));
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(theCSV));
+      element.setAttribute('download', 'rural-or-underserved.csv');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
     } else {
         var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
         navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
@@ -102,7 +108,7 @@ $(function(){
   });
 
   function generateCSV() {
-    theCSV = '';
+    var theCSV = '';
     var date = new Date();
     var day = date.getDate();
     var monthIndex = date.getMonth();
@@ -126,5 +132,7 @@ $(function(){
         }
       }
     });
+
+    return theCSV;
   }
 });
