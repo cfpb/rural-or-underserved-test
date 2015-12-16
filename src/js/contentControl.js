@@ -33,6 +33,8 @@ module.exports = function() {
         $('#fileError').addClass('hide');
         $('#errorMessage').addClass('hide');
 
+        $('#spinner').removeClass('hide');
+
         count.reset();
         this.resetHTML();
         this.showResults();

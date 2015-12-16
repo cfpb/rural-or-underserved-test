@@ -15,6 +15,15 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.cf-icon__spin {
+  -webkit-animation: cf-spin 2s infinite linear;
+          animation: cf-spin 2s infinite linear;
+}
+
+.cf-icon-update:before {
+    content: "\e112";
+    color: $green;
+}
 .cf-icon-plus-round:before {
   content: "\e109";
 }
@@ -61,4 +70,26 @@ a .cf-icon {
   border-bottom-style: none;
   border-bottom-width: 0;
   text-decoration: none;
+}
+
+@-webkit-keyframes cf-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes cf-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
 }
