@@ -17,6 +17,16 @@ module.exports = function(address, rural, cb) {
     if (jqXHR.status !== 200) {
       $('#processErrorDesc').append('<li>' + address + '</li>');
       $('#processError').removeClass('hide');
+
+      // add one to the total
+      var totalCount = parseInt($('#totalCnt').text(), 10);
+      totalCount++;
+      $('#totalCnt').text(totalCount);
+
+      // hide spinner
+      if ($('#totalCnt').text() === $('#addressCount').text()) {
+        $('#spinner').addClass('hide');
+      }      
     }
   });
 };
