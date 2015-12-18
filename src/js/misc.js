@@ -92,15 +92,7 @@ $(function(){
     e.preventDefault();
     var theCSV = generateCSV();
     if (detectIE() === false) {
-      var element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(theCSV));
-      element.setAttribute('download', 'rural-or-underserved.csv');
-      element.style.display = 'none';
-      document.body.appendChild(element);
-
-      element.click();
-
-      document.body.removeChild(element);
+      window.open('data:text/csv;charset=utf-8,' + encodeURIComponent(theCSV));
     } else {
         var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
         navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
