@@ -112,7 +112,7 @@ var app = $.sammy(function() {
   });
 
   this.get('#rural-or-underserved', function(context) {
-
+    // having this prevents a console.log by sammy
   });
 });
 
