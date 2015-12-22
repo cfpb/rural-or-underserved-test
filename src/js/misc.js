@@ -74,6 +74,8 @@ $(function(){
   }
 
   $('#download').click(function(e) {
+    /*
+    TEST 1
     // this works but on windows both chrome and ff don't give .csv extension
     e.preventDefault();
     var theCSV = generateCSV();
@@ -83,6 +85,7 @@ $(function(){
       var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
       navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
     }
+    */
 
     /*
     TEST 2
@@ -115,14 +118,43 @@ $(function(){
     // this happens even on a mac
     //
     e.preventDefault();
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(theCSV));
-    element.setAttribute('download', 'rural-or-underserved.csv');
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    var theCSV = generateCSV();
+    if (detectIE() === false) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(theCSV));
+      element.setAttribute('download', 'rural-or-underserved.csv');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    } else {
+        var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
+        navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
+    }
     */
+
+    /*
+    TEST 4
+    //
+    // adds an element (id="the-download") to the DOM by default
+    // see index.html ~line 509
+    // acts the same as above
+    //
+    */
+    console.log('ype');
+    e.preventDefault();
+    var theCSV = generateCSV();
+    console.log(theCSV);
+    if (detectIE() === false) {
+      var blob = new Blob([theCSV], {
+        "type": "text/csv;charset=utf8;"
+      });
+      $('#the-download').attr("href", window.URL.createObjectURL(blob));
+      //$('#the-download').trigger('click');
+    } else {
+        var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
+        navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
+    }
   });
 
   function generateCSV() {
