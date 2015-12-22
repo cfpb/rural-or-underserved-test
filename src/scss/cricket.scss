@@ -21,3 +21,10 @@
 @import "print";
 
 @import "minicons";
+
+img {
+  max-width: 100%;
+}
+.question {
+  cursor: pointer;
+}

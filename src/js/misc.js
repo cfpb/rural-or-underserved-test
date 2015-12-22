@@ -16,21 +16,6 @@ $(function(){
     textInputs.toggleError(e);
   });
 
-  // about click
-  $('#link-about').click(function(e) {
-    e.preventDefault();
-    fileInput.resetError();
-    // show about content
-    contentControl.showAbout();
-    // clear remove inputs
-    textInputs.reset();
-    // reset counts
-    count.reset();
-    fileInput.resetError();
-    // clear tables
-    contentControl.resetHTML();
-  });
-
   // show more rows
   $('.button-more').click(function(e) {
     e.preventDefault();

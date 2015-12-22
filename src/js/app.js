@@ -1,4 +1,5 @@
 var $ = require('jquery');
+require('sammy');
 var content = require('./contentControl');
 var addr = require('./address');
 var addrParse = require('./addressParse');
@@ -91,8 +92,37 @@ processAddresses = function(addresses) {
   });
 }
 
+var app = $.sammy(function() {
+
+  this.get('/', function(context) {
+    fileInput.resetError();
+    // show about content
+    content.showAbout();
+    // clear remove inputs
+    textInputs.reset();
+    // reset counts
+    count.reset();
+    fileInput.resetError();
+    // clear tables
+    content.resetHTML();
+  });
+
+  this.get('#', function(context) {
+    context.run('/');
+  });
+
+  this.get('#rural-or-underserved', function(context) {
+    // having this prevents a console.log by sammy
+  });
+});
+
+$(function() {
+  app.run();
+});
+
 // on submit
 $('#geocode').submit(function(e) {
+  window.location.hash = 'rural-or-underserved';
   var addresses = [];
 
   content.setup();
@@ -155,6 +185,7 @@ $('#file').change(function(e) {
 
 // on file submission
 $('#geocode-csv').submit(function(e) {
+  window.location.hash = 'rural-or-underserved';
   if ($('#file').val() === '' || $('#file').val() === 'No file chosen' || $('#file').val() === null) {
     fileInput.setError('You have not selected a file. Use the "Select file" button to select the file with your addresses.', 'error');
   } else if(fileInput.isCSV($('#file').val())) {

@@ -64,6 +64,11 @@ a {
     }
   }
 
+a.no-visit:visited {
+  border-color: #0071bc;
+  color: #0071bc;
+}
+
 hr {
   border:none;
   border-top: 1px solid $gray;
