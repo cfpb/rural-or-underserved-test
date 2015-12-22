@@ -74,14 +74,55 @@ $(function(){
   }
 
   $('#download').click(function(e) {
+    // this works but on windows both chrome and ff don't give .csv extension
     e.preventDefault();
     var theCSV = generateCSV();
     if (detectIE() === false) {
       window.open('data:text/csv;charset=utf-8,' + encodeURIComponent(theCSV));
     } else {
+      var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
+      navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
+    }
+
+    /*
+    TEST 2
+    //
+    // this works but on windows both chrome and ff don't give .csv extension
+    //
+    e.preventDefault();
+    var theCSV = generateCSV();
+    if (detectIE() === false) {
+      var blob = new Blob([theCSV], {
+        "type": "text/csv;charset=utf8;"
+      });
+      var element = document.createElement('a');
+      element.setAttribute('download', 'rural-or-underserved.csv');
+      element.setAttribute('href', window.URL.createObjectURL(blob));
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    } else {
         var blob = new Blob([theCSV], {type: 'text/csv;charset=utf-8,'});
         navigator.msSaveOrOpenBlob(blob, 'rural-or-underserved.csv');
     }
+    */
+
+    /*
+    TEST 3
+    //
+    // this causes a new window to open containing the contents of the csv
+    // this happens even on a mac
+    //
+    e.preventDefault();
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(theCSV));
+    element.setAttribute('download', 'rural-or-underserved.csv');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    */
   });
 
   function generateCSV() {
