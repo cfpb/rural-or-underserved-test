@@ -2,7 +2,7 @@ var $ = require('jquery');
 
 module.exports = function(address, rural, cb) {
   $.ajax({
-    url: 'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?',
+    url: 'https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?',
     dataType: 'jsonp',
     data: {
       address: address,
@@ -26,7 +26,7 @@ module.exports = function(address, rural, cb) {
       // hide spinner
       if ($('#totalCnt').text() === $('#addressCount').text()) {
         $('#spinner').addClass('hide');
-      }      
+      }
     }
   });
 };

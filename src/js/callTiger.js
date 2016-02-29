@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
 module.exports = function(x, y, layer) {
-  var url = 'http://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer/'
+  var url = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer/'
     + layer
     + '/query'
     + '?geometryType=esriGeometryPoint'
