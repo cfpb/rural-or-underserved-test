@@ -9,6 +9,13 @@ module.exports = {
             },
             {
                 cwd: 'src/',
+                src: ['js/v1-nonresponsive-header.js',
+                      'js/modernizr.v1build.js'],
+                dest: 'dist/',
+                expand: true
+            },
+            {
+                cwd: 'src/',
                 src: ['*.html'],
                 dest: 'dist/',
                 expand: true,
@@ -29,6 +36,12 @@ module.exports = {
             {
                 cwd: 'src/',
                 src: ['csv-template.csv'],
+                dest: 'dist/',
+                expand: true,
+            },
+            {
+                cwd: 'src/',
+                src: ['css/*'],
                 dest: 'dist/',
                 expand: true,
             }
