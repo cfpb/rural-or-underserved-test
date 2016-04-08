@@ -3,6 +3,12 @@ module.exports = {
         files: 'src/scss/**/*.scss',
         tasks: ['sass:dev']
     },
+    v1: {
+        files: ['src/css/**/*.css',
+                'src/js/v1-non-responsive-header.js',
+                'js/modernizr.v1build.js'],
+        tasks: ['copy:dev']
+    },
     scripts: {
         files: 'src/js/*.js',
         tasks: ['browserify:dev', 'browserify:specs', 'jasmine:dev']
