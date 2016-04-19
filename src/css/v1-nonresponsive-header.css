@@ -5,6 +5,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 .input-with-btn {
     display: block;
     position: relative;
@@ -68,7 +69,7 @@
     border-radius: .28571429em;
     margin: 0;
     vertical-align: middle;
-    font-family: 'Avenir Next', Arial,sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Regular', Arial,sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: .875em;
@@ -167,7 +168,7 @@ input[type="text"],input[type="search"],input[type="email"],input[type="url"],in
     display: inline-block;
     margin: 0;
     padding: .375em;
-    font-family: 'Avenir Next', Arial, sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Regular', Arial,sans-serif;
     font-size: 1em;
     background: #fff;
     border: 1px solid #b4b5b6;
@@ -207,7 +208,7 @@ img {
     border-radius: .28571429em;
     margin: 0;
     vertical-align: middle;
-    font-family: 'AvenirNextLTW01-Medium', Arial, sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Medium', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: .875em;
@@ -516,7 +517,7 @@ ul:last-child,.list__links .list_item:last-child {
 }
 
 .m-global-banner_head {
-    font-family: 'AvenirNextLTW01-Medium', Arial, sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Medium', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     margin-bottom: .83333333em;
@@ -662,7 +663,7 @@ p+.m-global-banner_head,ul+.m-global-banner_head,ol+.m-global-banner_head,dl+.m-
     padding-left: 37px;
 }
 .m-global-header-cta a {
-    font-family: 'AvenirNextLTW01-Medium', Arial, sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Medium', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     color: #0072ce;
@@ -761,7 +762,7 @@ p+.m-global-banner_head,ul+.m-global-banner_head,ol+.m-global-banner_head,dl+.m-
     display: inline-block;
 }
 .m-global-search_trigger-label:before {
-    font-family: 'AvenirNextLTW01-Medium', Arial, sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Medium', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     content: 'Search';
@@ -804,7 +805,7 @@ p+.m-global-banner_head,ul+.m-global-banner_head,ol+.m-global-banner_head,dl+.m-
 }
 
 .o-header {
-    font-family: 'Avenir Next';
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Regular', Arial, sans-serif;
     min-width: 1020px;
     border-bottom: 5px solid #20aa3f;
     position: relative;
@@ -1068,7 +1069,7 @@ p+.m-global-banner_head,ul+.m-global-banner_head,ol+.m-global-banner_head,dl+.m-
     border-radius: .28571429em;
     margin: 0;
     vertical-align: middle;
-    font-family: 'AvenirNextLTW01-Medium', Arial, sans-serif;
+    font-family: 'Avenir Next', 'AvenirNextLTW01-Medium', Arial, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: .875em;
