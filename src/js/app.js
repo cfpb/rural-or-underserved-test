@@ -94,16 +94,12 @@ processAddresses = function(addresses) {
 var app = $.sammy(function() {
 
   this.before('/', function(context) {
-    console.log(context.path);
     if (context.path !== '/') {
       window.location.href = 'http://www.consumerfinance.gov' + context.path;
     }
   });
 
   this.get('/', function(context) {
-    /*if (context.path !== '/') {
-      window.location.href = 'http://www.consumerfinance.gov' + context.path;
-    }*/
     fileInput.resetError();
     // show about content
     content.showAbout();
