@@ -15,7 +15,6 @@ require('./showMap');
 require('papaparse');
 require('./misc');
 require('./search-box');
-require('./header-nav');
 require('./expandables');
 
 window.callbacks = {};
@@ -94,7 +93,17 @@ processAddresses = function(addresses) {
 
 var app = $.sammy(function() {
 
+  this.before('/', function(context) {
+    console.log(context.path);
+    if (context.path !== '/') {
+      window.location.href = 'http://www.consumerfinance.gov' + context.path;
+    }
+  });
+
   this.get('/', function(context) {
+    /*if (context.path !== '/') {
+      window.location.href = 'http://www.consumerfinance.gov' + context.path;
+    }*/
     fileInput.resetError();
     // show about content
     content.showAbout();
@@ -109,10 +118,6 @@ var app = $.sammy(function() {
 
   this.get('#', function(context) {
     context.run('/');
-  });
-
-  this.get('#rural-or-underserved', function(context) {
-    // having this prevents a console.log by sammy
   });
 });
 
