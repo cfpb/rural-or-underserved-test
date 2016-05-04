@@ -94,7 +94,7 @@ processAddresses = function(addresses) {
 var app = $.sammy(function() {
 
   this.before('/', function(context) {
-    if (context.path !== '/') {
+    if (context.path !== '' && context.path !== '/' && context.path !== '/rural-or-underserved-tool/') {
       window.location.href = 'http://www.consumerfinance.gov' + context.path;
     }
   });
