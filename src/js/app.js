@@ -91,7 +91,7 @@ processAddresses = function(addresses) {
   });
 }
 
-var app = $.sammy(function() {
+var app = $.sammy('main', function() {
 
   this.before('/', function(context) {
     if (context.path !== '' && context.path !== '/' && context.path !== '/rural-or-underserved-tool/') {
