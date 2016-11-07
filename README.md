@@ -43,7 +43,7 @@ Each year the Office of Research in RMR will provide a new list of rural and und
   1. Combining the state and count names into one, comma separated, string.
 1. Save this new file as `<YYYY>.json`, with the correct year, to the [data directory](https://github.com/cfpb/rural-or-underserved-test/tree/master/src/data).
 
-The final step is to add the new year to the drop down. This is done in the []`index.html` file](https://github.com/cfpb/rural-or-underserved-test/blob/master/src/index.html#L1632). You can then follow the ["Building and viewing"](https://github.com/cfpb/rural-or-underserved-test#building-and-viewing) steps to test the tool.
+The final step is to add the new year to the drop down. This is done in the [`index.html` file](https://github.com/cfpb/rural-or-underserved-test/blob/master/src/index.html#L1632). You can then follow the ["Building and viewing"](https://github.com/cfpb/rural-or-underserved-test#building-and-viewing) steps to test the tool.
 
 # Contributions
 
