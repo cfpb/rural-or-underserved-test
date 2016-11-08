@@ -33,6 +33,18 @@ Other available `grunt` tasks:
 - `$grunt build`
   - this task builds the site with minified CSS and JS (without watch and livereload)
 
+# Updating with new data
+Each year the Office of Research in RMR will provide a new list of rural and underserved counties, usually in a spreadsheet. To convert this to json:
+
+1. Save the file as a `.csv`.
+1. Use an online tool to convert the csv into json.
+1. Manually complete the conversion so the new file matches the `<YYYY>.json` files ([example](https://github.com/cfpb/rural-or-underserved-test/blob/master/src/data/2014.json)) in the [data directory](https://github.com/cfpb/rural-or-underserved-test/tree/master/src/data). The manual steps include:
+  1. Adding a `0` to any zip code that contains only 4 digits. These are usually located at the very top of the file.
+  1. Combining the state and count names into one, comma separated, string.
+1. Save this new file as `<YYYY>.json`, with the correct year, to the [data directory](https://github.com/cfpb/rural-or-underserved-test/tree/master/src/data).
+
+The final step is to add the new year to the drop down. This is done in the [`index.html` file](https://github.com/cfpb/rural-or-underserved-test/blob/master/src/index.html#L1632). You can then follow the ["Building and viewing"](https://github.com/cfpb/rural-or-underserved-test#building-and-viewing) steps to test the tool.
+
 # Contributions
 
 We welcome contributions, in both code and design form, with the understanding that you are contributing to a project that is in the public domain, and anything you contribute to this project will also be released into the public domain. See our CONTRIBUTING file for more details.
