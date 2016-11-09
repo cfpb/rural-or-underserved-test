@@ -1,6 +1,6 @@
 {
   "name": "cricket",
-  "version": "1.8.4",
+  "version": "1.9.0",
   "description": "System & UI to check addresses for rural or underserved status, which will affect Qualified Mortgage applicability",
   "main": "index.html",
   "repository": {
