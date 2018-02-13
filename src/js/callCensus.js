@@ -1,32 +1,37 @@
-var $ = require('jquery');
+require( 'es6-promise' ).polyfill();
+var jsonP = require( 'jsonp-p' ).default;
+var DT = require( './dom-tools' );
 
-module.exports = function(address, rural, cb) {
-  $.ajax({
-    url: 'https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?',
-    dataType: 'jsonp',
-    data: {
-      address: address,
-      benchmark: '4',
-      format: 'jsonp'
-    },
-    success: function(data) {
-      callbacks.censusAPI(data, rural);
+module.exports = function( address, rural, cb ) {
+  var url = 'https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?';
+  url += 'address=' + address;
+  url += '&benchmark=4'
+  url += '&format=jsonp';
+
+  jsonP( url ).promise
+  .then( function( data ) {
+      window.callbacks.censusAPI( data, rural );
     }
-  })
-  .fail(function(jqXHR, textStatus) {
-    if (jqXHR.status !== 200) {
-      $('#processErrorDesc').append('<li>' + address + '</li>');
-      $('#processError').removeClass('hide');
+  )
+  .catch( function( error ) {
+    if ( error ) {
+      var addressElement = DT.createEl( '<li>' + address + '</li>' )
+
+      DT.addEl( DT.getEl( '#processErrorDesc' ), addressElement );
+
+      DT.removeClass( '#processError', 'hide' );
+
+      var totalCountElement = DT.getEl( '#totalCnt' );
+      var addressCount = parseInt( DT.getEl( '#addressCount' ).textContent, 10 );
 
       // add one to the total
-      var totalCount = parseInt($('#totalCnt').text(), 10);
-      totalCount++;
-      $('#totalCnt').text(totalCount);
+      var totalCount = parseInt( totalCountElement.textContent , 10 );
+      totalCountElement.textContent = totalCount++;
 
       // hide spinner
-      if ($('#totalCnt').text() === $('#addressCount').text()) {
-        $('#spinner').addClass('hide');
+      if ( totalCount === addressCount ) {
+        DT.addClass( 'spinner', 'hide' );
       }
     }
-  });
+  } );
 };

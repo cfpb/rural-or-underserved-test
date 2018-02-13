@@ -1,54 +1,55 @@
-var $ = require('jquery');
+var DT = require( './dom-tools' );
 
 module.exports = function() {
-    var textInputs = {};
+  var textInputs = {};
+  textInputs.count = 1;
 
+  textInputs.reset = function() {
     textInputs.count = 1;
 
-    textInputs.reset = function() {
-      textInputs.count = 1;
-
-      $('.input-address').each(function(index) {
-          if ($(this).attr('id') !== 'address1') {
-              $(this).remove();
-          } else {
-              $(this).val('').removeClass('error');
-          }
-      });
-
-      $('#add-another').removeClass('hide');
-    }
-
-    textInputs.add = function() {
-      textInputs.count++;
-
-      if (textInputs.count === 10) {
-        $('#add-another').addClass('hide');
-      }
-
-      var previous = textInputs.count - 1;
-
-      if ($('#address' + previous).val() === '') {
-          $('#address' + previous).addClass('error');
+    DT.applyAll( '.input-address', function( element, index ) {
+      if ( element.getAttribute( 'id' ) !== 'address1' ) {
+        DT.removeEl( element );
       } else {
-          $('#address' + previous).removeClass('error');
+        element.value = '';
+        DT.removeClass( element, 'error' );
       }
+    } );
 
-      $('#address1').clone(true)
-        .appendTo('.input-container')
-        .attr('id', 'address' + textInputs.count)
-        .val('')
-        .focus();
+    DT.removeClass( '#add-another', 'hide' );
+  }
+
+  textInputs.add = function() {
+    textInputs.count++;
+
+    if ( textInputs.count === 10 ) {
+      DT.addClass( '#add-another', 'hide' );
     }
 
-    textInputs.toggleError = function(e) {
-      if ($(e.target).val() === '') {
-          $(e.target).addClass('error');
-      } else {
-          $(e.target).removeClass('error');
-      }
+    var previous = textInputs.count - 1;
+
+    if ( DT.getEl( '#address' + previous ).value === '' ) {
+      DT.addClass( '#address' + previous, 'error' );
+    } else {
+      DT.removeClass( '#address' + previous, 'error' );
     }
 
-    return textInputs;
+    var addressElement = DT.getEl( '#address1' ).cloneNode( true );
+    addressElement.setAttribute( 'id', 'address' + textInputs.count )
+    addressElement.value  = '';
+    DT.addEl( '.input-container', addressElement );
+    addressElement.focus();
+  }
+
+  textInputs.toggleError = function( e ) {
+    var target = e.target;
+    if( e.target.value === '' ) {
+      DT.addClass( target, 'error' );
+    } else {
+      DT.removeClass( target, 'error' );
+    }
+  }
+
+  return textInputs;
 
 }();

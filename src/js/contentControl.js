@@ -1,74 +1,85 @@
-var $ = require('jquery');
-var count = require('./count');
+var DT = require( './dom-tools' );
+var count = require( './count' );
 
 var monthNames = [
-    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+  'January', 'February', 'March', 'April',
+  'May', 'June', 'July', 'August', 'September',
+  'October', 'November', 'December'
 ];
 
 module.exports = function() {
 
-    function hideData() {
-        // hide the data sections
-        // these get shown as needed in addresses.js (render)
-        $('#rural').addClass('hide');
-        $('#notRural').addClass('hide');
-        $('#duplicate').addClass('hide');
-        $('#notFound').addClass('hide');
-    }
+  function hideData() {
 
-    var content = {};
+    // hide the data sections
+    // these get shown as needed in addresses.js (render)
+    DT.addClass( '#rural', 'hide' );
+    DT.addClass( '#notRural', 'hide' );
+    DT.addClass( '#duplicate', 'hide' )
+    DT.addClass( '#notFound', 'hide' );
+  }
 
-    content.setup = function() {
-        // set year
-        $('.chosenYear').text($('#year').val());
-        $('.chosenYear1').text(Number($('#year').val()) + 1);
-        $('.chosenYear2').text(Number($('#year').val()) + 2);
-        // set report generated date
-        var date = new Date();
-        var day = date.getDate();
-        var monthIndex = date.getMonth();
-        var year = date.getFullYear();
-        $('.report-date').text('Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year);
+  var content = {};
 
-        $('#fileError').addClass('hide');
-        $('#errorMessage').addClass('hide');
+  content.setup = function() {
 
-        $('#spinner').removeClass('hide');
+    // set year
+    var yearValue =  DT.getEl( '#year' ).value;
 
-        count.reset();
-        this.resetHTML();
-        this.showResults();
-    }
+    DT.changeElText( '.chosenYear', yearValue );
+    DT.changeElText( '.chosenYear1', yearValue + 1 );
+    DT.changeElText( '.chosenYear2', yearValue + 2 );
 
-    content.showResults = function() {
-        // hide about
-        $('#about').addClass('hide');
+    // set report generated date
+    var date = new Date();
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
 
-        hideData();
+    DT.changeElText( '.report-date',
+      'Report generated ' + monthNames[monthIndex] + ' ' + day + ', ' + year
+    );
 
-        // show the results
-        $('#results').removeClass('hide');
-    }
+    DT.addClass( '#fileError', 'hide' );
+    DT.addClass( '#errorMessage', 'hide' );
+    DT.removeClass( '#spinner', 'hide' );
 
-    content.showAbout = function() {
-        // show about
-        $('#about').removeClass('hide');
+    count.reset();
+    this.resetHTML();
+    this.showResults();
+  }
 
-        // hide the results
-        $('#results').addClass('hide');
+  content.showResults = function() {
 
-        hideData();
-    }
+    // hide about
+    DT.addClass( '#about', 'hide' );
+    hideData();
 
-    content.resetHTML = function() {
-        // clear the body of all the tables (data)
-        $('tbody').html('');
-    }
+    // show the results
+    DT.removeClass( '#results', 'hide' );
+  }
 
-    content.error = function(message) {
-        $('#errorMessage').html(message);
-        $('#errorMessage').removeClass('hide');
-    }
+  content.showAbout = function() {
 
-    return content;
+    // show about
+    DT.removeClass( '#about', 'hide' );
+
+    // hide the results
+    DT.addClass( '#results', 'hide' );
+
+    hideData();
+  }
+
+  content.resetHTML = function() {
+
+    // clear the body of all the tables (data)
+    DT.changeElHTML( 'tbody', '' );
+  }
+
+  content.error = function(message) {
+    DT.changeElHTML( '#errorMessage', message );
+    DT.removeClass( '#errorMessage', 'hide' );
+  }
+
+  return content;
 }();

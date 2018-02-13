@@ -1,70 +1,78 @@
-require('mapbox.js')
+require( 'mapbox.js' );
+
+var DT = require( './dom-tools' );
 
 L.mapbox.accessToken =
-  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+  'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
 
 // when a.jsLoadMap is clicked
-$('body').on('click', 'a.jsLoadMap', function(e) {
-  e.preventDefault()
+DT.bindEvents( '#results', 'click', function( e ) {
+  var toggleMapLink = e.target;
+
+  if ( DT.hasClass( toggleMapLink, 'jsLoadMap' ) === false ) {
+    return;
+  }
+
+  e.preventDefault();
 
   // setup vars (data attributes)
-  var lat = $(this).data('lat')
-  var lon = $(this).data('lon')
-  var id = $(this).data('id')
-  var mapShown = $(this).data('map')
+  var lat = DT.getElData( toggleMapLink, 'lat' );
+  var lon = DT.getElData( toggleMapLink, 'lon' );
+  var id = DT.getElData( toggleMapLink, 'id' );
+  var isMapShown = DT.getElData( toggleMapLink, 'map' ) === 'true';
+
+  var parentMapRow = DT.getParentEls( toggleMapLink, 'tr' )[0];
+  var mapTDs = DT.getChildEls( parentMapRow, 'td' );
+  var mapRow = DT.getNextEls( parentMapRow, 'tr' )[0];
+  var hasHideClass = DT.hasClass( mapRow, 'hide' );
 
   // if the map row is hidden
-  if (
-    $(this)
-      .parents('tr')
-      .next()
-      .hasClass('hide')
-  ) {
+  if ( hasHideClass ) {
+
     // show it
-    $(this)
-      .parents('tr')
-      .next()
-      .removeClass('hide')
+    DT.removeClass( mapRow, 'hide' );
+
     // remove border to better associate map with row
-    $(this)
-      .parents('tr')
-      .children('td')
-      .addClass('no-border')
+    DT.addClass( mapTDs, 'no-border' );
+
     // change text
-    $(this).html('Hide map <span class="cf-icon cf-icon-minus-round"></span>')
+    DT.changeElHTML(
+      toggleMapLink,
+      'Hide map <span class="cf-icon cf-icon-minus-round"></span>'
+    );
 
     // only show initiate the map the first time
-    if (mapShown === false) {
+    if ( isMapShown === false ) {
+
       // set the map to true (won't try to initate again)
-      $(this).data('map', 'true')
+      toggleMapLink.setAttribute( 'data-map', true );
 
-      // setup and app map
-      var latlng = L.latLng(lon, lat)
-      map = L.mapbox
-        .map(id, 'cfpb.k55b27gd', { center: latlng })
-        .setView(latlng, 12)
-      map.dragging.disable()
-      map.touchZoom.disable()
-      map.doubleClickZoom.disable()
-      map.scrollWheelZoom.disable()
-      if (map.tap) map.tap.disable()
+      DT.nextFrame( function() {
+        var latlng = L.latLng( lon, lat );
+        map = L.mapbox.map( id, 'cfpb.k55b27gd', { center: latlng } )
+        .setView( latlng, 12 );
+        map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        if ( map.tap ) map.tap.disable();
 
-      // add marker
-      var marker = L.marker(latlng).addTo(map)
+        // add marker
+        var marker = L.marker( latlng ).addTo( map );
+      } );
     }
-  } else {
-    // map is being displayed
+  } else {  // map is being displayed
+
     // hide it
-    $(this)
-      .parents('tr')
-      .next()
-      .addClass('hide')
+    DT.addClass( mapRow, 'hide' );
+
     // add border back
-    $(this)
-      .parents('tr')
-      .children('td')
-      .removeClass('no-border')
+    DT.removeClass( mapTDs, 'no-border' );
+
     // change text
-    $(this).html('Show map <span class="cf-icon cf-icon-plus-round"></span>')
+    DT.changeElHTML(
+      toggleMapLink,
+      'Show map <span class="cf-icon cf-icon-plus-round"></span>'
+    );
   }
-})
+});
