@@ -3,10 +3,11 @@ require( 'mapbox.js' );
 var DT = require( './dom-tools' );
 
 L.mapbox.accessToken =
-  'pk.eyJ1IjoiY29tcHV0ZWNoIiwiYSI6InMyblMya3cifQ.P8yppesHki5qMyxTc2CNLg';
+  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw';
 
 // when a.jsLoadMap is clicked
 DT.bindEvents( '#results', 'click', function( e ) {
+  console.log('clicked', e)
   var toggleMapLink = e.target;
 
   if ( DT.hasClass( toggleMapLink, 'jsLoadMap' ) === false ) {
