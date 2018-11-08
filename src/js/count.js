@@ -7,6 +7,8 @@ module.exports = function() {
 
   counters.reset = function() {
     DT.changeElHTML( '.counter', '0' );
+    types = {}
+    totalCount = 0
   }
 
   counters.updateAddressCount = function( number ) {
