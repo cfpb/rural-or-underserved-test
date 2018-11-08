@@ -21,12 +21,14 @@ document.addEventListener( 'DOMContentLoaded', function(){
   DT.bindEvents( '.button-more', 'click', function( e ) {
     var moreButton = e.target;
     e.preventDefault();
-    var tableID = DT.getData( moreButton, 'table' );
+    var tableID = DT.getElData( moreButton, 'table' );
     var tableRows = DT.getEls( '#' + tableID + ' tbody tr.data' );
     var tableRowsLength = tableRows.length;
-    var lengthShown = DT.getChildEls( tableRows, ':not(.hide)' );
-
-    for ( i = lengthShown; i < lengthShown + 10; i++ ) {
+    var lengthShown = Array.prototype.filter.call(
+      tableRows, function(v) {
+        return !v.classList.contains('hide')
+      }).length
+    for ( var i = lengthShown; i < lengthShown + 10; i++ ) {
       DT.removeClass(
         tableRows[i],
         'hide'
@@ -41,7 +43,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
   DT.bindEvents( '.view-all', 'click', function( e ) {
     e.preventDefault();
-    var tableID = DT.getElData( 'table' );
+    var tableID = DT.getElData( e.target, 'table' );
     DT.removeClass( '#' + tableID + ' tbody tr.data', 'hide' );
     DT.addClass( '#' + tableID + 'More', 'hide' );
     DT.addClass( '#' + tableID + 'All', 'hide' );
