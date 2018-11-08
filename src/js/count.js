@@ -2,6 +2,8 @@ var DT = require( './dom-tools' );
 
 module.exports = function() {
   var counters = {};
+  var types = {}
+  var totalCount = 0
 
   counters.reset = function() {
     DT.changeElHTML( '.counter', '0' );
@@ -16,10 +18,9 @@ module.exports = function() {
     var verb = 'are';
 
     var countElements = DT.getEls( '.' + type + 'Cnt' );
-
     // add one to correct type
-    var typeCount = parseInt( countElements[0].textContent, 10 );
-    typeCount++
+    var typeCount = types[type] || 0
+    types[type] = ++typeCount
     DT.changeElText( countElements, typeCount );
 
     if( typeCount === 1 ) {
@@ -34,7 +35,6 @@ module.exports = function() {
     var addressCount = parseInt( DT.getEl( '#addressCount' ).textContent, 10 );
 
     // add one to the total
-    var totalCount = parseInt( totalCountElement.textContent , 10 );
     totalCount++
 
     DT.changeElText( totalCountElement, totalCount );

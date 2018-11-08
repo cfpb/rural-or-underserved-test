@@ -99,18 +99,17 @@ callbacks.censusAPI = function( data, rural ) {
 }
 
 processAddresses = function( addresses ) {
-  duplicates = [];
+  var processed = [];
 
   ruralCounties( DT.getEl( '#year' ).value )
   .then( function( rural ) {
     addresses.forEach( function( address, index ) {
 
       // if its not dup
-      if ( !addr.isDup( address, duplicates ) ) {
+      if ( !addr.isDup( address, processed) ) {
         census( address, rural, 'callbacks.censusAPI' );
-        duplicates.push( address );
+        processed.push( address );
       } else {
-
         // setup the result to render
         var result = {};
         result.input = address;
