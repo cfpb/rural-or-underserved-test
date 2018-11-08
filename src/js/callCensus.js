@@ -1,6 +1,7 @@
 require( 'es6-promise' ).polyfill();
 var jsonP = require( 'jsonp-p' ).default;
 var DT = require( './dom-tools' );
+var count = require('./count');
 
 module.exports = function( address, rural, cb ) {
   var url = 'https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?';
@@ -21,17 +22,7 @@ module.exports = function( address, rural, cb ) {
 
       DT.removeClass( '#processError', 'hide' );
 
-      var totalCountElement = DT.getEl( '#totalCnt' );
-      var addressCount = parseInt( DT.getEl( '#addressCount' ).textContent, 10 );
-
-      // add one to the total
-      var totalCount = parseInt( totalCountElement.textContent , 10 );
-      totalCountElement.textContent = totalCount++;
-
-      // hide spinner
-      if ( totalCount === addressCount ) {
-        DT.addClass( 'spinner', 'hide' );
-      }
+      count.incrementTotal()
     }
   } );
 };

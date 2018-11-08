@@ -15,6 +15,22 @@ module.exports = function() {
     DT.changeElText( '#addressCount', number );
   }
 
+  counters.incrementTotal = function() {
+
+    var totalCountElement = DT.getEl( '#totalCnt' );
+    var addressCount = parseInt( DT.getEl( '#addressCount' ).textContent, 10 );
+
+    // add one to the total
+    totalCount++
+
+    DT.changeElText( totalCountElement, totalCount );
+
+    // hide spinner
+    if ( totalCount === addressCount ) {
+      DT.addClass( '#spinner', 'hide' );
+    }
+  }
+
   counters.updateCount = function( type ) {
     var noun = 'addresses';
     var verb = 'are';
@@ -33,18 +49,7 @@ module.exports = function() {
     DT.changeElText( '.' + type + 'Verb', verb );
     DT.changeElText( '.' + type + 'Case', noun + ' ' + verb );
 
-    var totalCountElement = DT.getEl( '#totalCnt' );
-    var addressCount = parseInt( DT.getEl( '#addressCount' ).textContent, 10 );
-
-    // add one to the total
-    totalCount++
-
-    DT.changeElText( totalCountElement, totalCount );
-
-    // hide spinner
-    if ( totalCount === addressCount ) {
-      DT.addClass( '#spinner', 'hide' );
-    }
+    counters.incrementTotal()
   }
 
   return counters;
