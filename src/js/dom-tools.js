@@ -20,7 +20,7 @@ function _mutate( selector, callback ) {
   DT.applyAll( selector, function( element ) {
     fastDom.mutate( callback.bind( null, element ) );
   } );
-};
+}
 
 // Code copied from jQuery with minimal modifications.
 // XHTML parsers do not magically insert elements in the
@@ -183,6 +183,7 @@ var DT = {
     return (
       element instanceof NodeList ||
       element instanceof HTMLElement ||
+      element instanceof DocumentFragment ||
       element instanceof Window
     );
   },
