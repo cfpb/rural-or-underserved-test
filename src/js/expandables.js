@@ -2,6 +2,7 @@ var DT = require( './dom-tools' );
 
 DT.bindEvents( '.question', 'click', function( e ) {
   var questionElement = e.target;
+  if ( !DT.hasClass( questionElement, 'question' ) ) questionElement = questionElement.parentNode
   var childElements = DT.getChildEls( questionElement , '.cf-icon' );
 
   DT.toggleClass( DT.getNextEls( questionElement, '.answer' ), 'hide' );
