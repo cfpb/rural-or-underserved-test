@@ -50,7 +50,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
   } )
 
   // print
-  DT.bindEvents( '#print', 'click',  window.print );
+  DT.bindEvents( '#print', 'click',  window.print.bind(window) );
 
   // csv download
   function detectIE() {
@@ -121,7 +121,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
           var CSVLabel = element.textContent.replace( 'Show map', '' );
           theCSV = theCSV + ( '"' + CSVLabel + '"' ); // put the content in first
 
-          if ( DT.matches( element, ':last-child' ) ) {
+          if ( element.matches( ':last-child' ) ) {
             theCSV = theCSV + ',' + monthIndex + '/' + day + '/' + year + '\n';
           } else {
             theCSV = theCSV + ',';
