@@ -1,6 +1,8 @@
-var $ = require('jquery');
+require( 'es6-promise' ).polyfill();
+var jsonP = require( 'jsonp-p' ).default;
 
-module.exports = function(x, y, layer) {
+
+module.exports = function( x, y, layer ) {
   var url = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer/'
     + layer
     + '/query'
@@ -14,5 +16,5 @@ module.exports = function(x, y, layer) {
     + '&outFields=*'
     + '&f=json';
 
-    return $.get(url);
+    return jsonP( url ).promise;
 };

@@ -1,70 +1,79 @@
-require('mapbox.js')
+require( 'mapbox.js' );
+
+var DT = require( './dom-tools' );
 
 L.mapbox.accessToken =
-  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw';
 
 // when a.jsLoadMap is clicked
-$('body').on('click', 'a.jsLoadMap', function(e) {
-  e.preventDefault()
+DT.bindEvents( '#results', 'click', function( e ) {
+  var target = e.target;
+  var toggleMapLink = target;
+  if(DT.hasClass( target.parentNode, 'jsLoadMap' )) toggleMapLink = target.parentNode;
 
-  // setup vars (data attributes)
-  var lat = $(this).data('lat')
-  var lon = $(this).data('lon')
-  var id = $(this).data('id')
-  var mapShown = $(this).data('map')
+  if ( DT.hasClass( toggleMapLink, 'jsLoadMap' ) ) {
 
-  // if the map row is hidden
-  if (
-    $(this)
-      .parents('tr')
-      .next()
-      .hasClass('hide')
-  ) {
-    // show it
-    $(this)
-      .parents('tr')
-      .next()
-      .removeClass('hide')
-    // remove border to better associate map with row
-    $(this)
-      .parents('tr')
-      .children('td')
-      .addClass('no-border')
-    // change text
-    $(this).html('Hide map <span class="cf-icon cf-icon-minus-round"></span>')
+    e.preventDefault();
 
-    // only show initiate the map the first time
-    if (mapShown === false) {
-      // set the map to true (won't try to initate again)
-      $(this).data('map', 'true')
+    // setup vars (data attributes)
+    var lat = DT.getElData( toggleMapLink, 'lat' );
+    var lon = DT.getElData( toggleMapLink, 'lon' );
+    var id = DT.getElData( toggleMapLink, 'id' );
+    var isMapShown = DT.getElData( toggleMapLink, 'map' ) === 'true';
 
-      // setup and app map
-      var latlng = L.latLng(lon, lat)
-      map = L.mapbox
-        .map(id, 'cfpb.k55b27gd', { center: latlng })
-        .setView(latlng, 12)
-      map.dragging.disable()
-      map.touchZoom.disable()
-      map.doubleClickZoom.disable()
-      map.scrollWheelZoom.disable()
-      if (map.tap) map.tap.disable()
+    var parentMapRow = DT.getParentEls( toggleMapLink, 'tr' )[0];
+    var mapTDs = DT.getChildEls( parentMapRow, 'td' );
+    var mapRow = DT.getNextEls( parentMapRow, 'tr' )[0];
+    var hasHideClass = DT.hasClass( mapRow, 'hide' );
 
-      // add marker
-      var marker = L.marker(latlng).addTo(map)
+    // if the map row is hidden
+    if ( hasHideClass ) {
+
+      // show it
+      DT.removeClass( mapRow, 'hide' );
+
+      // remove border to better associate map with row
+      DT.addClass( mapTDs, 'no-border' );
+
+      // change text
+      DT.changeElHTML(
+        toggleMapLink,
+        'Hide map <span class="cf-icon cf-icon-minus-round"></span>'
+      );
+
+      // only show initiate the map the first time
+      if ( isMapShown === false ) {
+
+        // set the map to true (won't try to initate again)
+        toggleMapLink.setAttribute( 'data-map', true );
+
+        DT.nextFrame( function() {
+          var latlng = L.latLng( lon, lat );
+          map = L.mapbox.map( id, 'cfpb.k55b27gd', { center: latlng } )
+          .setView( latlng, 12 );
+          map.dragging.disable();
+          map.touchZoom.disable();
+          map.doubleClickZoom.disable();
+          map.scrollWheelZoom.disable();
+          if ( map.tap ) map.tap.disable();
+
+          // add marker
+          var marker = L.marker( latlng ).addTo( map );
+        } );
+      }
+    } else {  // map is being displayed
+
+      // hide it
+      DT.addClass( mapRow, 'hide' );
+
+      // add border back
+      DT.removeClass( mapTDs, 'no-border' );
+
+      // change text
+      DT.changeElHTML(
+        toggleMapLink,
+        'Show map <span class="cf-icon cf-icon-plus-round"></span>'
+      );
     }
-  } else {
-    // map is being displayed
-    // hide it
-    $(this)
-      .parents('tr')
-      .next()
-      .addClass('hide')
-    // add border back
-    $(this)
-      .parents('tr')
-      .children('td')
-      .removeClass('no-border')
-    // change text
-    $(this).html('Show map <span class="cf-icon cf-icon-plus-round"></span>')
   }
-})
+});

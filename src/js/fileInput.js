@@ -1,46 +1,42 @@
-var $ = require('jquery');
+var DT = require( './dom-tools' );
 
 module.exports = function() {
-    var fileInput = {};
+  var fileInput = {};
+  var uploadName = '';
 
-    var uploadName = '';
+  fileInput.resetFileName = function() {
+    DT.getEl( '#fileName' ).value = 'No file chosen';
+  }
 
-    fileInput.resetFileName = function() {
-      $('#fileName').val('No file chosen');
+  fileInput.setFileName = function( fileName ) {
+    DT.getEl( '#fileName' ).value = fileName;
+  }
+
+  fileInput.resetError = function() {
+    DT.addClass( '#fileError', 'hide' );
+    DT.addClass( '#processError', 'hide' );
+    DT.changeElHTML( '.js-error-message', '' );
+  }
+
+  fileInput.setError = function( message, type ) {
+    DT.changeElHTML( '#fileErrorDesc', message );
+    DT.removeClass( '#fileError', 'hide', 'warn', 'error' );
+    DT.addClass( '#fileError', type );
+  }
+
+  fileInput.getUploadName = function( fileName ) {
+    var uploadName = fileName;
+    if ( uploadName.indexOf( '\\' ) > -1) {
+      uploadNameParts = uploadName.split( '\\' );
+      uploadName = uploadNameParts[uploadNameParts.length - 1];
     }
 
-    fileInput.setFileName = function(filename) {
-      $('#fileName').val(filename);
-    }
+    return uploadName;
+  }
 
-    fileInput.resetError = function() {
-      $('#fileError').addClass('hide');
-      $('#processError').addClass('hide');
-      $('.js-error-message').html('');
-    }
+  fileInput.isCSV = function( fileName ) {
+    return fileName.substr( fileName.lastIndexOf( '.' ) + 1 ) === 'csv';
+  }
 
-    fileInput.setError = function(message, type) {
-        $('#fileErrorDesc').html(message);
-        $('#fileError').removeClass('hide');
-        $('#fileError').removeClass('warn');
-        $('#fileError').removeClass('error');
-        $('#fileError').addClass(type);
-    }
-
-    fileInput.getUploadName = function(filename) {
-      var uploadName = filename;
-      if (uploadName.indexOf('\\') > -1) {
-        uploadNameParts = uploadName.split('\\');
-        uploadName = uploadNameParts[uploadNameParts.length - 1];
-      }
-
-      return uploadName;
-    }
-
-    fileInput.isCSV = function(filename) {
-      return filename.substr(filename.lastIndexOf('.')+1) === 'csv';
-    }
-
-    return fileInput;
-
+  return fileInput;
 }();
