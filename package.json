@@ -45,6 +45,7 @@
     "papaparse": "^4.1.2"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "postinstall": "npm rebuild node-sass"
   }
 }
