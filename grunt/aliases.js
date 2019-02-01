@@ -14,12 +14,10 @@ module.exports = {
     'htmlmin:build'
   ],
   'test': [
-    'browserify:specs',
-    'jasmine:dev'
+    'browserify:specs'
   ],
   'coverage': [
     'browserify:dev',
-    'browserify:specs',
-    'jasmine:coverage'
+    'browserify:specs'
   ]
 };
