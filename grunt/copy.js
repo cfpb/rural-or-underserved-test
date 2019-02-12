@@ -9,6 +9,12 @@ module.exports = {
             },
             {
                 cwd: 'src/',
+                src: ['js/modernizr.v1build.js'],
+                dest: 'dist/',
+                expand: true
+            },
+            {
+                cwd: 'src/',
                 src: ['*.html'],
                 dest: 'dist/',
                 expand: true,
@@ -45,6 +51,12 @@ module.exports = {
             {
                 cwd: 'src/',
                 src: ['img/*'],
+                dest: 'dist/',
+                expand: true
+            },
+            {
+                cwd: 'src/',
+                src: ['js/modernizr.v1build.js'],
                 dest: 'dist/',
                 expand: true
             },
