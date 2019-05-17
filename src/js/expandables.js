@@ -2,17 +2,19 @@ var DT = require( './dom-tools' );
 
 DT.bindEvents( '.question', 'click', function( e ) {
   var questionElement = e.target;
-  if ( !DT.hasClass( questionElement, 'question' ) ) questionElement = questionElement.parentNode
-  var childElements = DT.getChildEls( questionElement , '.cf-icon' );
 
+  if ( !DT.hasClass( questionElement, 'question' ) ) questionElement = questionElement.parentNode
   DT.toggleClass( DT.getNextEls( questionElement, '.answer' ), 'hide' );
 
-  if ( DT.hasClass( childElements, 'cf-icon-plus-round' ) ) {
-    DT.removeClass( childElements, 'cf-icon-plus-round' );
-    DT.addClass( childElements, 'cf-icon-minus-round' );
-  } else if ( DT.hasClass( childElements, 'cf-icon-minus-round' ) ) {
-    DT.removeClass( childElements, 'cf-icon-minus-round' );
-    DT.addClass( childElements, 'cf-icon-plus-round' );
+  var openIcon = questionElement.querySelector( '.open-icon' );
+  var closedIcon = questionElement.querySelector( '.closed-icon' );
+
+  if ( openIcon.classList.contains( 'hide' ) ) {
+    openIcon.classList.remove( 'hide' );
+    closedIcon.classList.add( 'hide' );
+  } else {
+    openIcon.classList.add( 'hide' );
+    closedIcon.classList.remove( 'hide' );
   }
 
   e.preventDefault();
