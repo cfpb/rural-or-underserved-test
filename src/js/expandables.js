@@ -1,7 +1,7 @@
 var DT = require( './dom-tools' );
 
 DT.bindEvents( '.question', 'click', function( e ) {
-  var questionElement = e.target;
+  var questionElement = e.currentTarget;
 
   if ( !DT.hasClass( questionElement, 'question' ) ) questionElement = questionElement.parentNode
   DT.toggleClass( DT.getNextEls( questionElement, '.answer' ), 'hide' );
