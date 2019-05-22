@@ -68,6 +68,12 @@ module.exports = {
             },
             {
                 cwd: 'src/',
+                src: ['js/header.nonresponsive.js'],
+                dest: 'dist/',
+                expand: true
+            },
+            {
+                cwd: 'src/',
                 src: ['fonts/*'],
                 dest: 'dist/',
                 expand: true,
