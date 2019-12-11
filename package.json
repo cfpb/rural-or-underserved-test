@@ -35,7 +35,7 @@
     "node-sass": "^4.11.0"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "es6-promise": "^4.2.4",
     "fastdom": "^1.0.6",
     "hash-router": "^0.4.0",
