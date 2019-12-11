@@ -1,3 +1,6 @@
+# :warning: THIS REPO IS DEPRECATED (12/11/2019) :warning:
+This tool has migrated to [cfgov-refresh](https://github.com/cfpb/cfgov-refresh).
+
 # Rural and underserved areas automated tool
 
 [![Build Status](https://travis-ci.org/cfpb/rural-or-underserved-test.svg?branch=master)](https://travis-ci.org/cfpb/rural-or-underserved-test)
